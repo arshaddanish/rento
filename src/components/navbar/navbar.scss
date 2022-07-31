@@ -1,0 +1,31 @@
+.navbar {
+  background: #17202d;
+  padding: 1.5rem 6rem;
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9;
+}
+
+.brand {
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.nav-items {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  column-gap: 2rem;
+
+  p {
+    cursor: pointer;
+
+    &:hover {
+      color: #0aa5cd;
+    }
+  }
+}
