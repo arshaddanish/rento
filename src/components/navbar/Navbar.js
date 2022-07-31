@@ -6,7 +6,9 @@ export default function Navbar() {
   return (
     <div className="navbar">
       <div className="container">
-        <div className="brand">RENTO</div>
+        <Link to="/">
+          <div className="brand">RENTO</div>
+        </Link>
         <div className="nav-items">
           <Link to="/">
             <p>Home</p>
