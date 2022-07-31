@@ -8,20 +8,43 @@
   z-index: -1;
   background-size: cover;
 
-  .container {
-    position: relative;
+  h1 {
+    margin-top: 15rem;
+    text-align: center;
+    color: white;
+    font-size: 4rem;
+  }
 
-    h1 {
-      margin-top: 15rem;
-      text-align: center;
-      color: white;
-      font-size: 4rem;
-    }
+  p {
+    margin-top: 2rem;
+    text-align: center;
+    color: white;
+  }
 
-    p {
-      margin-top: 2rem;
-      text-align: center;
-      color: white;
+  .search-box {
+    max-width: 1000px;
+    background: #fff;
+    padding: 2rem;
+    margin: auto;
+    margin-top: 6rem;
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-evenly;
+
+    .find-btn {
+      padding: 0 5rem;
+      color: #fff;
+      background: #17202d;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 0.25rem;
+
+      &:hover {
+        color: #0aa5cd;
+        background: white;
+        border: 1px solid #0aa5cd;
+      }
     }
   }
 }
