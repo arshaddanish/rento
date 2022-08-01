@@ -1,0 +1,26 @@
+.about-main{
+    padding-top: 150px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 4rem;
+    .about-left-img{
+        display: grid;
+        justify-items: right;
+        img{
+            height: 70vh;
+            border-radius: 15px;
+        }
+    }
+    .about-right-para{
+        align-self: center;
+        padding-right: 15rem;
+        h1{
+            font-size: 3rem;
+            padding-bottom: 1rem;
+            margin-top: 4rem;
+        }
+        p{
+            color: grey;
+        }
+    }
+}
