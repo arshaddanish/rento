@@ -53,9 +53,19 @@
   background: #e9edf2;
   padding: 5rem 4rem;
 
-  h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2.5rem;
+  .title-div {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .filter {
+      width: 200px;
+    }
   }
 
   .items {

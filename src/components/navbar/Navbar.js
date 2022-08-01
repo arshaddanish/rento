@@ -1,8 +1,13 @@
 import React from "react";
 import "./navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  let { pathname } = useLocation();
+  if (pathname === "/login" || pathname === "/signup") {
+    return null;
+  }
+
   return (
     <div className="navbar">
       <div className="container">
