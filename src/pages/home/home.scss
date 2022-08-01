@@ -6,7 +6,7 @@
   background-size: cover;
 
   h1 {
-    padding-top: 15rem;
+    padding-top: 16rem;
     text-align: center;
     color: white;
     font-size: 4rem;
@@ -18,32 +18,31 @@
     color: white;
   }
 
-  .search-box {
-    max-width: 1000px;
-    background: #fff;
-    padding: 2rem;
-    margin: auto;
-    margin-top: 6rem;
-    border-radius: 0.5rem;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    justify-content: space-evenly;
+  .btn-div {
+    text-align: center;
 
     .find-btn {
-      padding: 0 5rem;
-      color: #fff;
-      background: #17202d;
+      margin: auto;
+      margin-top: 4rem;
+      padding: 1.5rem 5rem;
+      color: #0aa5cd;
+      background: white;
       font-size: 1rem;
       cursor: pointer;
-      border-radius: 0.25rem;
-
+      border-radius: 4rem;
+      border: none;
+      font-size: 1rem;
+      letter-spacing: 1.25px;
+      transition: 0.1s all ease-in;
+  
       &:hover {
-        color: #0aa5cd;
-        background: white;
-        border: 1px solid #0aa5cd;
+        transform: scale(1.05);
       }
     }
+
   }
+
+
 }
 
 .categories {
@@ -124,7 +123,7 @@
       padding: 0 3rem;
       height: 50px;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       font-size: 1rem;
 
       &:hover {
