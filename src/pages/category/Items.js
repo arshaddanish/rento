@@ -1,5 +1,9 @@
 import React from "react";
 import audi from "../../assets/images/vehicles/audi.jpg";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
 
 function Item() {
   return (
@@ -21,9 +25,37 @@ function Item() {
 }
 
 export default function Items() {
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
   return (
     <div className="category-items">
-      <h2>Vehicles</h2>
+      <div className="title-div">
+        <h2>Vehicles</h2>
+        <div className="filter">
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Type</InputLabel>
+            <Select
+              MenuProps={{
+                disableScrollLock: true,
+              }}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={age}
+              label="Type"
+              onChange={handleChange}
+            >
+              <MenuItem value={10}>Bike</MenuItem>
+              <MenuItem value={20}>Scooter</MenuItem>
+              <MenuItem value={30}>Car</MenuItem>
+              <MenuItem value={40}>Truck</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+      </div>
       <div className="items">
         {Item()}
         {Item()}
