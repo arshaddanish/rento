@@ -20,12 +20,12 @@
         color: #17202d;
         background: #fff;
         padding: 0 7rem;
-        margin-top: 12rem;
+        margin-top: 12.5rem;
         height: 50px;
         border: none;
         border-radius: 10px;
         font-size: 1rem;
-        transition: 0.5s;
+        transition: 0.2s;
   
         &:hover {
           background: black;
@@ -38,6 +38,6 @@
     background-color: black;
     // color: black;
     h1{
-        font-size: 6.5rem;
+        transform: scale(1.05);
     }
 }
