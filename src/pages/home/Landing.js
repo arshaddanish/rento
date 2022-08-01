@@ -1,5 +1,4 @@
 import React from "react";
-import "./home.scss";
 import TextField from "@mui/material/TextField";
 
 export default function Landing() {

@@ -45,3 +45,63 @@
     }
   }
 }
+
+.categories {
+  padding: 5rem 4rem;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 4rem;
+
+    div {
+      height: 300px;
+      background-size: cover;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.1s ease-in;
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.0125);
+      }
+
+      h3 {
+        position: absolute;
+        left: 2rem;
+        bottom: 1.5rem;
+        font-size: 1.5rem;
+        color: #fff;
+      }
+    }
+
+    .car {
+      background-image: url("../../assets/images/categories/car.png");
+    }
+
+    .house {
+      background-image: url("../../assets/images/categories/house.png");
+    }
+
+    .machine {
+      background-image: url("../../assets/images/categories/machine.png");
+    }
+  }
+}
+
+.news {
+  padding: 5rem 4rem;
+  background: #E9EDF2;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
