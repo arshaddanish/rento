@@ -3,8 +3,11 @@ import './subscriptionCard.scss'
 
 const SubscriptionCard = ({period,price}) => {
   return (
-    <div>
+    <div className='subscriptionCard-main'>
         
+        <h1>{price}/-</h1>
+        <h3>{period}</h3>
+        <button>SUBSCRIBE</button>
     </div>
   )
 }

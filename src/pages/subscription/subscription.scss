@@ -1,8 +1,10 @@
 .subscribe-main{
-    margin-top: 100px;
+    margin-top: 12vh;
+    height: 88vh;
     display: grid;
     grid-template-columns: 80%;
     justify-content: center;
+    align-items: center;
     .subscribe-sub{
         display: grid;
         grid-template-columns: repeat(3,1fr);
