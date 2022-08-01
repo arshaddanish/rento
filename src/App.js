@@ -13,7 +13,7 @@ import News from "./pages/home/News";
 import ForgotPass from "./pages/login/ForgotPass";
 import Contact from "./pages/contact/Contact";
 import Subscription from "./pages/subscription/Subscription";
-import Profile from "./pages/profile/Profile";
+import Account from "./pages/account/Account";
 
 export default function App() {
   return (
@@ -29,7 +29,7 @@ export default function App() {
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/subscribe" element={<Subscription />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/account" element={<Account />} />
         <Route
           path="/category/vehicles"
           element={<Items backImg="vehicles" />}
