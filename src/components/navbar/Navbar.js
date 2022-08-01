@@ -21,7 +21,7 @@ export default function Navbar() {
           <Link to="/about">
             <p>About</p>
           </Link>
-          <Link to="/">
+          <Link to="/contact">
             <p>Contact</p>
           </Link>
           <Link to="/login">
