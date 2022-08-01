@@ -15,7 +15,11 @@ export default function Footer() {
   const classes = useStyles();
 
   let { pathname } = useLocation();
-  if (pathname === "/login" || pathname === "/signup") {
+  if (
+    pathname === "/login" ||
+    pathname === "/signup" ||
+    pathname === "/forgot"
+  ) {
     return null;
   }
 
