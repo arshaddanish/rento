@@ -1,9 +1,15 @@
 import React from 'react'
-import './about.scss'
+import AboutTop from './AboutTop'
+import Team from './Team'
+
+
 
 const About = () => {
   return (
-    <div className='about'>About</div>
+    <div>
+        <AboutTop />
+        <Team />
+    </div>
   )
 }
 
