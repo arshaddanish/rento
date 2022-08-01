@@ -7,7 +7,7 @@
         height: 100vh;
     }
     .login-main{
-        padding-top: 10rem;
+        padding-top: 6rem;
     }
     .login{
         display: grid;
@@ -44,7 +44,8 @@
                 background: #042E60;
                 border-radius: 9px;
                 color: white;
-                padding: 0.5rem;
+                padding: 0.8rem;
+                border: none;
                 margin-top: 2.5rem;
             }
             input{
