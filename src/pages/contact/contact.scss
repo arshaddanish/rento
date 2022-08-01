@@ -1,0 +1,10 @@
+.contact-main{
+    display: grid;
+    grid-template-columns: 90%;
+    justify-content: center;
+    padding-top: 100px;
+    .contact-sub{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+}

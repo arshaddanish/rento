@@ -29,6 +29,7 @@ const SignUp = () => {
                     <input placeholder='City' type="text" name="" id="" />
                     <input placeholder='Pincode' type="number" name="" id="" />
                     <input placeholder='Date of Birth' type="date" name="" id="" />
+                    <input placeholder='Password' type="password" name="" id="" />
                     <button onClick={navigateToHome} type='submit'>Create Account</button>
                 </form>
             </div>
