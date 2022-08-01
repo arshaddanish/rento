@@ -9,9 +9,9 @@ const Team = () => {
     <div className="team">
         <h1>Our Team</h1>
         <div className='team-main'>
-            <ProfileCard img={person} name="Sidharth A" />
-            <ProfileCard img={person} name="Sidharth A" />
-            <ProfileCard img={person} name="Sidharth A" />
+            <ProfileCard img={person} name="Analiya Remdios" />
+            <ProfileCard img={person} name="Arshad Danish" />
+            <ProfileCard img={person} name="Rishan K P" />
             <ProfileCard img={sidharth} name="Sidharth A" />
         </div>
     </div>
