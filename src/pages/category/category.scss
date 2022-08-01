@@ -9,7 +9,7 @@
   }
 
   h1 {
-    padding-top: 15rem;
+    padding-top: 16rem;
     text-align: center;
     color: white;
     font-size: 4rem;
@@ -27,7 +27,7 @@
     padding: 2rem;
     margin: auto;
     margin-top: 6rem;
-    border-radius: 0.5rem;
+    border-radius: 10px;
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: space-evenly;
@@ -35,10 +35,11 @@
     .find-btn {
       padding: 0 5rem;
       color: #fff;
-      background: #17202d;
+      background: #0aa5cd;
       font-size: 1rem;
       cursor: pointer;
-      border-radius: 0.25rem;
+      border-radius: 10px;
+      border: none;
 
       &:hover {
         color: #0aa5cd;
