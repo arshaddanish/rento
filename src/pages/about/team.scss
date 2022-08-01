@@ -1,4 +1,22 @@
-.team-main{
-    margin-top: 4rem;
 
+.team{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 80%;
+    margin-top: 6rem;
+    padding: 3rem 0;
+    background-color: #17202d;
+    // background-image: url("../../assets/images/about/team-bg2.jpg");
+    // background-size: cover;
+    h1{
+        text-align: center;
+        color: white;
+    }
+    .team-main{
+        margin-top: 4rem;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        column-gap: 2rem;
+
+    }
 }

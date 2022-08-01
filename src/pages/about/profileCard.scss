@@ -1,0 +1,24 @@
+.profile-card{
+  transition: transform .2s;
+  .profile-img{
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      
+    }
+    
+    h2{
+      text-align: center;
+      align-self: center;
+      font-size: 2rem;
+      font-weight: 300;
+      color: white;
+      padding-top: 1rem;
+    }
+    
+  }
+  
+}
+.profile-card:hover{
+  transform: scale(1.1);
+}
