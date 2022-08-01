@@ -1,0 +1,22 @@
+.forgot-pass{
+    display: grid;
+    grid-template-columns: 50%;
+    justify-content: center;
+    padding-top: 5rem;
+    .logo{
+        display: grid;
+        justify-content: center;
+    }
+    div:nth-child(2){
+        display: grid;
+        justify-content: center;
+        div{
+            display: grid;
+            justify-content: center;
+            
+            Button{
+                margin-top: 1rem;
+            }
+        }
+    }
+}

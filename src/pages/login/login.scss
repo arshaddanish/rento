@@ -46,6 +46,7 @@
               color: white;
               padding: 0.8rem;
               border: none;
+              margin-top: 2.5rem;
           }
           input{
               border: 0.819005px solid rgba(0, 0, 0, 0.71);
@@ -59,9 +60,17 @@
             margin-top: 1rem;
             margin-bottom: 1rem;
           }
-          input:nth-child(2){
-            margin-bottom: 2.5rem;
-          }
+        //   input:nth-child(2){
+            
+        //   }
+        .forgot-pass{
+            text-align: end;
+            color: grey;
+            padding-top: 0.5rem;
+        }
+        .forgot-pass:hover{
+            color: navy;
+        }
       }
       h3, p{
           margin: 0;
