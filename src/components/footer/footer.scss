@@ -1,4 +1,12 @@
 .footer {
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 6rem;
+  background-image: url("../../assets/images/footer.png");
+  background-size: cover;
+  color: white;
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+  }
 }

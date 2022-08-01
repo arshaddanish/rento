@@ -8,5 +8,20 @@ export default function Footer() {
     return null;
   }
 
-  return <div className="footer">&copy; Rento 2022</div>;
+  return <div className="footer">
+    <div className="container">
+      <div className="contact">
+        <h4>RENTO</h4>
+      </div>
+      <div className="quick-links">
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      </div>
+      <div className="newsletter">
+
+      </div>
+    </div>
+  </div>;
 }
