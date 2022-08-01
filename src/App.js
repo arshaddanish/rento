@@ -12,6 +12,7 @@ import ScrollToTop from "./ScrollToTop";
 import News from "./pages/home/News";
 import ForgotPass from "./pages/login/ForgotPass";
 import Contact from "./pages/contact/Contact";
+import Subscription from "./pages/subscription/Subscription";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/news" element={<News type="view-all" />} />
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/subscribe" element={<Subscription />} />
         <Route
           path="/category/vehicles"
           element={<Items backImg="vehicles" />}

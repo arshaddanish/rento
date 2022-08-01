@@ -1,8 +1,8 @@
 import React from 'react'
-import './subscribe.scss'
+import './subscription.scss'
 import SubscriptionCard from './SubscriptionCard'
 
-const Subscribe = () => {
+const Subscription = () => {
   return (
     <div className='subscribe-main'>
         <div className="subscribe-sub">
@@ -14,4 +14,4 @@ const Subscribe = () => {
   )
 }
 
-export default Subscribe
+export default Subscription
