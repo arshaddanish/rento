@@ -10,10 +10,10 @@ const ForgotPass = () => {
             <div className='logo'>
                 <img src={logo} alt="" />
             </div>
-            <div>
+            <div className='forgot-input'>
                 <form action="">
                     <TextField style={{width: 400}} id="outlined-basic" label="Email" variant="outlined"  fullWidth required type="email"/>
-                    <div>
+                    <div className='forgot-submit-btn'>
                         <Button style={{width: 400}} type='submit' variant="contained">SUBMIT</Button>
                     </div>
                 </form>

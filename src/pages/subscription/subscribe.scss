@@ -1,0 +1,11 @@
+.subscribe-main{
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 80%;
+    justify-content: center;
+    .subscribe-sub{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        column-gap: 2rem;
+    }
+}
