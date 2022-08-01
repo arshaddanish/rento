@@ -3,16 +3,7 @@ import "./footer.scss";
 import { useLocation } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  input: {
-    background: "white",
-  },
-}));
-
 export default function Footer() {
-  const classes = useStyles();
 
   let { pathname } = useLocation();
   if (
