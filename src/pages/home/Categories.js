@@ -9,7 +9,7 @@ export default function Categories() {
         <Link to="/category/vehicles">
           <div className="car">
             <div></div>
-            <h3>Cars</h3>
+            <h3>Vehicles</h3>
           </div>
         </Link>
         <Link to="/category/vehicles">
@@ -25,21 +25,21 @@ export default function Categories() {
           </div>
         </Link>
         <Link to="/category/vehicles">
-          <div className="house">
+          <div className="tool">
+            <div></div>
+            <h3>Tools</h3>
+          </div>
+        </Link>
+        <Link to="/category/vehicles">
+          <div className="office">
+            <div></div>
+            <h3>Offices</h3>
+          </div>
+        </Link>
+        <Link to="/category/vehicles">
+          <div className="boat">
             <div></div>
             <h3>Boats</h3>
-          </div>
-        </Link>
-        <Link to="/category/vehicles">
-          <div className="machine">
-            <div></div>
-            <h3>Cars</h3>
-          </div>
-        </Link>
-        <Link to="/category/vehicles">
-          <div className="car">
-            <div></div>
-            <h3>Others</h3>
           </div>
         </Link>
       </div>

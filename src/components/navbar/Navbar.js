@@ -24,11 +24,8 @@ export default function Navbar() {
           <Link to="/contact">
             <p>Contact</p>
           </Link>
-          <Link to="/account">
-            <p>Account</p>
-          </Link>
           <Link to="/login">
-            <p>Login</p>
+            <p>Account</p>
           </Link>
         </div>
       </div>
