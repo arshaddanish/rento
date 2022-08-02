@@ -7,12 +7,13 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/login/SignUp";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
-import Items from "./pages/category/Category";
+import Category from "./pages/category/Category";
 import ScrollToTop from "./ScrollToTop";
 import News from "./pages/home/News";
 import ForgotPass from "./pages/login/ForgotPass";
 import Contact from "./pages/contact/Contact";
 import Subscription from "./pages/subscription/Subscription";
+import Item from "./pages/Item/Item";
 
 export default function App() {
   return (
@@ -30,7 +31,11 @@ export default function App() {
         <Route path="/subscribe" element={<Subscription />} />
         <Route
           path="/category/vehicles"
-          element={<Items backImg="vehicles" />}
+          element={<Category backImg="vehicles" />}
+        />
+        <Route
+          path="/category/vehicles/1"
+          element={<Item />}
         />
       </Routes>
       <Footer />

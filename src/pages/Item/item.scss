@@ -1,0 +1,77 @@
+.rental-item {
+  padding: 9rem 6rem 5rem;
+
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .main-dtl {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    align-items: baseline;
+
+    span {
+      font-weight: 500;
+      font-size: 1.25rem;
+      color: #0aa5cd;
+    }
+  }
+
+  .dtl-container {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    column-gap: 2rem;
+
+    // .imgs-div {
+    //   width: 100%;
+    //   height: 100%;
+    // }
+
+    .main-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+
+    .extra-imgs {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      margin-bottom: 2rem;
+
+      img {
+        width: 100%;
+        // overflow: hidden;
+      }
+    }
+
+    .desc {
+      h4 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .seller-div {
+      justify-self: center;
+
+      img {
+        width: 200px;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin-bottom: 0.5rem;
+      }
+
+      .name {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
