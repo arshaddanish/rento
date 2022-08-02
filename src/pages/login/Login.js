@@ -18,9 +18,9 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-  const navigateToHome = () => {
-    navigate('/');
-  }
+    const navigateToAccount = () => {
+        navigate('/account');
+    }
   return (
     <div className='main-login'>
         <div>
@@ -37,7 +37,7 @@ const Login = () => {
                     <input placeholder='Phone number' type="number" name="" id="" />
                     <input placeholder='Password' type="password" name="" id="" />
                     <Link to="/forgot" className='forgot-pass-btn'>Forgot password?</Link>
-                    <button onClick={navigateToHome} type='submit'>Login</button>
+                    <button onClick={navigateToAccount} type='submit'>Login</button>
                 </form>
                 
             </div>
