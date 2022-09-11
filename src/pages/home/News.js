@@ -1,23 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import mer4 from "../../assets/images/news/mer4.jpg";
 import { Link, useLocation } from "react-router-dom";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import apis from "../../apis";
+import { thumbnailDate } from "../../services/thumbnailDate";
+import { imageUrl } from "../../services/imageUrl";
 
-function Item() {
+function Item({ item }) {
   return (
     <div className="item">
       <div className="img-div">
-        <img src={mer4} alt="" />
+        <img src={imageUrl(item.img)} alt="" />
         <div className="date">
-          <p>19 Oct</p>
+          <p>{thumbnailDate(item.date)}</p>
         </div>
       </div>
       <div className="dtl">
-        <p>Car Lifestyle</p>
-        <h3>How to use Map in Audi A6 luxury?</h3>
+        <p>{item.category}</p>
+        <h3>{item.title}</h3>
       </div>
     </div>
   );
@@ -31,14 +34,37 @@ export default function News({ type }) {
     setAge(event.target.value);
   };
 
-  function viewAll() {
-    return (
-      <>
-        {Item()}
-        {Item()}
-        {Item()}
-      </>
-    );
+  useEffect(() => {
+    if (pathname !== "/news") {
+      fetchBlogs3();
+    } else {
+      fetchBlogs();
+      fetchBlogCategories();
+    }
+  }, []);
+
+  const [blogs, setBlogs] = React.useState([]);
+  const [blogCategories, setBlogCategories] = React.useState([]);
+
+  let fetchBlogs3 = async () => {
+    let { data } = await apis.get("blogs3");
+    setBlogs(data);
+  };
+
+  let fetchBlogs = async () => {
+    let { data } = await apis.get("blogs");
+    setBlogs(data);
+  };
+
+  let fetchBlogCategories = async () => {
+    let { data } = await apis.get("blog-categories");
+    setBlogCategories(data);
+  };
+
+  function view() {
+    return blogs.map((item, index) => {
+      return <Item item={item} key={index} />;
+    });
   }
 
   function renderViewAllBtnOrFilter() {
@@ -57,10 +83,13 @@ export default function News({ type }) {
               label="Type"
               onChange={handleChange}
             >
-              <MenuItem value={10}>Car Lifestyle</MenuItem>
-              <MenuItem value={20}>Real Estate</MenuItem>
-              <MenuItem value={30}>Hot Vehicles</MenuItem>
-              <MenuItem value={40}>Trending Machines</MenuItem>
+              {blogCategories.map((item, index) => {
+                return (
+                  <MenuItem value={item.blogCategory} key={index}>
+                    {item.blogCategory}
+                  </MenuItem>
+                );
+              })}
             </Select>
           </FormControl>
         </div>
@@ -79,12 +108,7 @@ export default function News({ type }) {
         <h2>News & Articles</h2>
         {renderViewAllBtnOrFilter()}
       </div>
-      <div className="items">
-        {Item()}
-        {Item()}
-        {Item()}
-        {pathname === "/news" && viewAll()}
-      </div>
+      <div className="items">{view()}</div>
     </div>
   );
 }
