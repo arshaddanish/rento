@@ -63,6 +63,7 @@ const AddProduct = () => {
         <Select
           labelId="choose-catogory"
           label="Choose Category"
+          required
         >{
           categories.map((e)=>(
             <MenuItem key={e.cat_id} onClick={()=>handleCategory(e.cat_value)} value={e.cat_value}>{e.cat_name}</MenuItem>
@@ -75,6 +76,7 @@ const AddProduct = () => {
         <Select
           labelId="choose-type"
           label="Choose Type"
+          required
         >
           {
             categories.filter(e => e.cat_value=== category).map(o=>(
@@ -90,7 +92,12 @@ const AddProduct = () => {
       <TextField autoComplete='off' required fullWidth label="Product Name" variant="outlined" />
       <TextField autoComplete='off' required fullWidth label="Price" variant="outlined" />
       <TextField autoComplete='off' required fullWidth label="Product Location" variant="outlined" />
-      <TextField autoComplete='off' fullWidth label="Manufactured Date" variant="outlined" />
+      <TextField
+                        name="someDate"
+                        label="Manufactured Date"
+                        InputLabelProps={{ shrink: true}}
+                        type="date"
+                    />
       <div className='add-product-upload-image'>
         <FormLabel>Add main image of the product</FormLabel>
         <TextField

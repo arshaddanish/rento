@@ -16,11 +16,15 @@ import Subscription from "./pages/subscription/Subscription";
 import Item from "./pages/Item/Item";
 import Account from "./pages/account/Account";
 import ResetPass from "./pages/login/ResetPass";
+import AdminHome from "./admin/pages/Home/AdminHome";
+import AdminNavbar from "./admin/components/navbar/AdminNavbar";
+import AdminFooter from "./admin/components/footer/AdminFooter";
 
 export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <AdminNavbar />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -33,6 +37,7 @@ export default function App() {
         <Route path="/subscribe" element={<Subscription />} />
         <Route path="/account" element={<Account />} />
         <Route path="/resetpass" element={<ResetPass />} />
+        <Route path="/admin/home" element={<AdminHome />} />
         <Route
           path="/category/vehicles"
           element={<Category backImg="vehicles" />}
@@ -43,6 +48,11 @@ export default function App() {
         />
       </Routes>
       <Footer />
+
+      <AdminFooter />
+
+
+      
     </Router>
   );
 }
