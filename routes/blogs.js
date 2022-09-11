@@ -13,6 +13,16 @@ app.get("/api/blogs", async (req, res) => {
   }
 });
 
+app.get("/api/blogs3", async (req, res) => {
+  const blogs = await Blog.find({}).limit(3);
+
+  try {
+    res.send(blogs);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 app.get("/api/blogs/:id", async (req, res) => {
   const blog = await Blog.findById(req.params.id);
 

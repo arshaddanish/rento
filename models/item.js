@@ -24,6 +24,9 @@ const ItemSchema = new mongoose.Schema({
   amt: {
     type: Number,
   },
+  date: {
+    type: Date,
+  },
 });
 
 const Item = mongoose.model("Item", ItemSchema);
