@@ -1,5 +1,5 @@
 const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
+const { GridFsStorage } = require("multer-gridfs-storage");
 const crypto = require("crypto");
 const path = require("path");
 
@@ -23,3 +23,5 @@ const storage = new GridFsStorage({
 });
 
 const upload = multer({ storage });
+
+module.exports = upload;
