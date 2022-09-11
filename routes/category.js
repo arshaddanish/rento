@@ -50,16 +50,16 @@ app.patch("/api/categories/:id", async (req, res) => {
   }
 });
 
-app.delete("/api/categories", async (req, res) => {
-  try {
-    const doc1 = await Category.deleteMany({});
-    const doc2 = await Item.deleteMany({});
+// app.delete("/api/categories", async (req, res) => {
+//   try {
+//     const doc1 = await Category.deleteMany({});
+//     const doc2 = await Item.deleteMany({});
 
-    res.send({ doc1: doc1, doc2: doc2 });
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+//     res.send({ doc1: doc1, doc2: doc2 });
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
 
 app.delete("/api/categories/:id", async (req, res) => {
   try {

@@ -59,25 +59,25 @@ app.get("/api/image/:name", (req, res) => {
   });
 });
 
+// app.delete("/api/upload", async (req, res) => {
+//   try {
+//     const doc = await gfs.files.deleteMany({
+//       $or: [{ contentType: "image/jpeg" }, { contentType: "image/png" }],
+//     });
+//     res.send(doc);
+//   } catch {
+//     res.send("An error occured.");
+//   }
+// });
+
 app.delete("/api/upload/:name", async (req, res) => {
   try {
     const doc = await gfs.files.deleteOne({
       filename: req.params.name,
     });
     res.send(doc);
-  } catch {
-    res.send("An error occured.");
-  }
-});
-
-app.delete("/api/upload", async (req, res) => {
-  try {
-    const doc = await gfs.files.deleteMany({
-      $or: [{ contentType: "image/jpeg" }, { contentType: "image/png" }],
-    });
-    res.send(doc);
-  } catch {
-    res.send("An error occured.");
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 
