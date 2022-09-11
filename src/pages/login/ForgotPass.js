@@ -13,6 +13,9 @@ const ForgotPass = () => {
     const navigateToLogin=()=>{
         navigate('/login')
     }
+    const navigateToResetPass=()=>{
+        navigate('/resetpass')
+    }
     return (
         <div className='forgot-pass'>
             <div className="forgot-pass-main">
@@ -33,7 +36,7 @@ const ForgotPass = () => {
                         <form action="">
                             <TextField autoComplete='off' fullWidth id="outlined-basic" label="Email" variant="outlined" required type="email"/>
                             <div className='forgot-submit-btn'>
-                                <Button fullWidth type='submit' variant="contained">GET RESET LINK</Button>
+                                <Button onClick={navigateToResetPass} fullWidth type='submit' variant="contained">GET RESET LINK</Button>
                             </div>
                         </form>
                         <p className='forgot-or'>OR</p>
