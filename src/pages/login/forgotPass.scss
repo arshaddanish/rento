@@ -1,24 +1,76 @@
 .forgot-pass{
     display: grid;
-    grid-template-columns: 50%;
-    // height: 100vh;
-    padding: 150px 0;
+    grid-template-columns: 25%;
+    height: 100vh;
+    // padding: 2rem 0;
     justify-content: center;
     align-items: center;
+    background-color: rgba($color: #f3f3f3, $alpha: 1.0);
+    .forgot-pass-main{
+        background-color: white;
+        border: 1px solid #c8c8c8;
+        box-shadow: 5px 5px 8px #c8c8c8;
+        border-bottom: none;
+        .forgot-pass-sub{
+            padding: 1rem 1rem 0 1rem;
+        }
+        .forgot-back-to-login-btn{
+            padding: 16px;
+            border-radius: 0;
+        }
+    }
+    .forgot-heading{
+        text-align: center;
+        margin: 1rem 0;
+    }
+    .forgot-desc{
+        color: #c8c8c8;
+        padding-bottom: 1rem;
+    }
+    // .back-to-login{
+    //     text-align: right;
+    //     color: navy;
+    //     padding-bottom: 0.5rem;
+    //     &:hover{
+    //         color: black;
+    //     }
+        
+    // }
     .logo{
         display: grid;
         justify-content: center;
+        .forgot-lock-img{
+            // width: 100%;
+            font-size: 10vw;
+            text-align: center;
+            color: #c8c8c8;
+            border: 2px solid #c8c8c8;
+            padding: 2rem 3.5rem;
+            border-radius: 100%;
+        }
     }
     .forgot-input{
-        display: grid;
-        justify-content: center;
+        // display: grid;
+        // justify-content: center;
         .forgot-submit-btn{
-            display: grid;
-            justify-content: center;
+            // display: grid;
+            // justify-content: center;
             
             Button{
                 margin-top: 1rem;
+                padding: 16px;
             }
+        }
+        .forgot-or{
+            color: gray;
+            font-size: 0.8rem;
+            text-align: center;
+            padding-top: 2rem;
+        }
+        .forgot-create{
+            color: navy;
+            text-align: center;
+            margin: 1rem 0  3rem 0;
         }
     }
 }

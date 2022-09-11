@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   let { pathname } = useLocation();
-  if (pathname === "/login" || pathname === "/signup" || pathname === "/forgot") {
+  if (pathname === "/login" || pathname === "/signup" || pathname === "/forgot" || pathname === "/resetpass") {
     return null;
   }
 

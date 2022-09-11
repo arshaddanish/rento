@@ -15,6 +15,7 @@ import Contact from "./pages/contact/Contact";
 import Subscription from "./pages/subscription/Subscription";
 import Item from "./pages/Item/Item";
 import Account from "./pages/account/Account";
+import ResetPass from "./pages/login/ResetPass";
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/subscribe" element={<Subscription />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/resetpass" element={<ResetPass />} />
         <Route
           path="/category/vehicles"
           element={<Category backImg="vehicles" />}
