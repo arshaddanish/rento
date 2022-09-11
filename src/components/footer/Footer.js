@@ -10,7 +10,8 @@ export default function Footer() {
     pathname === "/login" ||
     pathname === "/signup" ||
     pathname === "/forgot" || 
-    pathname === "/resetpass"
+    pathname === "/resetpass" || 
+    pathname.match("/admin")
   ) {
     return null;
   }

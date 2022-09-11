@@ -2,14 +2,14 @@ import React from "react";
 import "./navbar.scss";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Navbar() {
+export default function AdminNavbar() {
   let { pathname } = useLocation();
-  if (pathname === "/login" || pathname === "/signup" || pathname === "/forgot" || pathname === "/resetpass" || pathname.match("/admin")) {
+  if (pathname === "/admin/login" || pathname === "/admin/forgot" || pathname === "/resetpass" || !pathname.match("/admin")) {
     return null;
   }
 
   return (
-    <div className="navbar">
+    <div className="admin-navbar">
       <div className="container">
         <Link to="/">
           <div className="brand">RENTO</div>
