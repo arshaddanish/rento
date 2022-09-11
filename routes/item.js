@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const Item = require("../models/item");
+const axios = require("axios").create({ baseUrl: "http://localhost:5000/" });
 
 app.get("/api/items", async (req, res) => {
   const items = await Item.find({});
@@ -57,11 +58,26 @@ app.post("/api/items", async (req, res) => {
 });
 
 app.patch("/api/items/:id", async (req, res) => {
-  const item = await Item.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-
   try {
+    let oldItem;
+    if (
+      (req.body.img && req.body.img !== "") ||
+      (req.body.extraImgs && req.body.extraImgs !== [])
+    ) {
+      oldItem = await Item.findById(req.params.id);
+    }
+    if (req.body.img && req.body.img !== "") {
+      await axios.delete("api/upload/" + oldItem.img);
+    }
+    if (req.body.extraImgs && req.body.extraImgs !== []) {
+      oldItem.extraImgs.forEach(async (item, index) => {
+        await axios.delete("api/upload/" + item);
+      });
+    }
+
+    const item = await Item.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     res.send(item);
   } catch (error) {
     res.status(500).send(error);
@@ -69,9 +85,16 @@ app.patch("/api/items/:id", async (req, res) => {
 });
 
 // app.delete("/api/items", async (req, res) => {
-//   const doc = await Item.deleteMany({});
-
 //   try {
+//     const items = await Item.find({});
+//     items.forEach(async (item, index) => {
+//       await axios.delete("api/upload/" + item.img);
+//       item.extraImgs.forEach(async (item, index) => {
+//         await axios.delete("api/upload/" + item);
+//       });
+//     });
+
+//     const doc = await Item.deleteMany({});
 //     res.send(doc);
 //   } catch (error) {
 //     res.status(500).send(error);
@@ -79,9 +102,14 @@ app.patch("/api/items/:id", async (req, res) => {
 // });
 
 app.delete("/api/items/:id", async (req, res) => {
-  const doc = await Item.deleteOne({ _id: req.params.id });
-
   try {
+    const item = await Item.findById(req.params.id);
+    await axios.delete("api/upload/" + item.img);
+    item.extraImgs.forEach(async (item, index) => {
+      await axios.delete("api/upload/" + item);
+    });
+
+    const doc = await Item.deleteOne({ _id: req.params.id });
     res.send(doc);
   } catch (error) {
     res.status(500).send(error);

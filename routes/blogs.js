@@ -36,8 +36,8 @@ app.post("/api/blogs", async (req, res) => {
 
 app.patch("/api/blogs/:id", async (req, res) => {
   try {
-    const oldBlog = await Blog.findById(req.params.id);
     if (req.body.img && req.body.img !== "") {
+      const oldBlog = await Blog.findById(req.params.id);
       await axios.delete("api/upload/" + oldBlog.img);
     }
     const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
