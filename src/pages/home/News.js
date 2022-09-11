@@ -29,11 +29,6 @@ function Item({ item }) {
 export default function News({ type }) {
   let { pathname } = useLocation();
 
-  const [age, setAge] = React.useState("");
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
   useEffect(() => {
     if (pathname !== "/news") {
       fetchBlogs3();
@@ -44,16 +39,19 @@ export default function News({ type }) {
   }, []);
 
   const [blogs, setBlogs] = React.useState([]);
+  const [filteredBlogs, setFilteredBlogs] = React.useState([]);
   const [blogCategories, setBlogCategories] = React.useState([]);
 
   let fetchBlogs3 = async () => {
     let { data } = await apis.get("blogs3");
     setBlogs(data);
+    setFilteredBlogs(data);
   };
 
   let fetchBlogs = async () => {
     let { data } = await apis.get("blogs");
     setBlogs(data);
+    setFilteredBlogs(data);
   };
 
   let fetchBlogCategories = async () => {
@@ -61,8 +59,14 @@ export default function News({ type }) {
     setBlogCategories(data);
   };
 
+  const handleChange = (event) => {
+    setFilteredBlogs(
+      blogs.filter((item) => item.category === event.target.value)
+    );
+  };
+
   function view() {
-    return blogs.map((item, index) => {
+    return filteredBlogs.map((item, index) => {
       return <Item item={item} key={index} />;
     });
   }
@@ -79,7 +83,6 @@ export default function News({ type }) {
               }}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={age}
               label="Type"
               onChange={handleChange}
             >
