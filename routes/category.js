@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const Category = require("../models/category");
 const Item = require("../models/item");
+const axios = require("axios").create({ baseUrl: "http://localhost:5000/" });
 
 app.get("/api/categories", async (req, res) => {
   const categories = await Category.find({});
@@ -52,10 +53,10 @@ app.patch("/api/categories/:id", async (req, res) => {
 
 // app.delete("/api/categories", async (req, res) => {
 //   try {
-//     const doc1 = await Category.deleteMany({});
-//     const doc2 = await Item.deleteMany({});
+//     const doc = await Category.deleteMany({});
+//     await axios.delete("api/items");
 
-//     res.send({ doc1: doc1, doc2: doc2 });
+//     res.send(doc);
 //   } catch (error) {
 //     res.status(500).send(error);
 //   }
@@ -64,10 +65,13 @@ app.patch("/api/categories/:id", async (req, res) => {
 app.delete("/api/categories/:id", async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);
-    const doc1 = await Category.deleteOne({ _id: req.params.id });
-    const doc2 = await Item.deleteMany({ category: category.category });
+    const doc = await Category.deleteOne({ _id: req.params.id });
+    const items = await Item.find({ category: category.category });
+    items.forEach(async (item, index) => {
+      await axios.delete("api/items/" + item.id);
+    });
 
-    res.send({ doc1: doc1, doc2: doc2 });
+    res.send(doc);
   } catch (error) {
     res.status(500).send(error);
   }
