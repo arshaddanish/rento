@@ -15,9 +15,10 @@ const SignUp = () => {
   return (
     <div>
       <div className='main-signup'>
-        <div>
+        <div className='signup-left'>
             <img src={handshake} alt="" />
         </div>
+        <div></div>
         <div className='login-main'>
             <div className='login'>  
                 <h1>Lets get started</h1>
@@ -93,13 +94,13 @@ const SignUp = () => {
                   variant="outlined" 
                 />
                     <div className="gap"></div>
-                {/* <TextField fullWidth
+                <TextField fullWidth
                   // id="outlined-basic1" 
                   label="Confirm Password" 
                   type={"password"}
                   variant="outlined" 
-                /> */}
-                
+                />
+                <div className="gap"></div>
                     {/* <input placeholder='Email' type="email" name="" id="" />
                     <input placeholder='Phone number' type="number" name="" id="" />
                     <input placeholder='House Name' type="text" name="" id="" />
@@ -111,6 +112,7 @@ const SignUp = () => {
                     {/* <button onClick={navigateToHome} type='submit'>Create Account</button> */}
                     
                     <Button onClick={navigateToHome} variant="contained">Create Account</Button>
+                    <div className="gap"></div>
                 </form>
             </div>
         </div>
