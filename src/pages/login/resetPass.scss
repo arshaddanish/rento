@@ -1,0 +1,29 @@
+.reset-main{
+    display: grid;
+    grid-template-columns: 25%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #f3f3f3, $alpha: 1.0);
+    .reset-sub{
+        background-color: white;
+        // border: 1px solid #c8c8c8;
+        box-shadow: 5px 5px 8px #c8c8c8;
+        padding: 3rem 1rem;
+        border-radius: 4px;
+        .password-match{
+            color: red;
+            font-size: 0.8rem;
+            text-align: right;
+        }
+        .brand {
+            font-weight: 500;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            color: #17202d;
+            text-align: center;
+            padding-bottom: 2rem;
+        }
+    }
+}
