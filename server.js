@@ -28,6 +28,10 @@ const BlogRouter = require("./routes/blogs");
 app.use(BlogRouter);
 const UploadRouter = require("./routes/upload");
 app.use(UploadRouter);
+const ItemRouter = require("./routes/item");
+app.use(ItemRouter);
+const CategoryRouter = require("./routes/category");
+app.use(CategoryRouter);
 
 // Start server
 const port = 5000;
