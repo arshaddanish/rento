@@ -23,7 +23,7 @@ app.get("/api/items/:id", async (req, res) => {
   }
 });
 
-app.get("/api/items/:category", async (req, res) => {
+app.get("/api/items-filter/:category", async (req, res) => {
   const items = await Item.findOne({ category: req.params.category });
 
   try {
@@ -33,7 +33,7 @@ app.get("/api/items/:category", async (req, res) => {
   }
 });
 
-app.get("/api/items/:category/:type", async (req, res) => {
+app.get("/api/items-filter/:category/:type", async (req, res) => {
   const items = await Item.findOne({
     category: req.params.category,
     type: req.params.type,

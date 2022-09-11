@@ -68,7 +68,7 @@ app.delete("/api/categories/:id", async (req, res) => {
     const doc = await Category.deleteOne({ _id: req.params.id });
     const items = await Item.find({ category: category.category });
     items.forEach(async (item, index) => {
-      await axios.delete("api/items/" + item.id);
+      await axios.delete("api/items/" + item._id);
     });
 
     res.send(doc);
