@@ -45,15 +45,15 @@ app.patch("/api/blogs/:id", async (req, res) => {
   }
 });
 
-app.delete("/api/blogs", async (req, res) => {
-  const doc = await Blog.deleteMany({});
+// app.delete("/api/blogs", async (req, res) => {
+//   const doc = await Blog.deleteMany({});
 
-  try {
-    res.send(doc);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+//   try {
+//     res.send(doc);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
 
 app.delete("/api/blogs/:id", async (req, res) => {
   const doc = await Blog.deleteOne({ _id: req.params.id });

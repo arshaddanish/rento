@@ -1,0 +1,34 @@
+<!-- Test file uploads -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    h1 {
+      margin: 1rem;
+    }
+
+    img {
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+      margin: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Test Uploads</h1>
+  <% for(let i = 0; i < files.length; i++)  { %>
+  <img src="/api/image/<%= files[i].filename %>" alt="">
+  <% } %>
+
+</body>
+
+</html>
