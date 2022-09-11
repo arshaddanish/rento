@@ -1,13 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './profile.scss'
 import person from '../../assets/images/profile/person1.png'
 import { useNavigate } from "react-router-dom";
+import EditProfile from './EditProfile';
 const Account = () => {
     const navigate = useNavigate();
 
     const navigateToLogin = () => {
         navigate('/login');
     }
+    const [editProfilePopup, setEditProfilePopup] = useState(false);
   return (
     // <div className='profile-main'>
     //     <div className="profile-top">
@@ -37,12 +39,10 @@ const Account = () => {
                     <p>Subscription Status:  <span className="subscription-active">Active</span></p>
                 </div>
                 <div className='edit-profile-btn'>
-                    <button><i className="fa-solid fa-pencil"></i> Edit Profile</button>
+                    <button onClick={()=>setEditProfilePopup(true)} ><i className="fa-solid fa-pencil"></i> Edit Profile</button>
                 </div>
             </div>
-            <div>
-                {/* <EditProfile /> */}
-            </div>
+            <EditProfile trigger={editProfilePopup} setTrigger={setEditProfilePopup} />
         </div>
   )
 }

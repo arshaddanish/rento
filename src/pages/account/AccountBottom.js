@@ -16,8 +16,8 @@ const AccountBottom = () => {
         <div className='profile-bottom'>
             <div className="profile-bottom-sub">
                 <div className='profile-bottom-left'> 
-                    <div onClick={yourProduct} className={selected?'profile-your-products profile-left-sub profile-left-inactive':'profile-your-products profile-left-sub profile-left-active'}><p><i class="fa-solid fa-chevron-right"></i> Registered Items</p></div>
-                    <div onClick={addProduct} className={selected?'profile-add-products profile-left-sub profile-left-active':'profile-add-products profile-left-sub profile-left-inactive'}><p><i class="fa-solid fa-plus"></i> Register New Item</p></div>
+                    <div onClick={yourProduct} className={selected?'profile-your-products profile-left-sub profile-left-inactive':'profile-your-products profile-left-sub profile-left-active'}><p><i className="fa-solid fa-chevron-right"></i> Registered Items</p></div>
+                    <div onClick={addProduct} className={selected?'profile-add-products profile-left-sub profile-left-active':'profile-add-products profile-left-sub profile-left-inactive'}><p><i className="fa-solid fa-plus"></i> Register New Item</p></div>
                 </div>
                 <div className='profile-bottom-right'>
                 {selected?<AddProduct />:<YourProducts />}
