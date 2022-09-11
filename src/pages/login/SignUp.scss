@@ -3,11 +3,12 @@
     grid-template-columns: 1fr 2fr;
     height: 100vh;
     column-gap: 4rem;
+    overflow-y: hidden;
     img{
         height: 100vh;
     }
     .login-main{
-        padding-top: 6rem;
+        padding-top: 1rem;
     }
     .login{
         display: grid;
@@ -16,10 +17,10 @@
         align-items: center;
         text-align: center;
         padding-top: 0;
-        div:nth-child(1){
-            display: grid;
-            justify-content: center;
-        }
+        // div:nth-child(1){
+        //     display: grid;
+        //     justify-content: center;
+        // }
         .logo{
             height: fit-content;
             padding-bottom: 1rem;
@@ -46,15 +47,18 @@
                 color: white;
                 padding: 0.8rem;
                 border: none;
-                margin-top: 2.5rem;
+                // margin-top: 2.5rem;
             }
             input{
-                border: 0.819005px solid rgba(0, 0, 0, 0.71);
-                border-radius: 9px;
+                // border: 0.819005px solid rgba(0, 0, 0, 0.71);
+                // border-radius: 9px;
                 background-color: rgba(0, 0, 0, 0);
-                padding: 0.7rem;
-                margin-top: 1rem;
+                // padding: 0.7rem;
+                // margin-top: 1rem;
                 margin-bottom: 0;
+            }
+            .gap{
+                height: 1rem;
             }
         }
         h3, p{
