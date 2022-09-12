@@ -37,7 +37,7 @@ app.get("/api/items-filter/:category", async (req, res) => {
 });
 
 app.get("/api/items-filter/:category/:type", async (req, res) => {
-  const items = await Item.findOne({
+  const items = await Item.find({
     category: titleCase(req.params.category),
     type: req.params.type,
   }).sort({ regDate: -1 });
