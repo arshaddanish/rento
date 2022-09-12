@@ -3,7 +3,7 @@ import ProfileCard from './ProfileCard'
 import './team.scss'
 import rishan from '../../assets/images/about/rishan.jpeg'
 import analiya from '../../assets/images/about/analiya.jpeg'
-import arshad from '../../assets/images/about/arshad.jpeg'
+import arshad from '../../assets/images/about/arshad.jpg'
 import sidharth from '../../assets/images/about/sidharth.jpg'
 
 const Team = () => {
