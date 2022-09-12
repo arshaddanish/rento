@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
 const Item = require("../models/item");
+const titleCase = require("../services/titleCase");
 const axios = require("axios").create({ baseUrl: "http://localhost:5000/" });
 
 app.get("/api/items", async (req, res) => {
-  const items = await Item.find({});
+  const items = await Item.find({}).sort({ regDate: -1 });
 
   try {
     res.send(items);
@@ -24,7 +25,9 @@ app.get("/api/items/:id", async (req, res) => {
 });
 
 app.get("/api/items-filter/:category", async (req, res) => {
-  const items = await Item.findOne({ category: req.params.category });
+  const items = await Item.find({
+    category: titleCase(req.params.category),
+  }).sort({ regDate: -1 });
 
   try {
     res.send(items);
@@ -35,9 +38,9 @@ app.get("/api/items-filter/:category", async (req, res) => {
 
 app.get("/api/items-filter/:category/:type", async (req, res) => {
   const items = await Item.findOne({
-    category: req.params.category,
+    category: titleCase(req.params.category),
     type: req.params.type,
-  });
+  }).sort({ regDate: -1 });
 
   try {
     res.send(items);

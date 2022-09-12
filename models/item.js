@@ -26,6 +26,7 @@ const ItemSchema = new mongoose.Schema({
   },
   regDate: {
     type: Date,
+    default: Date.now,
   },
   manufactureYear: {
     type: String,
@@ -33,6 +34,16 @@ const ItemSchema = new mongoose.Schema({
   quantity: {
     type: Number,
   },
+  status: {
+    type: Number,
+    default: 0
+  },
+  category: {
+    type: String
+  },
+  type: {
+    type: String
+  }
 });
 
 const Item = mongoose.model("Item", ItemSchema);

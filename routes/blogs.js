@@ -4,7 +4,7 @@ const { Blog, BlogCategory } = require("../models/blog");
 const axios = require("axios").create({ baseUrl: "http://localhost:5000/" });
 
 app.get("/api/blogs", async (req, res) => {
-  const blogs = await Blog.find({});
+  const blogs = await Blog.find({}).sort({ date: -1 });
 
   try {
     res.send(blogs);
@@ -14,7 +14,7 @@ app.get("/api/blogs", async (req, res) => {
 });
 
 app.get("/api/blogs3", async (req, res) => {
-  const blogs = await Blog.find({}).limit(3);
+  const blogs = await Blog.find({}).limit(3).sort({date: -1});
 
   try {
     res.send(blogs);
@@ -34,7 +34,7 @@ app.get("/api/blogs/:id", async (req, res) => {
 });
 
 app.get("/api/blogs-filter/:category", async (req, res) => {
-  const blogs = await Blog.find({ category: req.params.category });
+  const blogs = await Blog.find({ category: req.params.category }).sort({date: -1});
 
   try {
     res.send(blogs);

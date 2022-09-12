@@ -14,8 +14,8 @@ app.get("/api/categories", async (req, res) => {
   }
 });
 
-app.get("/api/categories/:id", async (req, res) => {
-  const category = await Category.findById(req.params.id);
+app.get("/api/categories/:name", async (req, res) => {
+  const category = await Category.findOne({ category: req.params.name });
 
   try {
     res.send(category);
