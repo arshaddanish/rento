@@ -21,11 +21,17 @@ const ItemSchema = new mongoose.Schema({
   sellerId: {
     type: String,
   },
-  amt: {
+  price: {
     type: Number,
   },
-  date: {
+  regDate: {
     type: Date,
+  },
+  manufactureYear: {
+    type: String,
+  },
+  quantity: {
+    type: Number,
   },
 });
 
