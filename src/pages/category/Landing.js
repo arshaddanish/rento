@@ -9,7 +9,7 @@ export default function Landing({backImg}) {
       <div className="search-box">
         <div>
           <TextField
-            label="Product Name"
+            label="Item Name"
             variant="outlined"
             style={{ width: 250 }}
           />

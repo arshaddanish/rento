@@ -107,7 +107,7 @@ export default function News({ type }) {
     }
     return (
       <Link to="/blogs">
-        <button>View All</button>
+        <button className="btn-cmn">View All</button>
       </Link>
     );
   }
@@ -115,7 +115,7 @@ export default function News({ type }) {
   return (
     <div className={`news ${type}`}>
       <div className="title-div">
-        <h2>News & Articles</h2>
+        <h2>Blogs</h2>
         {renderViewAllBtnOrFilter()}
       </div>
       <div className="items">{view()}</div>

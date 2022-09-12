@@ -5,6 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { useNavigate, useParams } from "react-router-dom";
+import { titleCase } from "../../services/titleCase";
 
 export default function Items() {
   let navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function Items() {
   return (
     <div className="category-items">
       <div className="title-div">
-        <h2>{category}</h2>
+        <h2>{titleCase(category)}</h2>
         <div className="filter">
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Type</InputLabel>
