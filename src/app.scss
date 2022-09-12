@@ -22,3 +22,11 @@ a {
     background: #818a91;
   }
 }
+
+.ReactModal__Overlay--after-open {
+  z-index: 999999 !important;
+}
+
+.ril__toolbar {
+  background-color: rgba(0, 0, 0, 0) !important;
+}

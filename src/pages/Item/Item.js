@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./item.scss";
 import bmw2 from "../../assets/images/bmw2.jpg";
 import seller from "../../assets/images/seller.png";
 import Button from "@mui/material/Button";
+import SimpleImageSlider from "react-simple-image-slider";
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
+
+import useResizeObserver from "use-resize-observer";
+
+const imagesSlider = [
+  { url: bmw2 },
+  { url: bmw2 },
+  { url: bmw2 },
+  { url: bmw2 },
+];
+const imagesLightBox = [bmw2, bmw2, seller];
 
 export default function Item() {
+  const { ref, width = 1, height = 1 } = useResizeObserver();
+
+  let [photoIndex, setPhotoIndex] = useState(0);
+  let [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="rental-item">
       <div className="item-div">
@@ -15,7 +33,38 @@ export default function Item() {
             <span>Rs 1000</span> / day
           </p>
         </div>
-        <img className="main-img" src={bmw2} alt="" />
+        <div className="main-img" ref={ref} onClick={() => setIsOpen(true)}>
+          <SimpleImageSlider
+            width={width}
+            height={height}
+            images={imagesSlider}
+            showBullets={true}
+            showNavs={true}
+            autoPlay={!isOpen}
+            style={{"z-index": 999999}}
+          />
+        </div>
+        {isOpen && (
+          <Lightbox
+            mainSrc={imagesLightBox[photoIndex]}
+            nextSrc={imagesLightBox[(photoIndex + 1) % imagesLightBox.length]}
+            prevSrc={
+              imagesLightBox[
+                (photoIndex + imagesLightBox.length - 1) % imagesLightBox.length
+              ]
+            }
+            onCloseRequest={() => setIsOpen(false)}
+            onMovePrevRequest={() =>
+              setPhotoIndex(
+                (photoIndex + imagesLightBox.length - 1) % imagesLightBox.length
+              )
+            }
+            onMoveNextRequest={() =>
+              setPhotoIndex((photoIndex + 1) % imagesLightBox.length)
+            }
+            style={{"z-index": "9999999999"}}
+          />
+        )}
         <div className="desc">
           <h4>Description</h4>
           <p>
@@ -34,7 +83,7 @@ export default function Item() {
           </p>
         </div>
         <div className="book-btn">
-          <Button variant="contained" fullWidth style={{height: "50px"}}>
+          <Button variant="contained" fullWidth style={{ height: "50px" }}>
             Book Item
           </Button>
         </div>
