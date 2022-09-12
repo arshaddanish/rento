@@ -1,9 +1,12 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
+import { useParams } from "react-router-dom";
 
-export default function Landing({backImg}) {
+export default function Landing() {
+  const { category } = useParams();
+
   return (
-    <div className={`landing ${backImg}`}>
+    <div className={`landing ${category}`}>
       <h1>All In One Rental Market Place !</h1>
       <p>We have what you need from tools to apartments.</p>
       <div className="search-box">

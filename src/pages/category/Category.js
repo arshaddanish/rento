@@ -3,10 +3,10 @@ import Landing from "./Landing";
 import Items from "./Items";
 import "./category.scss";
 
-export default function Category({ backImg }) {
+export default function Category() {
   return (
     <>
-      <Landing backImg={backImg} />
+      <Landing />
       <Items />
     </>
   );
