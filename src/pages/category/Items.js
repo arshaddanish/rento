@@ -20,14 +20,14 @@ export default function Items() {
 
   let [types, setTypes] = useState([]);
   let fetchCategoryTypes = async () => {
-    let { data } = await apis.get("categories/" + category.toLowerCase());
+    let { data } = await apis.get("categories/" + category);
     setTypes(data.types);
   };
 
   let [items, setItems] = useState([]);
   let [filteredItems, setFiltereredItems] = useState([]);
   let fetchCategoryItems = async () => {
-    let { data } = await apis.get("items-filter/" + category.toLowerCase());
+    let { data } = await apis.get("items-filter/" + category);
     setItems(data);
     setFiltereredItems(data);
   };
