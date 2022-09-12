@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import audi from "../../assets/images/vehicles/audi.jpg";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
@@ -6,28 +6,57 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { useNavigate, useParams } from "react-router-dom";
 import { titleCase } from "../../services/titleCase";
+import apis from "../../apis";
+import { imageUrl } from "../../services/imageUrl";
 
 export default function Items() {
   let navigate = useNavigate();
   const { category } = useParams();
 
-  const [age, setAge] = React.useState("");
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  useEffect(() => {
+    fetchCategoryTypes();
+    fetchCategoryItems();
+  }, []);
+
+  let [types, setTypes] = useState([]);
+  let fetchCategoryTypes = async () => {
+    let { data } = await apis.get("categories/" + category.toLowerCase());
+    setTypes(data.types);
   };
 
-  function Item() {
+  let [items, setItems] = useState([]);
+  let [filteredItems, setFiltereredItems] = useState([]);
+  let fetchCategoryItems = async () => {
+    let { data } = await apis.get("items-filter/" + category.toLowerCase());
+    setItems(data);
+    setFiltereredItems(data);
+  };
+
+  const handleChange = (event) => {
+    if (event.target.value === "All") {
+      setFiltereredItems(items);
+    } else {
+      setFiltereredItems(
+        items.filter((item) => item.type === event.target.value)
+      );
+    }
+  };
+
+  function Item({ item }) {
     return (
-      <div className="item" onClick={() => navigate("/category/vehicles/1")}>
+      <div
+        className="item"
+        onClick={() => navigate("/category/" + category + "/" + item._id)}
+      >
         <div className="img-div">
-          <img src={audi} alt="" />
+          <img src={imageUrl(item.img)} alt="" />
         </div>
         <div className="dtl-box">
-          <h3>Audi 19</h3>
+          <h3>{item.name}</h3>
           <div className="dtl">
-            <p>Kannur, Thana.</p>
+            <p>{item.location}</p>
             <p>
-              <span>Rs. 1000</span> / day
+              <span>Rs. {item.price}</span> / day
             </p>
           </div>
         </div>
@@ -48,25 +77,26 @@ export default function Items() {
               }}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={age}
               label="Type"
+              defaultValue="All"
               onChange={handleChange}
             >
-              <MenuItem value={10}>Bike</MenuItem>
-              <MenuItem value={20}>Scooter</MenuItem>
-              <MenuItem value={30}>Car</MenuItem>
-              <MenuItem value={40}>Truck</MenuItem>
+              <MenuItem value="All">All</MenuItem>
+              {types.map((item, index) => {
+                return (
+                  <MenuItem value={item} key={index}>
+                    {item}
+                  </MenuItem>
+                );
+              })}
             </Select>
           </FormControl>
         </div>
       </div>
       <div className="items">
-        {Item()}
-        {Item()}
-        {Item()}
-        {Item()}
-        {Item()}
-        {Item()}
+        {filteredItems.map((item, index) => {
+          return <Item item={item} key={index} />;
+        })}
       </div>
     </div>
   );

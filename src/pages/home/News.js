@@ -93,7 +93,7 @@ export default function News({ type }) {
               onChange={handleChange}
               defaultValue="All"
             >
-              <MenuItem value="All" defaultChecked>All</MenuItem>
+              <MenuItem value="All">All</MenuItem>
               {blogCategories.map((item, index) => {
                 return (
                   <MenuItem value={item.blogCategory} key={index}>
