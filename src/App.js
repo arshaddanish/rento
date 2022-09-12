@@ -39,12 +39,13 @@ export default function App() {
         <Route path="/subscribe" element={<Subscription />} />
         <Route path="/account" element={<Account />} />
         <Route path="/resetpass" element={<ResetPass />} />
-        <Route path="/admin/home" element={<AdminHome />} />
         <Route path="/categories/:category" element={<Category />} />
         <Route path="/categories/:category/:id" element={<Item />} />
+
+        <Route path="/admin/home" element={<AdminHome />} />
+        
       </Routes>
       <Footer />
-
       <AdminFooter />
     </Router>
   );
