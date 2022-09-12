@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./item.scss";
-import bmw2 from "../../assets/images/bmw2.jpg";
 import seller from "../../assets/images/seller.png";
 import Button from "@mui/material/Button";
 import SimpleImageSlider from "react-simple-image-slider";
@@ -8,79 +7,74 @@ import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
 import useResizeObserver from "use-resize-observer";
-
-const imagesSlider = [
-  { url: bmw2 },
-  { url: bmw2 },
-  { url: bmw2 },
-  { url: bmw2 },
-];
-const imagesLightBox = [bmw2, bmw2, seller];
+import apis from "../../apis";
+import { useParams } from "react-router-dom";
+import { imageUrl } from "../../services/imageUrl";
 
 export default function Item() {
   const { ref, width = 1, height = 1 } = useResizeObserver();
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetchItem();
+  }, []);
+
+  let [item, setItem] = useState({});
+  let [images, setImages] = useState([]);
+  let fetchItem = async () => {
+    let { data } = await apis.get("items/" + id);
+    console.log(data);
+    setItem(data);
+    let images = [data.img, ...data.extraImgs];
+    console.log(images);
+    images = images.map((item) => imageUrl(item));
+    setImages(images);
+  };
 
   let [photoIndex, setPhotoIndex] = useState(0);
   let [isOpen, setIsOpen] = useState(false);
 
+  if (!item._id) {
+    return null;
+  }
   return (
     <div className="rental-item">
       <div className="item-div">
-        <h3>Audi 18</h3>
-        <div className="main-dtl">
-          <p>Thana, Kannur</p>
-          <p>
-            <span>Rs 1000</span> / day
-          </p>
-        </div>
+        <h3>{item.name}</h3>
         <div className="main-img" ref={ref} onClick={() => setIsOpen(true)}>
           <SimpleImageSlider
             width={width}
             height={height}
-            images={imagesSlider}
+            images={images}
             showBullets={true}
-            showNavs={true}
-            autoPlay={!isOpen}
-            style={{"z-index": 999999}}
+            autoPlay={true}
           />
         </div>
         {isOpen && (
           <Lightbox
-            mainSrc={imagesLightBox[photoIndex]}
-            nextSrc={imagesLightBox[(photoIndex + 1) % imagesLightBox.length]}
-            prevSrc={
-              imagesLightBox[
-                (photoIndex + imagesLightBox.length - 1) % imagesLightBox.length
-              ]
-            }
+            mainSrc={images[photoIndex]}
+            nextSrc={images[(photoIndex + 1) % images.length]}
+            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
             onCloseRequest={() => setIsOpen(false)}
             onMovePrevRequest={() =>
-              setPhotoIndex(
-                (photoIndex + imagesLightBox.length - 1) % imagesLightBox.length
-              )
+              setPhotoIndex((photoIndex + images.length - 1) % images.length)
             }
             onMoveNextRequest={() =>
-              setPhotoIndex((photoIndex + 1) % imagesLightBox.length)
+              setPhotoIndex((photoIndex + 1) % images.length)
             }
-            style={{"z-index": "9999999999"}}
           />
         )}
+        <div className="basic-dtl">
+          <p>Location:&nbsp; {item.location}</p>
+          <p>
+            Price:&nbsp; Rs. <span>{item.price}</span> / day
+          </p>
+          <p>Manufacture Year:&nbsp; {item.manufactureYear}</p>
+          <p>Type:&nbsp; {item.type}</p>
+        </div>
         <div className="desc">
           <h4>Description</h4>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
-            ad ab quasi reiciendis perspiciatis, modi ullam voluptates fugiat
-            qui soluta nisi at aut veritatis consequuntur neque eius ipsum
-            obcaecati, doloribus nihil cumque repudiandae blanditiis numquam
-            delectus? Vel exercitationem cumque ullam minus eius repellat hic
-            optio dolor reiciendis nihil delectus dicta, sunt eaque iste? Libero
-            commodi laborum consectetur sit dignissimos deleniti aliquam odit
-            maiores eligendi perferendis dolorum harum, fugit pariatur sunt.
-            Corrupti architecto tempora alias facilis culpa earum id obcaecati.
-            Sint cupiditate maiores quas fugit? Provident minus, sapiente vitae
-            vero quibusdam tenetur. Dolorum deserunt magnam, atque error ea
-            autem quia dolorem!
-          </p>
+          <p>{item.description}</p>
         </div>
         <div className="book-btn">
           <Button variant="contained" fullWidth style={{ height: "50px" }}>
