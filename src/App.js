@@ -8,7 +8,6 @@ import SignUp from "./pages/login/SignUp";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Category from "./pages/category/Category";
-import ScrollToTop from "./ScrollToTop";
 import News from "./pages/home/News";
 import ForgotPass from "./pages/login/ForgotPass";
 import Contact from "./pages/contact/Contact";
@@ -20,11 +19,14 @@ import AdminHome from "./admin/pages/Home/AdminHome";
 import AdminNavbar from "./admin/components/navbar/AdminNavbar";
 import AdminFooter from "./admin/components/footer/AdminFooter";
 import NewsItem from "./pages/newsItem/NewsItem";
+import ScrollToTop from "./services/components/ScrollToTop";
+import FileSizeValidate from "./FileSizeValidate";
 
 export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <FileSizeValidate />
       <AdminNavbar />
       <Navbar />
       <Routes>
@@ -43,7 +45,6 @@ export default function App() {
         <Route path="/categories/:category/:id" element={<Item />} />
 
         <Route path="/admin/home" element={<AdminHome />} />
-        
       </Routes>
       <Footer />
       <AdminFooter />
