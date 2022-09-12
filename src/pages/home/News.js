@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import mer4 from "../../assets/images/news/mer4.jpg";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
@@ -8,8 +7,10 @@ import FormControl from "@mui/material/FormControl";
 import apis from "../../apis";
 import { thumbnailDate } from "../../services/thumbnailDate";
 import { imageUrl } from "../../services/imageUrl";
+import { useNavigate } from "react-router-dom";
 
 function Item({ item }) {
+  let navigate = useNavigate();
   return (
     <div className="item">
       <div className="img-div">
@@ -18,7 +19,7 @@ function Item({ item }) {
           <p>{thumbnailDate(item.date)}</p>
         </div>
       </div>
-      <div className="dtl">
+      <div className="dtl" onClick={() => navigate("/blogs/" + item._id)}>
         <p>{item.category}</p>
         <h3>{item.title}</h3>
       </div>
@@ -30,7 +31,7 @@ export default function News({ type }) {
   let { pathname } = useLocation();
 
   useEffect(() => {
-    if (pathname !== "/news") {
+    if (pathname !== "/blogs") {
       fetchBlogs3();
     } else {
       fetchBlogs();
@@ -72,7 +73,7 @@ export default function News({ type }) {
   }
 
   function renderViewAllBtnOrFilter() {
-    if (pathname === "/news") {
+    if (pathname === "/blogs") {
       return (
         <div className="filter">
           <FormControl fullWidth>
@@ -99,7 +100,7 @@ export default function News({ type }) {
       );
     }
     return (
-      <Link to="/news">
+      <Link to="/blogs">
         <button>View All</button>
       </Link>
     );

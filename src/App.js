@@ -19,6 +19,7 @@ import ResetPass from "./pages/login/ResetPass";
 import AdminHome from "./admin/pages/Home/AdminHome";
 import AdminNavbar from "./admin/components/navbar/AdminNavbar";
 import AdminFooter from "./admin/components/footer/AdminFooter";
+import NewsItem from "./pages/news/NewsItem";
 
 export default function App() {
   return (
@@ -31,7 +32,8 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        <Route path="/news" element={<News type="view-all" />} />
+        <Route path="/blogs" element={<News type="view-all" />} />
+        <Route path="/blogs/:id" element={<NewsItem />} />
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/subscribe" element={<Subscription />} />
@@ -42,17 +44,11 @@ export default function App() {
           path="/category/vehicles"
           element={<Category backImg="vehicles" />}
         />
-        <Route
-          path="/category/vehicles/1"
-          element={<Item />}
-        />
+        <Route path="/category/vehicles/1" element={<Item />} />
       </Routes>
       <Footer />
 
       <AdminFooter />
-
-
-      
     </Router>
   );
 }
