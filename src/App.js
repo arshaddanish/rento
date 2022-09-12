@@ -32,19 +32,16 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        <Route path="/blogs/:id" element={<NewsItem />} />
         <Route path="/blogs" element={<News type="view-all" />} />
+        <Route path="/blogs/:id" element={<NewsItem />} />
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/subscribe" element={<Subscription />} />
         <Route path="/account" element={<Account />} />
         <Route path="/resetpass" element={<ResetPass />} />
         <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/categories/:category" element={<Category />} />
         <Route path="/categories/:category/:id" element={<Item />} />
-        <Route
-          path="/categories/:category"
-          element={<Category backImg="vehicles" />}
-        />
       </Routes>
       <Footer />
 

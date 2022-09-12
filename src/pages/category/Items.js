@@ -46,7 +46,7 @@ export default function Items() {
     return (
       <div
         className="item"
-        onClick={() => navigate("/category/" + category + "/" + item._id)}
+        onClick={() => navigate("/categories/" + category + "/" + item._id)}
       >
         <div className="img-div">
           <img src={imageUrl(item.img)} alt="" />
