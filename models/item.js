@@ -20,6 +20,7 @@ const ItemSchema = new mongoose.Schema({
   },
   sellerId: {
     type: String,
+    default: "1"
   },
   price: {
     type: Number,
