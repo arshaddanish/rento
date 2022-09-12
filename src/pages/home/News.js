@@ -91,6 +91,7 @@ export default function News({ type }) {
               label="Categories"
               displayEmpty
               onChange={handleChange}
+              defaultValue="All"
             >
               <MenuItem value="All" defaultChecked>All</MenuItem>
               {blogCategories.map((item, index) => {
