@@ -9,26 +9,9 @@ import { thumbnailDate } from "../../services/thumbnailDate";
 import { imageUrl } from "../../services/imageUrl";
 import { useNavigate } from "react-router-dom";
 
-function Item({ item }) {
-  let navigate = useNavigate();
-  return (
-    <div className="item">
-      <div className="img-div">
-        <img src={imageUrl(item.img)} alt="" />
-        <div className="date">
-          <p>{thumbnailDate(item.date)}</p>
-        </div>
-      </div>
-      <div className="dtl" onClick={() => navigate("/blogs/" + item._id)}>
-        <p>{item.category}</p>
-        <h3>{item.title}</h3>
-      </div>
-    </div>
-  );
-}
-
 export default function News({ type }) {
   let { pathname } = useLocation();
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (pathname !== "/blogs") {
@@ -61,10 +44,31 @@ export default function News({ type }) {
   };
 
   const handleChange = (event) => {
-    setFilteredBlogs(
-      blogs.filter((item) => item.category === event.target.value)
-    );
+    if (event.target.value === "All") {
+      setFilteredBlogs(blogs);
+    } else {
+      setFilteredBlogs(
+        blogs.filter((item) => item.category === event.target.value)
+      );
+    }
   };
+
+  function Item({ item }) {
+    return (
+      <div className="item">
+        <div className="img-div">
+          <img src={imageUrl(item.img)} alt="" />
+          <div className="date">
+            <p>{thumbnailDate(item.date)}</p>
+          </div>
+        </div>
+        <div className="dtl" onClick={() => navigate("/blogs/" + item._id)}>
+          <p>{item.category}</p>
+          <h3>{item.title}</h3>
+        </div>
+      </div>
+    );
+  }
 
   function view() {
     return filteredBlogs.map((item, index) => {
@@ -77,16 +81,18 @@ export default function News({ type }) {
       return (
         <div className="filter">
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Type</InputLabel>
+            <InputLabel id="demo-simple-select-label">Categories</InputLabel>
             <Select
               MenuProps={{
                 disableScrollLock: true,
               }}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              label="Type"
+              label="Categories"
+              displayEmpty
               onChange={handleChange}
             >
+              <MenuItem value="All" defaultChecked>All</MenuItem>
               {blogCategories.map((item, index) => {
                 return (
                   <MenuItem value={item.blogCategory} key={index}>

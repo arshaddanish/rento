@@ -4,10 +4,11 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Items() {
   let navigate = useNavigate();
+  const { category } = useParams();
 
   const [age, setAge] = React.useState("");
   const handleChange = (event) => {
@@ -36,7 +37,7 @@ export default function Items() {
   return (
     <div className="category-items">
       <div className="title-div">
-        <h2>Vehicles</h2>
+        <h2>{category}</h2>
         <div className="filter">
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Type</InputLabel>

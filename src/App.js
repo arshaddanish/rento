@@ -41,10 +41,10 @@ export default function App() {
         <Route path="/resetpass" element={<ResetPass />} />
         <Route path="/admin/home" element={<AdminHome />} />
         <Route
-          path="/category/vehicles"
+          path="/categories/:category"
           element={<Category backImg="vehicles" />}
         />
-        <Route path="/category/vehicles/1" element={<Item />} />
+        <Route path="/categories/:category/:id" element={<Item />} />
       </Routes>
       <Footer />
 
