@@ -33,19 +33,6 @@ export default function Footer() {
           <p>Contact</p>
           <p>Account</p>
         </div>
-        <div className="newsletter">
-          <h4>Newsletter</h4>
-          <p>Subscribe to our newsletter to get the latest news from Rento.</p>
-          <div className="form">
-            <TextField
-              label="Email"
-              variant="filled"
-              style={{ background: "white", borderRadius: "10px" }}
-              InputProps={{ disableUnderline: true }}
-            />
-            <button>Subscribe</button>
-          </div>
-        </div>
       </div>
 
       <div className="copyright">

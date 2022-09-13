@@ -20,13 +20,11 @@ import AdminNavbar from "./admin/components/navbar/AdminNavbar";
 import AdminFooter from "./admin/components/footer/AdminFooter";
 import NewsItem from "./pages/newsItem/NewsItem";
 import ScrollToTop from "./services/components/ScrollToTop";
-import FileSizeValidate from "./FileSizeValidate";
 
 export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <FileSizeValidate />
       <AdminNavbar />
       <Navbar />
       <Routes>

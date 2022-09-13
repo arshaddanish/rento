@@ -1,43 +1,79 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
-import {
-  Select,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  FormLabel,
-  Button,
-} from "@mui/material";
+import { Select, FormControl, InputLabel, MenuItem } from "@mui/material";
 import apis from "../../apis";
 import { titleCase } from "../../services/titleCase";
+import { fileUpload, multipart } from "../../services/fileUpload";
+import { useNavigate } from "react-router-dom";
+import { validateMaxFiles } from "../../services/validateMaxFiles";
+import { validateFileSize } from "../../services/validateFileSize";
 
 const AddProduct = () => {
+  let navigate = useNavigate();
+
   useEffect(() => {
     fetchCategories();
   }, []);
 
   const [categories, setCategories] = useState([]);
+
   let fetchCategories = async () => {
     let { data } = await apis.get("categories");
     setCategories(data);
   };
 
   const [formData, setFormData] = useState({});
-  const [formImg, setFormImg] = useState();
-  const [formExtraImgs, setFormExtraImgs] = useState();
-  let onInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const [imgData, setImgData] = useState(null);
+  const [extraImgsData, setExtraImgsData] = useState(null);
+
+  useEffect(() => {
+    myWait();
+  }, [imgData, extraImgsData]);
+
+  let myWait = async () => {
+    if (
+      typeof imgData == "string" &&
+      (!extraImgsData || typeof extraImgsData[0] == "string")
+    ) {
+      await apis.post("items", {
+        ...formData,
+        img: imgData,
+        ...(extraImgsData && { extraImgs: extraImgsData }),
+      });
+      navigate("/");
+    }
   };
-  let onformImgChange = (e) => {
-    setFormImg(e.target.files[0]);
+
+  let onInputChange = async (e) => {
+    if (e.target.name === "img") {
+      validateFileSize(e.target.files[0]);
+      setImgData(e.target.files[0]);
+    } else if (e.target.name === "extraImgs") {
+      validateMaxFiles(e.target);
+      for (let i = 0; i < e.target.files.length; i++) {
+        validateFileSize(e.target.files[i]);
+      }
+      setExtraImgsData(e.target.files);
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
-  let onformExtraImgsChange = (e) => {
-    setFormExtraImgs(e.target.files);
-  };
+
+  const [submitBtn, setSubmitBtn] = useState(0);
+  useEffect(() => {}, [submitBtn]);
+
   let onFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // await apis.post("items", formData);
+    setSubmitBtn(1);
+    let img = await fileUpload(imgData);
+    setImgData(img);
+    if (extraImgsData) {
+      let extraImgs = [];
+      for (let i = 0; i < extraImgsData.length; i++) {
+        extraImgs = [...extraImgs, await fileUpload(extraImgsData[i])];
+      }
+      setExtraImgsData(extraImgs);
+    }
   };
 
   return (
@@ -105,7 +141,6 @@ const AddProduct = () => {
               label="Choose Type"
               required
               name="type"
-              defaultValue=""
               disabled={!formData.category}
               onChange={onInputChange}
             >
@@ -126,7 +161,9 @@ const AddProduct = () => {
             <input
               type="file"
               accept="image/png, image/jpeg, image/jpg"
-              onChange={onformImgChange}
+              onChange={onInputChange}
+              name="img"
+              required
             />
           </div>
           <div className="add-product-upload-image">
@@ -135,7 +172,8 @@ const AddProduct = () => {
               type="file"
               multiple
               accept="image/png, image/jpeg, image/jpg"
-              onChange={onformExtraImgsChange}
+              name="extraImgs"
+              onChange={onInputChange}
             />
           </div>
           <TextField
@@ -167,7 +205,9 @@ const AddProduct = () => {
           <input type="file" id="myFile" name="filename" />
                 </div> */}
 
-        <button type="submit">Add Item</button>
+        <button type="submit" disabled={submitBtn}>
+          {submitBtn ? "Adding..." : "Add Item"}
+        </button>
       </div>
     </form>
   );
