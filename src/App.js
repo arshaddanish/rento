@@ -15,17 +15,18 @@ import Subscription from "./pages/subscription/Subscription";
 import Item from "./pages/Item/Item";
 import Account from "./pages/account/Account";
 import ResetPass from "./pages/login/ResetPass";
-import AdminHome from "./admin/pages/Home/AdminHome";
-import AdminNavbar from "./admin/components/navbar/AdminNavbar";
-import AdminFooter from "./admin/components/footer/AdminFooter";
 import NewsItem from "./pages/newsItem/NewsItem";
 import ScrollToTop from "./services/components/ScrollToTop";
+import NavbarAdmin from "./admin/components/navbar/NavbarAdmin";
+import FooterAdmin from "./admin/components/footer/FooterAdmin";
+import HomeAdmin from "./admin/pages/home/HomeAdmin";
+import BlogsAdmin from "./admin/pages/blogs/BlogsAdmin";
 
 export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <AdminNavbar />
+      <NavbarAdmin />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -42,10 +43,11 @@ export default function App() {
         <Route path="/categories/:category" element={<Category />} />
         <Route path="/categories/:category/:id" element={<Item />} />
 
-        <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin" element={<HomeAdmin />} />
+        <Route path="/admin/blogs" element={<BlogsAdmin />} />
       </Routes>
       <Footer />
-      <AdminFooter />
+      <FooterAdmin />
     </Router>
   );
 }
