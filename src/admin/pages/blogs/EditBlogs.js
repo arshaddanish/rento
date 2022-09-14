@@ -1,24 +1,4 @@
-// import { Button } from "@mui/material";
-// import React from "react";
-// import "./blogsAdmin.scss";
-
-// export default function BlogsAdmin() {
-//   return (
-//     <div className="blogs-admin">
-//       <div className="title-div">
-//         <h2>Blogs</h2>
-//         <div className="btn-div">
-//           <Button variant="contained">Add Blog</Button>
-//           <Button variant="contained">Edit Categories</Button>
-//         </div>
-//       </div>
-
-//     </div>
-//   );
-// }
-
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -29,9 +9,16 @@ import { imageUrl } from "../../../services/imageUrl";
 import { thumbnailDate } from "../../../services/thumbnailDate";
 import { Button } from "@mui/material";
 import "./editBlogs.scss";
+import MuiDialog from "../../../components/dialog/MuiDialog";
 
-export default function EditBlogs({ type }) {
-  let { pathname } = useLocation();
+let dialog = {
+  title: "Alert!",
+  content: "Are you sure you want to delete the blog?",
+  btnText: "Yes",
+  btnColor: "#e53e3e",
+};
+
+export default function EditBlogs() {
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -64,6 +51,26 @@ export default function EditBlogs({ type }) {
     }
   };
 
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  let [deleteId, setDeleteId] = useState(null);
+  let onDelete = async () => {
+    await apis.delete("blogs/" + deleteId);
+    handleClose();
+    setBlogs(blogs.filter((item) => item._id !== deleteId));
+    setFilteredBlogs(filteredBlogs.filter((item) => item._id !== deleteId));
+  };
+  let onDeleteBtnClick = (id) => {
+    setDeleteId(id);
+    handleClickOpen();
+  };
+
   function Item({ item }) {
     return (
       <div className="item">
@@ -83,7 +90,11 @@ export default function EditBlogs({ type }) {
             >
               Edit
             </Button>
-            <Button variant="contained" style={{ background: "#e53e3e" }}>
+            <Button
+              variant="contained"
+              style={{ background: "#e53e3e" }}
+              onClick={() => onDeleteBtnClick(item._id)}
+            >
               Delete
             </Button>
           </div>
@@ -129,12 +140,20 @@ export default function EditBlogs({ type }) {
   }
 
   return (
-    <div className={`edit-blogs view-all`}>
-      <div className="title-div">
-        <h2></h2>
-        {renderFilter()}
+    <>
+      <div className={`edit-blogs view-all`}>
+        <div className="title-div">
+          <h2></h2>
+          {renderFilter()}
+        </div>
+        <div className="items">{view()}</div>
       </div>
-      <div className="items">{view()}</div>
-    </div>
+      <MuiDialog
+        open={open}
+        handleClose={handleClose}
+        onDelete={onDelete}
+        dialog={dialog}
+      />
+    </>
   );
 }
