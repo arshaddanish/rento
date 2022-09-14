@@ -89,7 +89,7 @@ app.patch("/api/blogs/:id", async (req, res) => {
 app.delete("/api/blogs/:id", async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
-    await axios.delete("api/upload/" + blog.img);
+    await deleteImg(blog.img);
     const doc = await Blog.deleteOne({ _id: req.params.id });
     res.send(doc);
   } catch (error) {
