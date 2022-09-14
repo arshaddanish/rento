@@ -45,7 +45,11 @@ export default function BlogsTabs() {
   const [value, setValue] = React.useState(0);
 
   React.useEffect(() => {
-    setValue(tabData[pathname]);
+    if (
+      pathname.slice(0, pathname.lastIndexOf("/")) === "/admin/blogs/edit-blog"
+    )
+      setValue(0);
+    else setValue(tabData[pathname]);
   }, [pathname]);
 
   const tabData = {

@@ -77,7 +77,12 @@ export default function EditBlogs({ type }) {
           <p>{item.category}</p>
           <h3>{item.title}</h3>
           <div className="admin-btns">
-            <Button variant="contained">Edit</Button>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/admin/blogs/edit-blog/" + item._id)}
+            >
+              Edit
+            </Button>
             <Button variant="contained" style={{ background: "#e53e3e" }}>
               Delete
             </Button>

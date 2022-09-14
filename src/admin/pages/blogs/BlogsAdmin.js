@@ -4,6 +4,7 @@ import AddBlog from "./AddBlog";
 import "./blogsAdmin.scss";
 import BlogsTabs from "./BlogsTabs";
 import EditBlogs from "./EditBlogs";
+import EditOneBlog from "./EditOneBlog";
 
 export default function BlogsAdmin() {
   return (
@@ -14,6 +15,7 @@ export default function BlogsAdmin() {
       <div className="blogs-page">
         <Routes>
           <Route path="/" element={<EditBlogs />} />
+          <Route path="/edit-blog/:id" element={<EditOneBlog />} />
           <Route path="/add-blog" element={<AddBlog />} />
         </Routes>
       </div>

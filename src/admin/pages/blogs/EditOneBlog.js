@@ -7,16 +7,18 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import apis from "../../../apis";
 import { fileUpload } from "../../../services/fileUpload";
 import { validateFileSize } from "../../../services/validateFileSize";
 import "./addBlog.scss";
 
-export default function AddBlog() {
+export default function EditOneBlog() {
+  let { id } = useParams();
   let navigate = useNavigate();
   useEffect(() => {
     fetchBlogCategories();
+    fetchBlog();
   }, []);
 
   const [blogCategories, setBlogCategories] = React.useState([]);
@@ -24,6 +26,12 @@ export default function AddBlog() {
   let fetchBlogCategories = async () => {
     let { data } = await apis.get("blog-categories");
     setBlogCategories(data);
+  };
+
+  const [blog, setBlog] = useState(null);
+  let fetchBlog = async () => {
+    let { data } = await apis.get("blogs/" + id);
+    setBlog(data);
   };
 
   let [formData, setFormData] = useState({});
@@ -35,8 +43,8 @@ export default function AddBlog() {
   }, [imgData]);
 
   let myWait = async () => {
-    if (typeof imgData == "string") {
-      await apis.post("blogs", {
+    if (imgData && typeof imgData == "string") {
+      await apis.patch("blogs/" + id, {
         ...formData,
         img: imgData,
       });
@@ -56,9 +64,20 @@ export default function AddBlog() {
   let onFormSubmit = async (e) => {
     e.preventDefault();
     setSubmitBtn(1);
-    let img = await fileUpload(imgData);
-    setImgData(img);
+    if (imgData) {
+      let img = await fileUpload(imgData);
+      setImgData(img);
+    } else {
+      await apis.patch("blogs/" + id, {
+        ...formData,
+      });
+      navigate("/admin/blogs");
+    }
   };
+
+  if (!blog) {
+    return null;
+  }
 
   return (
     <form onSubmit={onFormSubmit}>
@@ -71,7 +90,9 @@ export default function AddBlog() {
             fullWidth
             name="title"
             required
+            defaultValue={blog.title}
             onChange={onInputChange}
+            InputLabelProps={{ shrink: true }}
           />
         </div>
         <div className="field">
@@ -84,7 +105,9 @@ export default function AddBlog() {
             fullWidth
             name="content"
             required
+            defaultValue={blog.content}
             onChange={onInputChange}
+            InputLabelProps={{ shrink: true }}
           />
         </div>
         <div className="field half">
@@ -102,6 +125,8 @@ export default function AddBlog() {
               name="category"
               required
               onChange={onInputChange}
+              defaultValue={blog.category}
+              InputLabelProps={{ shrink: true }}
             >
               {blogCategories.map((item, index) => {
                 return (
@@ -119,7 +144,6 @@ export default function AddBlog() {
             type="file"
             accept="image/png, image/jpeg, image/jpg"
             name="img"
-            required
             onChange={onInputChange}
           />
         </div>
@@ -130,7 +154,7 @@ export default function AddBlog() {
             style={{ height: "50px" }}
             type="submit"
           >
-            {submitBtn ? "Adding..." : "Add Blog"}
+            {submitBtn ? "Submitting..." : "Submit"}
           </Button>
         </div>
       </div>
