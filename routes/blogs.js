@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const { Blog, BlogCategory } = require("../models/blog");
+const deleteImg = require("../services/deleteImg");
 const axios = require("axios").create({ baseUrl: "http://localhost:5000/" });
 
 app.get("/api/blogs", async (req, res) => {
@@ -14,7 +15,7 @@ app.get("/api/blogs", async (req, res) => {
 });
 
 app.get("/api/blogs3", async (req, res) => {
-  const blogs = await Blog.find({}).limit(3).sort({date: -1});
+  const blogs = await Blog.find({}).limit(3).sort({ date: -1 });
 
   try {
     res.send(blogs);
@@ -34,7 +35,9 @@ app.get("/api/blogs/:id", async (req, res) => {
 });
 
 app.get("/api/blogs-filter/:category", async (req, res) => {
-  const blogs = await Blog.find({ category: req.params.category }).sort({date: -1});
+  const blogs = await Blog.find({ category: req.params.category }).sort({
+    date: -1,
+  });
 
   try {
     res.send(blogs);
@@ -58,7 +61,7 @@ app.patch("/api/blogs/:id", async (req, res) => {
   try {
     if (req.body.img && req.body.img !== "") {
       const oldBlog = await Blog.findById(req.params.id);
-      await axios.delete("api/upload/" + oldBlog.img);
+      await deleteImg(oldBlog.img);
     }
     const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
