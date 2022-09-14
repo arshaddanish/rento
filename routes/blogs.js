@@ -121,7 +121,10 @@ app.post("/api/blog-categories", async (req, res) => {
 app.patch("/api/blog-categories/:id", async (req, res) => {
   try {
     const oldBlogCategory = await BlogCategory.findById(req.params.id);
-    await Blog.updateMany({ category: oldBlogCategory }, req.body);
+    await Blog.updateMany(
+      { category: oldBlogCategory.blogCategory },
+      { category: req.body.blogCategory }
+    );
     const blogCategory = await BlogCategory.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -140,8 +143,9 @@ app.delete("/api/blog-categories/:id", async (req, res) => {
     const blogCategory = await BlogCategory.findById(req.params.id);
     let blogs = await Blog.find({ category: blogCategory.blogCategory });
     blogs.forEach(async (item, index) => {
-      await axios.delete("api/blogs/" + item._id);
+      await deleteImg(item.img);
     });
+    await Blog.deleteMany({ category: blogCategory.blogCategory });
     const doc = await BlogCategory.deleteOne({ _id: req.params.id });
     res.send(doc);
   } catch (error) {
