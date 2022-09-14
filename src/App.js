@@ -23,6 +23,7 @@ import HomeAdmin from "./admin/pages/home/HomeAdmin";
 import BlogsAdmin from "./admin/pages/blogs/BlogsAdmin";
 import AddBlog from "./admin/pages/blogs/AddBlog";
 import PublicMessages from "./admin/pages/public-messages/PublicMessages";
+import LoginAdmin from "./admin/pages/login/LoginAdmin";
 
 export default function App() {
   return (
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="/categories/:category" element={<Category />} />
         <Route path="/categories/:category/:id" element={<Item />} />
 
+        <Route path="/admin/login" element={<LoginAdmin />} />
         <Route path="/admin" element={<HomeAdmin />} />
         <Route path="/admin/blogs/*" element={<BlogsAdmin />} />
         <Route path="/admin/messages" element={<PublicMessages />} />
