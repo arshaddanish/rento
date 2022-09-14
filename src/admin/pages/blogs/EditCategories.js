@@ -87,10 +87,19 @@ export default function EditCategories() {
     );
   }
 
+  let [addData, setAddData] = useState();
+
+  let onAdd = async (e) => {
+    e.preventDefault();
+    let {data} = await apis.post("blog-categories", { blogCategory: addData });
+    setBlogCategories([...blogCategories, data])
+    alert("Added Successfully!");
+  };
+
   return (
     <>
       <div className="edit-categories">
-        <form>
+        <form onSubmit={onAdd}>
           <div className="field">
             <TextField
               id="outlined-basic"
@@ -99,7 +108,7 @@ export default function EditCategories() {
               fullWidth
               name="title"
               required
-              // onChange={(e) => setFo}
+              onChange={(e) => setAddData(e.target.value)}
             />
             <Button variant="contained" type="submit">
               Add
