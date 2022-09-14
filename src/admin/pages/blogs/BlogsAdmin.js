@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import AddBlog from "./AddBlog";
 import "./blogsAdmin.scss";
 import BlogsTabs from "./BlogsTabs";
 import EditBlogs from "./EditBlogs";
@@ -13,6 +14,7 @@ export default function BlogsAdmin() {
       <div className="blogs-page">
         <Routes>
           <Route path="/" element={<EditBlogs />} />
+          <Route path="/add-blog" element={<AddBlog />} />
         </Routes>
       </div>
     </div>

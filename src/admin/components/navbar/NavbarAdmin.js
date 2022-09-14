@@ -18,13 +18,13 @@ export default function NavbarAdmin() {
           <Link to="/admin">
             <p>Home</p>
           </Link>
-          <Link to="/about">
-            <p>About</p>
+          <Link to="/admin">
+            <p>Home</p>
           </Link>
           <Link to="/admin/blogs">
             <p>Blogs</p>
           </Link>
-          <Link to="/Messages">
+          <Link to="/admin/messages">
             <p>Messages</p>
           </Link>
         </div>

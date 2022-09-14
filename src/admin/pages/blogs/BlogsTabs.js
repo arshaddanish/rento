@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -39,10 +40,17 @@ function a11yProps(index) {
 }
 
 export default function BlogsTabs() {
+  let navigate = useNavigate();
+  let { pathname } = useLocation();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  React.useEffect(() => {
+    setValue(tabData[pathname]);
+  }, [pathname]);
+
+  const tabData = {
+    "/admin/blogs": 0,
+    "/admin/blogs/add-blog": 1,
   };
 
   return (
@@ -58,12 +66,19 @@ export default function BlogsTabs() {
         orientation="vertical"
         variant="scrollable"
         value={value}
-        onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: "divider" }}
       >
-        <Tab label="All Blogs" {...a11yProps(0)} />
-        <Tab label="Add Blog" {...a11yProps(1)} />
+        <Tab
+          label="All Blogs"
+          {...a11yProps(0)}
+          onClick={() => navigate("/admin/blogs")}
+        />
+        <Tab
+          label="Add Blog"
+          {...a11yProps(1)}
+          onClick={() => navigate("/admin/blogs/add-blog")}
+        />
         <Tab label="Edit Categories" {...a11yProps(2)} />
       </Tabs>
     </Box>

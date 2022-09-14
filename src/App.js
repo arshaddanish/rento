@@ -21,6 +21,8 @@ import NavbarAdmin from "./admin/components/navbar/NavbarAdmin";
 import FooterAdmin from "./admin/components/footer/FooterAdmin";
 import HomeAdmin from "./admin/pages/home/HomeAdmin";
 import BlogsAdmin from "./admin/pages/blogs/BlogsAdmin";
+import AddBlog from "./admin/pages/blogs/AddBlog";
+import PublicMessages from "./admin/pages/public-messages/PublicMessages";
 
 export default function App() {
   return (
@@ -44,7 +46,8 @@ export default function App() {
         <Route path="/categories/:category/:id" element={<Item />} />
 
         <Route path="/admin" element={<HomeAdmin />} />
-        <Route path="/admin/blogs" element={<BlogsAdmin />} />
+        <Route path="/admin/blogs/*" element={<BlogsAdmin />} />
+        <Route path="/admin/messages" element={<PublicMessages />} />
       </Routes>
       <Footer />
       <FooterAdmin />
