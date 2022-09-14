@@ -55,6 +55,7 @@ export default function BlogsTabs() {
   const tabData = {
     "/admin/blogs": 0,
     "/admin/blogs/add-blog": 1,
+    "/admin/blogs/edit-categories": 2,
   };
 
   return (
@@ -83,7 +84,11 @@ export default function BlogsTabs() {
           {...a11yProps(1)}
           onClick={() => navigate("/admin/blogs/add-blog")}
         />
-        <Tab label="Edit Categories" {...a11yProps(2)} />
+        <Tab
+          label="Edit Categories"
+          {...a11yProps(2)}
+          onClick={() => navigate("/admin/blogs/edit-categories")}
+        />
       </Tabs>
     </Box>
   );
