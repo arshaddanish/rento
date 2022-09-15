@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./loginAdmin.scss";
 
 export default function LoginAdmin() {
+  let navigate = useNavigate();
   return (
     <div className="login-admin">
       {" "}
@@ -28,7 +30,9 @@ export default function LoginAdmin() {
           id="password"
         />
 
-        <button type="submit">Log In</button>
+        <button type="submit" onClick={() => navigate("/admin")}>
+          Log In
+        </button>
       </form>
     </div>
   );

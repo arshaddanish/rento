@@ -47,7 +47,7 @@ export default function App() {
         <Route path="/categories/:category/:id" element={<Item />} />
 
         <Route path="/admin/login" element={<LoginAdmin />} />
-        <Route path="/admin" element={<HomeAdmin />} />
+        <Route path="/admin/*" element={<HomeAdmin />} />
         <Route path="/admin/blogs/*" element={<BlogsAdmin />} />
         <Route path="/admin/messages" element={<PublicMessages />} />
       </Routes>
