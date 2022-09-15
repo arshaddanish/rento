@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import Dashboard from "./dashboard/Dashboard";
 import "./homeAdmin.scss";
 import HomeTabs from "./HomeTabs";
 import SellerVerification from "./seller-verification/SellerVerification";
@@ -14,7 +15,7 @@ export default function HomeAdmin() {
       </div>
       <div className="home-page">
         <Routes>
-          {/* <Route path="/" element={<H />} /> */}
+          <Route path="/" element={<Dashboard />} />
           <Route path="/seller-verification" element={<SellerVerification />} />
           <Route
             path="/verification-history"

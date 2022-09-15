@@ -11,7 +11,7 @@ export default function NavbarAdmin() {
   return (
     <div className="navbar-admin">
       <div className="container">
-        <Link to="/">
+        <Link to="/admin">
           <div className="brand">RENTO</div>
         </Link>
         <div className="nav-items">
