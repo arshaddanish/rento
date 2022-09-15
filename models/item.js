@@ -20,7 +20,6 @@ const ItemSchema = new mongoose.Schema({
   },
   sellerId: {
     type: String,
-    default: "1"
   },
   price: {
     type: Number,
@@ -37,14 +36,14 @@ const ItemSchema = new mongoose.Schema({
   },
   status: {
     type: Number,
-    default: 0
+    default: 1,
   },
   category: {
-    type: String
+    type: String,
   },
   type: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 const Item = mongoose.model("Item", ItemSchema);
