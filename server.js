@@ -32,6 +32,8 @@ const ItemRouter = require("./routes/item");
 app.use(ItemRouter);
 const CategoryRouter = require("./routes/category");
 app.use(CategoryRouter);
+const AdminRouter = require("./routes/admin");
+app.use(AdminRouter);
 
 // Start server
 const port = 5000;
