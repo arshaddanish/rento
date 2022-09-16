@@ -21,7 +21,6 @@ import NavbarAdmin from "./admin/components/navbar/NavbarAdmin";
 import FooterAdmin from "./admin/components/footer/FooterAdmin";
 import HomeAdmin from "./admin/pages/home/HomeAdmin";
 import BlogsAdmin from "./admin/pages/blogs/BlogsAdmin";
-import AddBlog from "./admin/pages/blogs/AddBlog";
 import PublicMessages from "./admin/pages/public-messages/PublicMessages";
 import LoginAdmin from "./admin/pages/login/LoginAdmin";
 
