@@ -103,6 +103,11 @@ const SignUp = () => {
                 </Select>
               </FormControl>
               <div className="gap"></div>
+              <div className="profile-img-field">
+                <p >Add Profile Image</p>
+                <input type="file" name="profileImg" />
+              </div>
+              <div className="gap"></div>
               <TextField
                 fullWidth
                 // id="outlined-basic1"
