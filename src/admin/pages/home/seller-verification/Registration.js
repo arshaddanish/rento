@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import './sellerVerification.scss'
+import './Registration.scss'
 import { Button } from '@mui/material'
 import FormPopUp from './FormPopUp'
 
-const SellerVerification = () => {
+const Registration = () => {
     const registrations = [
         {
             id: 1,
@@ -38,15 +38,15 @@ const SellerVerification = () => {
     ]
     const [viewForm, setViewForm] = useState(false);
   return (
-    <div className='registration-main2'>
+    <div className='registration-main'>
         <div>
-            <h1 className='reg-heading-main'>Seller Verification</h1>
+            <h1>Registration details</h1>
         </div>
         <div className="reg-details">
             <div className="reg-heading">
                 <div>Name</div>
-                <div>Phone No.</div>
-                <div>Location</div>
+                <div>Department</div>
+                <div>Batch</div>
                 <div></div>
             </div>
             {
@@ -69,4 +69,4 @@ const SellerVerification = () => {
   )
 }
 
-export default SellerVerification
+export default Registration

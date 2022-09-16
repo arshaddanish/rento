@@ -4,8 +4,9 @@ import Dashboard from "./dashboard/Dashboard";
 import "./homeAdmin.scss";
 import HomeTabs from "./HomeTabs";
 import SellerVerification from "./seller-verification/SellerVerification";
-import Users from "./users/Users";
+import Buyers from "./buyers/Buyers";
 import VerificationHistory from "./verification-history/VerificationHistory";
+import Sellers from "./sellers/Sellers";
 
 export default function HomeAdmin() {
   return (
@@ -21,7 +22,9 @@ export default function HomeAdmin() {
             path="/verification-history"
             element={<VerificationHistory />}
           />
-          <Route path="/users" element={<Users />} />
+          <Route path="/buyers" element={<Buyers />} />
+          <Route path="/sellers" element={<Sellers />} />
+
         </Routes>
       </div>
     </div>
