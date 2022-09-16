@@ -40,7 +40,7 @@ const SellerVerification = () => {
   return (
     <div className='registration-main2'>
         <div>
-            <h1 className='reg-heading-main'>Seller Verification</h1>
+            <h2 className='reg-heading-main'>Seller Verification</h2>
         </div>
         <div className="reg-details">
             <div className="reg-heading">

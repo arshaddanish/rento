@@ -56,7 +56,8 @@ export default function HomeTabs() {
     "/admin": 0,
     "/admin/seller-verification": 1,
     "/admin/verification-history": 2,
-    "/admin/users": 3,
+    "/admin/buyers": 3,
+    "/admin/sellers": 4,
   };
 
   return (

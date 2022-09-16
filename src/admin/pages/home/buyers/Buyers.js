@@ -45,7 +45,7 @@ const Buyers = () => {
   return (
     <div className='registration-main3'>
         <div>
-            <h1 className='reg-heading-main'>Buyers</h1>
+            <h2 className='reg-heading-main'>Buyers</h2>
         </div>
         <div className="reg-details">
             <div className="reg-heading">
