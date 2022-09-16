@@ -61,7 +61,7 @@ const Sellers = () => {
                         <div>{e.batch}</div>
                         <div className='reg-btns'>
                             <Button onClick={()=>setViewForm(true)} variant="contained">View</Button>
-                            <Button sx={{backgroundColor: "#704F4F", "&:hover": {backgroundColor:"#553939"}}}  variant="contained">Subscription History</Button>
+                            <Button color="success"  variant="contained">Subscription History</Button>
                             {/* <Button color='success' variant="contained">Approve</Button>
                             <Button color='error' variant="contained">Decline</Button> */}
                         </div>

@@ -9,7 +9,7 @@ import handshake from '../../images/handshake.jpg'
 const SignUp = () => {
   const navigate = useNavigate();
   const navigateToHome = () => {
-    navigate('/');
+    navigate('/account');
   }
 
   return (
