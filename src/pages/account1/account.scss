@@ -1,0 +1,19 @@
+.home-admin {
+  display: grid;
+  grid-template-columns: max-content auto;
+  background: #e9edf2;
+
+  .home-tabs {
+    padding: 10rem 0;
+    padding-left: 4rem;
+    background: #fff;
+  }
+
+  .home-page {
+    padding: 10rem 3rem;
+  }
+}
+
+.css-19kzrtu {
+  padding: 0 !important;
+}
