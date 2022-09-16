@@ -29,7 +29,7 @@ const Contact = () => {
                     </div>
                     <div>
                         <TextField style={{border: 'none', outline: 'none'}} rows={8} fullWidth multiline id="outlined-basic" label="Write Comment" variant="outlined" />
-                        <Button primary style={{width: '250px', height: '60px', marginTop: '1rem',backgroundColor: '#0096FF'}} variant="contained">Submit Comment</Button>
+                        <Button primary style={{width: '250px', height: '60px', marginTop: '1rem',backgroundColor: '#0096FF'}} variant="contained">Submit</Button>
                     </div>
                     
                 </form>

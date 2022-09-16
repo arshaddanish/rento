@@ -39,8 +39,8 @@ const ForgotPass = () => {
                                 <Button onClick={navigateToResetPass} fullWidth type='submit' variant="contained">GET RESET LINK</Button>
                             </div>
                         </form>
-                        <p className='forgot-or'>OR</p>
-                        <p onClick={navigateToSignUp} className='forgot-create'>Create New Account</p>
+                        {/* <p className='forgot-or'>OR</p>
+                        <p onClick={navigateToSignUp} className='forgot-create'>Create New Account</p> */}
                     </div>
                 </div>
                 <Button 
