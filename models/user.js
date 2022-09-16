@@ -30,9 +30,9 @@ const UserSchema = new mongoose.Schema({
   verDate: {
     type: Date,
   },
-  verified: {
-    type: Number,
-    default: 0,
+  verStatus: {
+    type: String,
+    default: "Not verified",
   },
   aadharImg: {
     type: String,
@@ -49,3 +49,5 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
+
+// verStatus = ["Not verified", "Pending", "Verified", "Rejected"];

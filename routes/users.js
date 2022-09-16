@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const User = require("../models/user");
+const Item = require("../models/item");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const { userAuth } = require("../middleware/userAuth");
@@ -92,6 +93,7 @@ app.delete("/api/users", async (req, res) => {
         await deleteImg(item.profileImg);
       }
     });
+    await Item.deleteMany({});
     const doc = await User.deleteMany({});
     res.send(doc);
   } catch (error) {
@@ -108,6 +110,7 @@ app.delete("/api/users/:id", async (req, res) => {
     if (user.profileImg) {
       await deleteImg(user.profileImg);
     }
+    await Item.deleteMany({ sellerId: user._id });
     const doc = await User.deleteOne({ _id: req.params.id });
     res.send(doc);
   } catch (error) {
