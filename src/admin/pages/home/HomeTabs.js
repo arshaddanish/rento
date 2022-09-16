@@ -91,9 +91,14 @@ export default function HomeTabs() {
           onClick={() => navigate("/admin/verification-history")}
         />
         <Tab
-          label="Users"
+          label="Buyers"
           {...a11yProps(3)}
-          onClick={() => navigate("/admin/users")}
+          onClick={() => navigate("/admin/buyers")}
+        />
+        <Tab
+          label="Sellers"
+          {...a11yProps(4)}
+          onClick={() => navigate("/admin/sellers")}
         />
       </Tabs>
     </Box>
