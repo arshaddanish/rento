@@ -30,7 +30,7 @@ const SignUp = () => {
     if (typeof imgData == "string") {
       let { data } = await apis.post("users", {
         ...formData,
-        img: imgData,
+        profileImg: imgData,
       });
       console.log(data);
       localStorage.setItem("jwt_token", data.token);

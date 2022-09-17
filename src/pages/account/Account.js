@@ -29,11 +29,11 @@ export default function Account() {
   return (
     <div className="account">
       <div className="account-tabs">
-        <AccountTabs />
+        <AccountTabs userData={userData} />
       </div>
       <div className="account-page">
         <Routes>
-          <Route path="/" element={<Profile />} />
+          <Route path="/" element={<Profile userData={userData} />} />
           <Route path="/store" element={<Store />} />
           <Route path="/edit-item/:id" element={<EditItem />} />
           <Route path="/add-to-store" element={<AddToStore />} />
