@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   FormControl,
@@ -11,11 +11,48 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.scss";
 import handshake from "../../images/handshake.jpg";
+import { validateFileSize } from "../../services/validateFileSize";
+import { fileUpload } from "../../services/fileUpload";
+import apis from "../../apis";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const navigateToHome = () => {
-    navigate("/account");
+
+  let [formData, setFormData] = useState({});
+  let [imgData, setImgData] = useState(null);
+  const [submitBtn, setSubmitBtn] = useState(0);
+
+  useEffect(() => {
+    myWait();
+  }, [imgData]);
+
+  let myWait = async () => {
+    if (typeof imgData == "string") {
+      let { data } = await apis.post("users", {
+        ...formData,
+        img: imgData,
+      });
+      console.log(data);
+      localStorage.setItem("jwt_token", data.token);
+      navigate("/account");
+    }
+  };
+
+  let onInputChange = async (e) => {
+    if (e.target.name === "profileImg") {
+      validateFileSize(e.target.files[0]);
+      setImgData(e.target.files[0]);
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+  };
+
+  let onFormSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+    setSubmitBtn(1);
+    let img = await fileUpload(imgData);
+    setImgData(img);
   };
 
   return (
@@ -34,7 +71,8 @@ const SignUp = () => {
                 <span className="link">Login to your account</span>
               </Link>
             </p>
-            <form action="">
+            <form onSubmit={onFormSubmit} autoComplete="off">
+              <input type="hidden" value="prayer" />
               {/* <input placeholder='Name' type="text" name="" id="" /> */}
               <TextField
                 fullWidth
@@ -42,6 +80,9 @@ const SignUp = () => {
                 label="Name"
                 type={"text"}
                 variant="outlined"
+                required
+                onChange={onInputChange}
+                name="name"
               />
               <div className="gap"></div>
               <TextField
@@ -50,14 +91,20 @@ const SignUp = () => {
                 label="Email"
                 type={"email"}
                 variant="outlined"
+                required
+                onChange={onInputChange}
+                name="email"
               />
               <div className="gap"></div>
               <TextField
                 fullWidth
                 // id="outlined-basic1"
                 label="Phone Number"
-                type={"number"}
+                type={"text"}
                 variant="outlined"
+                required
+                onChange={onInputChange}
+                name="phone"
               />
               <div className="gap"></div>
 
@@ -69,6 +116,9 @@ const SignUp = () => {
                 label="Address"
                 type={"number"}
                 variant="outlined"
+                required
+                onChange={onInputChange}
+                name="address"
               />
               <div className="gap"></div>
               {/* <TextField fullWidth
@@ -78,10 +128,12 @@ const SignUp = () => {
                   variant="outlined" 
                 /> */}
               <TextField
-                name="someDate"
                 label="Date of Birth"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
+                required
+                onChange={onInputChange}
+                name="dob"
               />
               <div className="gap"></div>
               <FormControl fullWidth>
@@ -95,8 +147,10 @@ const SignUp = () => {
                   labelId="muil1"
                   displayEmpty
                   fullWidth
-                  name="category"
                   required
+                  onChange={onInputChange}
+                  name="gender"
+                  style={{ textAlign: "left" }}
                 >
                   <MenuItem value="Male">Male</MenuItem>
                   <MenuItem value="Female">Female</MenuItem>
@@ -104,8 +158,14 @@ const SignUp = () => {
               </FormControl>
               <div className="gap"></div>
               <div className="profile-img-field">
-                <p >Add Profile Image</p>
-                <input type="file" name="profileImg" />
+                <p>Add Profile Image</p>
+                <input
+                  type="file"
+                  name="profileImg"
+                  required
+                  accept="image/png, image/jpeg, image/jpg"
+                  onChange={onInputChange}
+                />
               </div>
               <div className="gap"></div>
               <TextField
@@ -114,14 +174,9 @@ const SignUp = () => {
                 label="Password"
                 type={"password"}
                 variant="outlined"
-              />
-              <div className="gap"></div>
-              <TextField
-                fullWidth
-                // id="outlined-basic1"
-                label="Confirm Password"
-                type={"password"}
-                variant="outlined"
+                required
+                onChange={onInputChange}
+                name="password"
               />
               <div className="gap"></div>
               {/* <input placeholder='Email' type="email" name="" id="" />
@@ -134,7 +189,7 @@ const SignUp = () => {
                     <input placeholder='Password' type="password" name="" id="" /> */}
               {/* <button onClick={navigateToHome} type='submit'>Create Account</button> */}
 
-              <Button onClick={navigateToHome} variant="contained">
+              <Button type="submit" variant="contained">
                 Create Account
               </Button>
               <div className="gap"></div>
