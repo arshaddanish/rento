@@ -1,10 +1,14 @@
 import React from "react";
 import "./navbarAdmin.scss";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function NavbarAdmin() {
   let { pathname } = useLocation();
-  if (pathname.substring(0, 6) !== "/admin" || pathname === "/admin/login") {
+  let navigate = useNavigate();
+  if (
+    pathname &&
+    (pathname.substring(0, 6) !== "/admin" || pathname === "/admin/login")
+  ) {
     return null;
   }
 
@@ -24,9 +28,14 @@ export default function NavbarAdmin() {
           <Link to="/admin/messages">
             <p>Messages</p>
           </Link>
-          <Link to="/admin/login">
+          <span
+            onClick={() => {
+              localStorage.removeItem("jwt_admin");
+              navigate("/admin/login");
+            }}
+          >
             <p>Logout</p>
-          </Link>
+          </span>
         </div>
       </div>
     </div>

@@ -120,11 +120,11 @@ export default function AccountTabs() {
           {...a11yProps(7)}
           onClick={() => navigate("/account/subscriptions")}
         />
-        <Tab
+        {/* <Tab
           label="Messages"
           {...a11yProps(8)}
           onClick={() => navigate("/account/messages")}
-        />
+        /> */}
         <Tab
           label="Buyer Mode"
           {...a11yProps(9)}
@@ -133,7 +133,10 @@ export default function AccountTabs() {
         <Tab
           label="Logout"
           {...a11yProps(10)}
-          onClick={() => navigate("/login")}
+          onClick={() => {
+            localStorage.removeItem("jwt_token");
+            navigate("/login");
+          }}
         />
       </Tabs>
     </Box>
