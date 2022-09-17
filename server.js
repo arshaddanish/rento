@@ -34,6 +34,10 @@ const CategoryRouter = require("./routes/categories");
 app.use(CategoryRouter);
 const AdminRouter = require("./routes/admin");
 app.use(AdminRouter);
+const VerificationRouter = require("./routes/verification");
+app.use(VerificationRouter);
+const UserRouter = require("./routes/users");
+app.use(UserRouter);
 
 // Start server
 const port = 5000;

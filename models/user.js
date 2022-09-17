@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
   profileImg: {
-    type: Sring,
+    type: String,
   },
   mode: {
     type: Number,
