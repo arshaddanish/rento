@@ -23,7 +23,8 @@ import BlogsAdmin from "./admin/pages/blogs/BlogsAdmin";
 import PublicMessages from "./admin/pages/public-messages/PublicMessages";
 import LoginAdmin from "./admin/pages/login/LoginAdmin";
 import Account from "./pages/account/Account";
-import ProtectedRoutes from "./ProtectedRoutes";
+import ProtectedRoutes from "./services/components/ProtectedRoutes";
+import AdminProtectedRoutes from "./services/components/AdminProtectedRoutes";
 
 export default function App() {
   return (
@@ -47,10 +48,14 @@ export default function App() {
         <Route path="/resetpass" element={<ResetPass />} />
         <Route path="/categories/:category" element={<Category />} />
         <Route path="/categories/:category/:id" element={<Item />} />
+
+        {/* Admin Routes */}
         <Route path="/admin/login" element={<LoginAdmin />} />
-        <Route path="/admin/*" element={<HomeAdmin />} />
-        <Route path="/admin/blogs/*" element={<BlogsAdmin />} />
-        <Route path="/admin/messages" element={<PublicMessages />} />
+        <Route element={<AdminProtectedRoutes />}>
+          <Route path="/admin/*" element={<HomeAdmin />} />
+          <Route path="/admin/blogs/*" element={<BlogsAdmin />} />
+          <Route path="/admin/messages" element={<PublicMessages />} />
+        </Route>
       </Routes>
       <Footer />
       <FooterAdmin />

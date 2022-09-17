@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import apis from "../../../apis";
 import "./loginAdmin.scss";
 
 export default function LoginAdmin() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+
+  let [formData, setFormData] = useState({});
+  const [submitBtn, setSubmitBtn] = useState(0);
+
+  let onInputChange = async (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  let onFormSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitBtn(1);
+    let { data } = await apis.post("admin-login", formData);
+    if (typeof data == "string") {
+      alert("Invalid Credentials");
+      setSubmitBtn(0);
+    } else {
+      localStorage.setItem("jwt_admin", data.token);
+      navigate("/admin");
+    }
+  };
+
   return (
     <div className="login-admin">
       {" "}
@@ -11,7 +32,7 @@ export default function LoginAdmin() {
         <div className="shape"></div>
         <div className="shape"></div>
       </div>
-      <form autoComplete="off" method="post" action="/admin">
+      <form onSubmit={onFormSubmit}>
         <h3>Login Here</h3>
 
         <label htmlFor="username">Username</label>
@@ -20,6 +41,8 @@ export default function LoginAdmin() {
           placeholder="Username"
           name="username"
           id="username"
+          required
+          onChange={onInputChange}
         />
 
         <label htmlFor="password">Password</label>
@@ -28,11 +51,11 @@ export default function LoginAdmin() {
           placeholder="Password"
           name="password"
           id="password"
+          required
+          onChange={onInputChange}
         />
 
-        <button type="submit" onClick={() => navigate("/admin")}>
-          Log In
-        </button>
+        <button type="submit">{submitBtn ? "Logging in..." : "Login"}</button>
       </form>
     </div>
   );

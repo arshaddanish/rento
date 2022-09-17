@@ -134,7 +134,7 @@ export default function AccountTabs() {
           label="Logout"
           {...a11yProps(10)}
           onClick={() => {
-            localStorage.clear();
+            localStorage.removeItem("jwt_token");
             navigate("/login");
           }}
         />
