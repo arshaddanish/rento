@@ -13,7 +13,6 @@ import ForgotPass from "./pages/login/ForgotPass";
 import Contact from "./pages/contact/Contact";
 import Subscription from "./pages/subscription/Subscription";
 import Item from "./pages/Item/Item";
-import Account from "./pages/account/Account";
 import ResetPass from "./pages/login/ResetPass";
 import NewsItem from "./pages/newsItem/NewsItem";
 import ScrollToTop from "./services/components/ScrollToTop";
@@ -23,7 +22,7 @@ import HomeAdmin from "./admin/pages/home/HomeAdmin";
 import BlogsAdmin from "./admin/pages/blogs/BlogsAdmin";
 import PublicMessages from "./admin/pages/public-messages/PublicMessages";
 import LoginAdmin from "./admin/pages/login/LoginAdmin";
-import Account1 from "./pages/account1/Account";
+import Account from "./pages/account/Account";
 
 export default function App() {
   return (
@@ -41,12 +40,10 @@ export default function App() {
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/subscribe" element={<Subscription />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/account1/*" element={<Account1 />} />
+        <Route path="/account/*" element={<Account />} />
         <Route path="/resetpass" element={<ResetPass />} />
         <Route path="/categories/:category" element={<Category />} />
         <Route path="/categories/:category/:id" element={<Item />} />
-
         <Route path="/admin/login" element={<LoginAdmin />} />
         <Route path="/admin/*" element={<HomeAdmin />} />
         <Route path="/admin/blogs/*" element={<BlogsAdmin />} />

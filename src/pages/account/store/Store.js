@@ -26,7 +26,7 @@ export default function Store() {
           <div className="item-btns">
             <Button
               variant="contained"
-              onClick={() => navigate("/account1/edit-item/id")}
+              onClick={() => navigate("/account/edit-item/id")}
             >
               Edit
             </Button>
