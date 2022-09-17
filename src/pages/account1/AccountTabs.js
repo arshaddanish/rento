@@ -45,11 +45,9 @@ export default function AccountTabs() {
   const [value, setValue] = React.useState(0);
 
   React.useEffect(() => {
-    // if (
-    //   pathname.slice(0, pathname.lastIndexOf("/")) === "/admin/blogs/edit-blog"
-    // )
-    //   setValue(0);
-    setValue(tabData[pathname]);
+    if (pathname.slice(0, pathname.lastIndexOf("/")) === "/account1/edit-item")
+      setValue(1);
+    else setValue(tabData[pathname]);
   }, [pathname]);
 
   const tabData = {
