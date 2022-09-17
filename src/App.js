@@ -23,6 +23,7 @@ import BlogsAdmin from "./admin/pages/blogs/BlogsAdmin";
 import PublicMessages from "./admin/pages/public-messages/PublicMessages";
 import LoginAdmin from "./admin/pages/login/LoginAdmin";
 import Account from "./pages/account/Account";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 export default function App() {
   return (
@@ -40,7 +41,9 @@ export default function App() {
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/subscribe" element={<Subscription />} />
-        <Route path="/account/*" element={<Account />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/account/*" element={<Account />} />
+        </Route>
         <Route path="/resetpass" element={<ResetPass />} />
         <Route path="/categories/:category" element={<Category />} />
         <Route path="/categories/:category/:id" element={<Item />} />

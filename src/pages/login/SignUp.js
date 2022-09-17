@@ -49,7 +49,6 @@ const SignUp = () => {
 
   let onFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     setSubmitBtn(1);
     let img = await fileUpload(imgData);
     setImgData(img);
@@ -190,7 +189,7 @@ const SignUp = () => {
               {/* <button onClick={navigateToHome} type='submit'>Create Account</button> */}
 
               <Button type="submit" variant="contained">
-                Create Account
+                {submitBtn ? "Registering..." : "Register"}
               </Button>
               <div className="gap"></div>
             </form>

@@ -133,7 +133,10 @@ export default function AccountTabs() {
         <Tab
           label="Logout"
           {...a11yProps(10)}
-          onClick={() => navigate("/login")}
+          onClick={() => {
+            localStorage.clear();
+            navigate("/login");
+          }}
         />
       </Tabs>
     </Box>
