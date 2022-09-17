@@ -58,6 +58,7 @@ export default function HomeTabs() {
     "/admin/verification-history": 2,
     "/admin/buyers": 3,
     "/admin/sellers": 4,
+    "/admin/subscription-plans": 5,
   };
 
   return (
@@ -100,6 +101,11 @@ export default function HomeTabs() {
           label="Sellers"
           {...a11yProps(4)}
           onClick={() => navigate("/admin/sellers")}
+        />
+        <Tab
+          label="Subscription Plans"
+          {...a11yProps(5)}
+          onClick={() => navigate("/admin/subscription-plans")}
         />
       </Tabs>
     </Box>

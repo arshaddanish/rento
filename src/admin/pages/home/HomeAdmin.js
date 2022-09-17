@@ -7,6 +7,7 @@ import SellerVerification from "./seller-verification/SellerVerification";
 import Buyers from "./buyers/Buyers";
 import VerificationHistory from "./verification-history/VerificationHistory";
 import Sellers from "./sellers/Sellers";
+import EditPlans from "./subscription-plans/EditPlans";
 
 export default function HomeAdmin() {
   return (
@@ -24,7 +25,7 @@ export default function HomeAdmin() {
           />
           <Route path="/buyers" element={<Buyers />} />
           <Route path="/sellers" element={<Sellers />} />
-
+          <Route path="/subscription-plans" element={<EditPlans />} />
         </Routes>
       </div>
     </div>

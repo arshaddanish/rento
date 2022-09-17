@@ -1,0 +1,12 @@
+.edit-plans {
+  padding: 0 4rem;
+
+  .field {
+    margin-bottom: 2rem;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    column-gap: 2rem;
+    align-content: center;
+  }
+}
