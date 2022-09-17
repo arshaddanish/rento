@@ -23,6 +23,14 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
+app.get("/api/users/user", userAuth, async (req, res) => {
+  try {
+    res.send(req.user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 app.get("/api/users/:id", async (req, res) => {
   const user = await User.findById(req.params.id);
 
