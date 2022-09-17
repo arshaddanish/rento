@@ -62,7 +62,7 @@ app.get("/api/booking/requests/:usertype", userAuth ,async (req, res) => {
                 status: "Pending"
             }
             
-            bookings = await Booking.find(filter);
+            bookings = await Booking.find(filter).sort({bookingDate: -1});
 
             var itemInfo = [];
             for (var i = 0; i < bookings.length; i++) {
@@ -82,7 +82,7 @@ app.get("/api/booking/requests/:usertype", userAuth ,async (req, res) => {
             buyerId: req.user._id,
         }
 
-        bookings = await Booking.find(filter);
+        bookings = await Booking.find(filter).sort({bookingDate: -1});
         for (var i = 0; i < bookings.length; i++) {
             temp = await Item.findOne({_id: bookings[i].itemId});
             info[i] = temp;
@@ -111,7 +111,7 @@ app.get("/api/booking/:usertype", userAuth ,async (req, res) => {
                 status: "Approved"
             }
             
-            bookings = await Booking.find(filter);
+            bookings = await Booking.find(filter).sort({bookingDate: -1});
             for (var i = 0; i < bookings.length; i++) {
                 temp = await User.findOne({_id: bookings[i].buyerId});
                 info[i] = temp;
@@ -130,7 +130,7 @@ app.get("/api/booking/:usertype", userAuth ,async (req, res) => {
             status: "Approved"
         }
         
-        bookings = await Booking.find(filter);
+        bookings = await Booking.find(filter).sort({bookingDate: -1});
         for (var i = 0; i < bookings.length; i++) {
             temp = await User.findOne({_id: bookings[i].sellerId});
             info[i] = temp;
