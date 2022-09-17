@@ -34,6 +34,8 @@ const CategoryRouter = require("./routes/categories");
 app.use(CategoryRouter);
 const AdminRouter = require("./routes/admin");
 app.use(AdminRouter);
+const SubscriptionPlanRouter = require("./routes/subscriptionPlans");
+app.use(SubscriptionPlanRouter);
 
 // Start server
 const port = 5000;
