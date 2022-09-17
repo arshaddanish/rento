@@ -31,4 +31,5 @@ const BookingSchema = new mongoose.Schema({
 
 const Booking = mongoose.model("Booking", BookingSchema);
 
+module.exports = Booking;
 // let status = ["Pending", "Approved", "Rejected"];
