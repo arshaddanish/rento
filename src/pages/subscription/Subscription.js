@@ -1,17 +1,35 @@
-import React from 'react'
-import './subscription.scss'
-import SubscriptionCard from './SubscriptionCard'
+import React, { useEffect, useState } from "react";
+import apis from "../../apis";
+import "./subscription.scss";
+import SubscriptionCard from "./SubscriptionCard";
 
 const Subscription = () => {
-  return (
-    <div className='subscribe-main'>
-        <div className="subscribe-sub">
-            <SubscriptionCard period="Monthly" price="499"/>
-            <SubscriptionCard period="Quarterly" price="799"/>
-            <SubscriptionCard period="Yearly" price="999"/>
-        </div>
-    </div>
-  )
-}
+  useEffect(() => {
+    fetchSubscriptionPlans();
+  }, []);
 
-export default Subscription
+  const [plans, setPlans] = React.useState([]);
+
+  let fetchSubscriptionPlans = async () => {
+    let { data } = await apis.get("subscription-plans");
+    setPlans(data);
+  };
+
+  return (
+    <div className="subscribe-main">
+      <div className="subscribe-sub">
+        {plans.map((item, index) => {
+          return (
+            <SubscriptionCard
+              period={item.name}
+              price={item.amount}
+              key={index}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default Subscription;
