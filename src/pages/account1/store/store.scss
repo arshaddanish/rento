@@ -1,0 +1,63 @@
+.store {
+  h2 {
+    margin-bottom: 2rem;
+  }
+  .items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 4rem;
+
+    .item {
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+
+      .img-div {
+        cursor: pointer;
+        overflow: hidden;
+        height: 275px;
+
+        img {
+          width: 100%;
+          border-radius: 10px 10px 0 0;
+          height: 100%;
+          object-fit: cover;
+
+          &:hover {
+            transform: scale(1.0125);
+          }
+        }
+      }
+
+      .dtl-box {
+        padding: 1rem 1.5rem;
+
+        h3 {
+          margin-bottom: 0.5rem;
+          font-size: 1.25rem;
+        }
+
+        .dtl {
+          display: grid;
+          grid-template-columns: repeat(2, auto);
+          justify-content: space-between;
+          align-items: baseline;
+
+          span {
+            font-weight: 500;
+            font-size: 1.25rem;
+            color: #0aa5cd;
+          }
+        }
+      }
+    }
+  }
+
+  .item-btns {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 2rem;
+  }
+}
