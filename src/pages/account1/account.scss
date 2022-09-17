@@ -1,15 +1,15 @@
-.home-admin {
+.account {
   display: grid;
   grid-template-columns: max-content auto;
   background: #e9edf2;
 
-  .home-tabs {
+  .account-tabs {
     padding: 10rem 0;
     padding-left: 4rem;
     background: #fff;
   }
 
-  .home-page {
+  .account-page {
     padding: 10rem 3rem;
   }
 }

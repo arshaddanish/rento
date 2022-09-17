@@ -1,13 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "./dashboard/Dashboard";
-import "./homeAdmin.scss";
-import HomeTabs from "./HomeTabs";
-import SellerVerification from "./seller-verification/SellerVerification";
-import Users from "./users/Users";
-import VerificationHistory from "./verification-history/VerificationHistory";
+import AccountTabs from "./AccountTabs";
+import "./account.scss";
+import AddToStore from "./add-to-store/AddToStore";
 
-export default function Account() {
+export default function Account1() {
   return (
     <div className="account">
       <div className="account-tabs">
@@ -15,13 +12,7 @@ export default function Account() {
       </div>
       <div className="account-page">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/seller-verification" element={<SellerVerification />} />
-          <Route
-            path="/verification-history"
-            element={<VerificationHistory />}
-          />
-          <Route path="/users" element={<Users />} />
+          <Route path="/add-to-store" element={<AddToStore />} />
         </Routes>
       </div>
     </div>

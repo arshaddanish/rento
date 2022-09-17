@@ -53,11 +53,17 @@ export default function AccountTabs() {
   }, [pathname]);
 
   const tabData = {
-    "/account": 0,
-    "/account/bookings": 1,
-    "/account/rented-items": 2,
-    "/account/subscription": 3,
-    "/account/logout": 4,
+    "/account1": 0,
+    "/account1/store": 1,
+    "/account1/add-to-store": 2,
+    "/account1/buyer-requests": 3,
+    "/account1/seller-requests": 4,
+    "/account1/buyer-bookings": 5,
+    "/account1/seller-bookings": 6,
+    "/account1/subscriptions": 7,
+    "/account1/messages": 8,
+    "/account1/buyer-mode": 9,
+    "/account1/logout": 10,
   };
 
   return (
@@ -77,24 +83,59 @@ export default function AccountTabs() {
         sx={{ borderRight: 1, borderColor: "divider" }}
       >
         <Tab
-          label="Dashboard"
+          label="Profile"
           {...a11yProps(0)}
-          onClick={() => navigate("/account")}
+          onClick={() => navigate("/account1")}
         />
         <Tab
-          label="Seller Verification"
+          label="Store"
           {...a11yProps(1)}
-          onClick={() => navigate("/account/bookings")}
+          onClick={() => navigate("/account1/store")}
         />
         <Tab
-          label="Verification History"
+          label="Add To Store"
           {...a11yProps(2)}
-          onClick={() => navigate("/account/verification-history")}
+          onClick={() => navigate("/account1/add-to-store")}
         />
         <Tab
-          label="Users"
+          label="Buyer Requests"
           {...a11yProps(3)}
-          onClick={() => navigate("/account/users")}
+          onClick={() => navigate("/account1/buyer-requests")}
+        />
+        <Tab
+          label="Seller Requests"
+          {...a11yProps(4)}
+          onClick={() => navigate("/account1/seller-requests")}
+        />
+        <Tab
+          label="Buyer Bookings"
+          {...a11yProps(5)}
+          onClick={() => navigate("/account1/buyer-bookings")}
+        />
+        <Tab
+          label="Seller Bookings"
+          {...a11yProps(6)}
+          onClick={() => navigate("/account1/seller-bookings")}
+        />
+        <Tab
+          label="Subscriptions"
+          {...a11yProps(7)}
+          onClick={() => navigate("/account1/subscriptions")}
+        />
+        <Tab
+          label="Messages"
+          {...a11yProps(8)}
+          onClick={() => navigate("/account1/messages")}
+        />
+        <Tab
+          label="Buyer Mode"
+          {...a11yProps(9)}
+          onClick={() => navigate("/account1")}
+        />
+        <Tab
+          label="Logout"
+          {...a11yProps(10)}
+          onClick={() => navigate("/login")}
         />
       </Tabs>
     </Box>

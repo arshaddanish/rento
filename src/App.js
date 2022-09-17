@@ -23,6 +23,7 @@ import HomeAdmin from "./admin/pages/home/HomeAdmin";
 import BlogsAdmin from "./admin/pages/blogs/BlogsAdmin";
 import PublicMessages from "./admin/pages/public-messages/PublicMessages";
 import LoginAdmin from "./admin/pages/login/LoginAdmin";
+import Account1 from "./pages/account1/Account";
 
 export default function App() {
   return (
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/subscribe" element={<Subscription />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/account1/*" element={<Account1 />} />
         <Route path="/resetpass" element={<ResetPass />} />
         <Route path="/categories/:category" element={<Category />} />
         <Route path="/categories/:category/:id" element={<Item />} />
