@@ -7,6 +7,7 @@ import Store from "./store/Store";
 import EditItem from "./edit-item/EditItem";
 import BuyerRequests from "./buyer-requests/BuyerRequests";
 import SellerRequests from "./seller-requests/SellerRequests";
+import Profile from "./profile/Profile";
 
 export default function Account() {
   return (
@@ -17,6 +18,7 @@ export default function Account() {
       <div className="account-page">
         <Routes>
           <Route path="/store" element={<Store />} />
+          <Route path="/" element={<Profile />} />
           <Route path="/edit-item/:id" element={<EditItem />} />
           <Route path="/add-to-store" element={<AddToStore />} />
           <Route path="/buyer-requests" element={<BuyerRequests />} />
