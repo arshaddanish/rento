@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const Subscription = require("../models/subscription");
+const {Subscription} = require("../models/subscription");
 const axios = require("axios").create({ baseUrl: "http://localhost:5000/" });
 
-app.get("/api/subscription", async (req, res) => {
+app.get("/api/subscriptions", async (req, res) => {
   const subscriptions = await Subscription.find({}).sort({ subDate: -1 });
 
   try {
@@ -13,7 +13,7 @@ app.get("/api/subscription", async (req, res) => {
   }
 });
 
-app.get("/api/subscription/:id", async (req, res) => {
+app.get("/api/subscriptions/:id", async (req, res) => {
   const subscription = await Subscription.findById(req.params.id);
 
   try {
@@ -23,7 +23,7 @@ app.get("/api/subscription/:id", async (req, res) => {
   }
 });
 
-app.get("/api/subscription/seller/:id", async (req, res) => {
+app.get("/api/subscriptions/seller/:id", async (req, res) => {
   const subscriptions = await Subscription.find({sellerId : req.params.id});
 
   try {
@@ -33,7 +33,7 @@ app.get("/api/subscription/seller/:id", async (req, res) => {
   }
 });
 
-app.post("/api/subscription", async (req, res) => {
+app.post("/api/subscriptions", async (req, res) => {
   const subscription = new Subscription(req.body);
 
   try {
