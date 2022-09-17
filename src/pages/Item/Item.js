@@ -10,6 +10,8 @@ import useResizeObserver from "use-resize-observer";
 import apis from "../../apis";
 import { useParams } from "react-router-dom";
 import { imageUrl } from "../../services/imageUrl";
+import BookItemPopUp from "./BookItemPopUp";
+import ChatSellerPopUp from "./ChatSellerPopUp";
 
 export default function Item() {
   const { ref, width = 1, height = 1 } = useResizeObserver();
@@ -30,7 +32,8 @@ export default function Item() {
     images = images.map((item) => imageUrl(item));
     setImages(images);
   };
-
+  const [bookItem, setBookItem] = useState(false);
+  const [chatSeller, setChatSeller] = useState(false);
   let [photoIndex, setPhotoIndex] = useState(0);
   let [isOpen, setIsOpen] = useState(false);
 
@@ -77,9 +80,11 @@ export default function Item() {
           <p>{item.description}</p>
         </div>
         <div className="book-btn">
-          <Button variant="contained" fullWidth style={{ height: "50px" }}>
+          <Button onClick={()=>setBookItem(true)} variant="contained" fullWidth style={{ height: "50px" }}>
             Book Item
           </Button>
+          
+      <BookItemPopUp trigger={bookItem} setTrigger={setBookItem} />
         </div>
       </div>
 
@@ -88,9 +93,12 @@ export default function Item() {
         <img src={seller} alt="" />
         <p className="name">John Samuel</p>
         <p>Location: Kannur, Kerala</p>
-        <p>Phone: 12345667890</p>
-        <p>Email: abc@gmail.com</p>
+        <p>Phone: 9876543210</p>
+        <p>Email: johnsamuel@gmail.com</p>
+        <div className="connect-seller-btn"><Button onClick={()=>setChatSeller(true)} variant="contained" sx={{backgroundColor: "#002B5B", "&:hover":{backgroundColor: "#2B4865"}}}>Chat with Seller</Button></div>
       </div>
+      <ChatSellerPopUp trigger={chatSeller} setTrigger={setChatSeller} />
     </div>
+    
   );
 }
