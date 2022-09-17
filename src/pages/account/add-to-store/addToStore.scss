@@ -1,7 +1,11 @@
 .add-product-main {
+  background-color: white;
+  padding: 4rem;
   display: grid;
   row-gap: 1rem;
-  padding: 0 4rem;
+  
+  border-radius: 16px;
+  // padding: 0 4rem;
   .add-product-sub {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
