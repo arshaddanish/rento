@@ -13,7 +13,7 @@ app.post("/api/search", async (req, res) => {
       const items = await Item.find({
         category: category,
 
-        $or: [
+        $and: [
           { name: { $regex: name, $options: "i" } },
           { location: { $regex: location, $options: "i" } },
         ],
@@ -21,7 +21,7 @@ app.post("/api/search", async (req, res) => {
       res.status(200).send(items);
       return;
     }
-
+    
     if (name) {
       console.log("name");
       const items = await Item.find({

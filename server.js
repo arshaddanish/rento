@@ -38,6 +38,8 @@ const VerificationRouter = require("./routes/verification");
 app.use(VerificationRouter);
 const UserRouter = require("./routes/users");
 app.use(UserRouter);
+const SubscriptionRouter = require("./routes/subscription");
+app.use(SubscriptionRouter);
 const SubscriptionPlanRouter = require("./routes/subscriptionPlans");
 app.use(SubscriptionPlanRouter);
 const SubscriptionsRouter = require("./routes/subscription");
