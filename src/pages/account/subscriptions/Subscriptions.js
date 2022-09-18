@@ -43,7 +43,7 @@ const Subscriptions = ({ userData, onVerifyApply }) => {
   function Verified() {
     return (
       <>
-        {subscriptions.subStatus && (
+        {!subscriptions.subStatus && (
           <div className="subscribe-content">
             Your Subscription is inactive. Subscribe to rent items.{" "}
             <Button
@@ -68,7 +68,7 @@ const Subscriptions = ({ userData, onVerifyApply }) => {
                 <div>Amount</div>
               </div>
               {subscriptions.subscriptions.map((e, index) => (
-                <div key={e.id} className="reg-data">
+                <div key={e._id} className="reg-data">
                   <div>{e.subDate.substring(0, 10)}</div>
                   <div>{e.endDate.substring(0, 10)}</div>
                   <div>{subscriptions.plans[index].name}</div>

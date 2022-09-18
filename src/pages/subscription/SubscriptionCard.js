@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom";
 import apis from "../../apis";
 import { httpHeaders } from "../../services/httpHeaders";
 
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
 let SubscriptionCard = ({ item }) => {
   const navigate = useNavigate();
 
@@ -25,7 +31,7 @@ let SubscriptionCard = ({ item }) => {
         {
           planId: item._id,
           subDate: Date.now(),
-          endDate: Date.now() + days[item.name],
+          endDate: addDays(Date.now(), days[item.name]),
         },
         httpHeaders("user")
       );
