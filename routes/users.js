@@ -172,24 +172,24 @@ app.patch("/api/users/:id", async (req, res) => {
   }
 });
 
-app.delete("/api/users", async (req, res) => {
-  try {
-    const users = await User.find({});
-    users.forEach(async (item, index) => {
-      if (item.aadharImg) {
-        await deleteImg(item.aadharImg);
-      }
-      if (item.profileImg) {
-        await deleteImg(item.profileImg);
-      }
-    });
-    await Item.deleteMany({});
-    const doc = await User.deleteMany({});
-    res.send(doc);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+// app.delete("/api/users", async (req, res) => {
+//   try {
+//     const users = await User.find({});
+//     users.forEach(async (item, index) => {
+//       if (item.aadharImg) {
+//         await deleteImg(item.aadharImg);
+//       }
+//       if (item.profileImg) {
+//         await deleteImg(item.profileImg);
+//       }
+//     });
+//     await Item.deleteMany({});
+//     const doc = await User.deleteMany({});
+//     res.send(doc);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
 
 app.delete("/api/users/:id", async (req, res) => {
   try {

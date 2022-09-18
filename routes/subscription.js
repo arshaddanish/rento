@@ -71,14 +71,14 @@ app.get("/api/subscriptions/:id", async (req, res) => {
   }
 });
 
-app.delete("/api/subscriptions", async (req, res) => {
-  const doc = await Subscription.deleteMany({});
+// app.delete("/api/subscriptions", async (req, res) => {
+//   const doc = await Subscription.deleteMany({});
 
-  try {
-    res.send(doc);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+//   try {
+//     res.send(doc);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
 
 module.exports = app;

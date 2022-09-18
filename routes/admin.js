@@ -37,14 +37,14 @@ app.post("/api/admin", async (req, res) => {
   }
 });
 
-app.delete("/api/admin", async (req, res) => {
-  try {
-    const doc = await Admin.deleteMany({});
-    res.send(doc);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+// app.delete("/api/admin", async (req, res) => {
+//   try {
+//     const doc = await Admin.deleteMany({});
+//     res.send(doc);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
 
 app.post("/api/admin-login", async (req, res) => {
   let { username, password } = req.body;
