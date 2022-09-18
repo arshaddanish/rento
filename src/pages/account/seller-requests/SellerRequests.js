@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./sellerRequests.scss";
 import { Button } from "@mui/material";
 
@@ -35,12 +35,12 @@ const SellerRequests = () => {
       batch: "2010",
     },
   ];
-  const [viewForm, setViewForm] = useState(false);
+  // const [viewForm, setViewForm] = useState(false);
   return (
     <div className="seller-requests">
       <div className="registration-main2">
         <div>
-          <h2 className="reg-heading-main">Requests</h2>
+          <h2 className="reg-heading-main">Seller Requests</h2>
         </div>
         <div className="reg-details">
           <div className="reg-heading">
@@ -60,10 +60,10 @@ const SellerRequests = () => {
               <div>{e.dept}</div>
               <div>{e.dept}</div>
               <div className="reg-btns">
-                <Button size="small" onClick={() => setViewForm(true)} variant="contained">
+                <Button size="small" variant="contained">
                   Accept
                 </Button>
-                <Button size="small" onClick={() => setViewForm(true)} variant="contained">
+                <Button size="small" variant="contained">
                   Reject
                 </Button>
               </div>

@@ -1,5 +1,5 @@
-.seller-requests1 {
-    .registration-main2 {
+.subscription {
+    .subscription-main{
       // padding: 0 6rem;
       .reg-heading-main {
         font-weight: 500;
@@ -14,7 +14,7 @@
   
         .reg-heading {
           display: grid;
-          grid-template-columns: repeat(7, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           font-weight: 500;
           font-size: 1.1rem;
           padding: 1.5rem 1rem;
@@ -23,7 +23,7 @@
         }
         .reg-data {
           display: grid;
-          grid-template-columns: repeat(7, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           align-items: center;
           padding: 1.5rem 1rem;
           text-align: center;
