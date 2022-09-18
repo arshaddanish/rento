@@ -12,6 +12,7 @@ import apis from "../../apis";
 import { httpHeaders } from "../../services/httpHeaders";
 import SellerBookings from "./seller-bookings/SellerBookings";
 import BuyerBookings from "./buyer-bookings/BuyerBookings";
+import Subscriptions from "./subscriptions/Subscriptions";
 
 export default function Account() {
   useEffect(() => {
@@ -38,6 +39,7 @@ export default function Account() {
           <Route path="/" element={<Profile userData={userData} />} />
           <Route path="/store" element={<Store />} />
           <Route path="/edit-item/:id" element={<EditItem />} />
+          <Route path="/subscriptions" element={<Subscriptions />} />
           <Route path="/add-to-store" element={<AddToStore />} />
           <Route path="/buyer-requests" element={<BuyerRequests />} />
           <Route path="/seller-requests" element={<SellerRequests />} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./profile1.scss";
 import { Button } from "@mui/material";
-import person from "../../../assets/images/profile/person.png";
+// import person from "../../../assets/images/profile/person.png";
 import EditProfile from "./EditProfile";
 import { imageUrl } from "../../../services/imageUrl";
 
