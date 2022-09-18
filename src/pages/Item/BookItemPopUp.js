@@ -29,7 +29,7 @@ const BookItemPopUp = ({ trigger, setTrigger, sellerId, itemId, quantity }) => {
       },
       httpHeaders("user")
     );
-    navigate("/account/buyer-bookings");
+    navigate("/account/buyer-requests");
     setSubmitBtn(0);
   };
 
