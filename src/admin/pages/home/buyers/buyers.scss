@@ -13,7 +13,7 @@
 
     .reg-heading {
       display: grid;
-      grid-template-columns: repeat(3, 2fr) 1fr;
+      grid-template-columns: repeat(4, 2fr) 1fr;
       font-weight: 500;
       font-size: 1.1rem;
       padding: 1.5rem 1rem;
@@ -22,7 +22,7 @@
     }
     .reg-data {
       display: grid;
-      grid-template-columns: repeat(3, 2fr) 1fr;
+      grid-template-columns: repeat(4, 2fr) 1fr;
       align-items: center;
       padding: 1.5rem 1rem;
       text-align: center;

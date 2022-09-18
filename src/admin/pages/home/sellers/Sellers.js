@@ -1,47 +1,23 @@
 import "./sellers.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import FormPopUp from "./FormPopUp";
 import SubscriptionHistory from "./SubscriptionHistory";
+import apis from "../../../../apis";
+import { httpHeaders } from "../../../../services/httpHeaders";
 
 const Sellers = () => {
-  const registrations = [
-    {
-      id: 1,
-      name: "Albin Vargees",
-      dept: "Computer Science Engineering",
-      batch: "2011",
-      date: "12/09/2021",
-    },
-    {
-      id: 2,
-      name: "Sidharth A",
-      dept: "Electronics & Communication Engineering",
-      batch: "2001",
-      date: "12/09/2021",
-    },
-    {
-      id: 3,
-      name: "Arshad Danish",
-      dept: "Mechanical Engineering",
-      batch: "2003",
-      date: "12/09/2021",
-    },
-    {
-      id: 4,
-      name: "Jyothiradithyan K",
-      dept: "Civil Engineering",
-      batch: "2007",
-      date: "12/09/2021",
-    },
-    {
-      id: 5,
-      name: "Rishan KP",
-      dept: "Computer Science Engineering",
-      batch: "2010",
-      date: "12/09/2021",
-    },
-  ];
+  let [sellers, setSellers] = useState([]);
+
+  useEffect(() => {
+    fetchSellers();
+  }, []);
+
+  let fetchSellers = async () => {
+    let { data } = await apis.get("sellers", httpHeaders("admin"));
+    setSellers(data);
+  };
+
   const [viewForm, setViewForm] = useState(false);
   const [viewSubscriptionHistory, setViewSubscriptionHistory] = useState(false);
   return (
@@ -55,11 +31,11 @@ const Sellers = () => {
           <div>Phone No.</div>
           <div>Location</div>
         </div>
-        {registrations.map((e) => (
-          <div key={e.id} className="reg-data">
-            <div>{e.name}</div>
-            <div>{e.dept}</div>
-            <div>{e.batch}</div>
+        {sellers.map((item) => (
+          <div key={item._id} className="reg-data">
+            <div>{item.name}</div>
+            <div>{item.dept}</div>
+            <div>{item.batch}</div>
             <div className="reg-btns">
               <Button onClick={() => setViewForm(true)} variant="contained">
                 View
