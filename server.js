@@ -42,6 +42,8 @@ const SubscriptionPlanRouter = require("./routes/subscriptionPlans");
 app.use(SubscriptionPlanRouter);
 const BookingRouter = require("./routes/bookings");
 app.use(BookingRouter);
+const MessageRouter = require("./routes/messages");
+app.use(MessageRouter);
 
 // Start server
 const port = 5000;
