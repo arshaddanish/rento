@@ -32,6 +32,19 @@ export default function Item() {
     images = images.map((item) => imageUrl(item));
     setImages(images);
   };
+
+  let [seller, setSeller] = useState({});
+  useEffect(() => {
+    fetchItemSeller();
+  }, [item]);
+
+  let fetchItemSeller = async () => {
+    if (item._id) {
+      let { data } = await apis.get("/users/" + item.sellerId);
+      setSeller(data);
+    }
+  };
+
   const [bookItem, setBookItem] = useState(false);
   const [chatSeller, setChatSeller] = useState(false);
   let [photoIndex, setPhotoIndex] = useState(0);
@@ -77,28 +90,39 @@ export default function Item() {
         </div>
         <div className="desc">
           <h4>Description</h4>
-          <p style={{whiteSpace: "pre-wrap"}}>{item.description}</p>
+          <p style={{ whiteSpace: "pre-wrap" }}>{item.description}</p>
         </div>
         <div className="book-btn">
-          <Button onClick={()=>setBookItem(true)} variant="contained" fullWidth style={{ height: "50px" }}>
+          <Button
+            onClick={() => setBookItem(true)}
+            variant="contained"
+            fullWidth
+            style={{ height: "50px" }}
+          >
             Book Item
           </Button>
-          
-      <BookItemPopUp trigger={bookItem} setTrigger={setBookItem} />
+
+          <BookItemPopUp trigger={bookItem} setTrigger={setBookItem} />
         </div>
       </div>
 
-      <div className="seller-div">
-        <h3>Seller Info</h3>
-        <img src={seller} alt="" />
-        <p className="name">John Samuel</p>
-        <p>Location: Kannur, Kerala</p>
-        <p>Phone: 9876543210</p>
-        <p>Email: johnsamuel@gmail.com</p>
-        <div className="connect-seller-btn"><Button onClick={()=>setChatSeller(true)} variant="contained" sx={{backgroundColor: "#002B5B", "&:hover":{backgroundColor: "#2B4865"}}}>Chat with Seller</Button></div>
-      </div>
+      {seller._id && (
+        <div className="seller-div">
+          <h3>Seller Info</h3>
+          <div className="seller-img-div">
+            <img
+              src={imageUrl(seller.profileImg)}
+              alt=""
+              className="seller-img"
+            />
+          </div>
+          <p className="name">{seller.name}</p>
+          <p>Phone: {seller.phone}</p>
+          <p>Email: {seller.email}</p>
+          {/* <div className="connect-seller-btn"><Button onClick={()=>setChatSeller(true)} variant="contained" sx={{backgroundColor: "#002B5B", "&:hover":{backgroundColor: "#2B4865"}}}>Chat with Seller</Button></div> */}
+        </div>
+      )}
       <ChatSellerPopUp trigger={chatSeller} setTrigger={setChatSeller} />
     </div>
-    
   );
 }

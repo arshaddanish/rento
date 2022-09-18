@@ -4,13 +4,13 @@
   grid-template-columns: 3fr 2fr;
 
   .seller-div {
-    background-color: #FCF8E8;
+    background-color: #fcf8e8;
     justify-self: center;
     align-self: flex-start;
     // border: 1px solid rgba(0, 0, 0, 0.12);
     padding: 2rem 4rem;
     border-radius: 5px;
-    .connect-seller-btn{
+    .connect-seller-btn {
       display: grid;
       justify-content: center;
       padding-top: 2rem;
@@ -21,9 +21,17 @@
       margin-bottom: 1.5rem;
     }
 
-    img {
-      width: 200px;
-      margin-bottom: 1rem;
+    .seller-img-div {
+      display: grid;
+      justify-content: center;
+    }
+
+    .seller-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 2rem;
+      border-radius: 100%;
     }
 
     p {
