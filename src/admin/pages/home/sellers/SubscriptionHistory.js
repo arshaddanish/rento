@@ -20,7 +20,13 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9),
 ];
 
-const SubscriptionHistory = ({ trigger, setTrigger }) => {
+const SubscriptionHistory = ({
+  trigger,
+  setTrigger,
+  selectedSubscriptions: s,
+  selectedPlans: p,
+}) => {
+  console.log(s, p);
   return trigger ? (
     <div className="form-popup-main2">
       <div className="form-popup">
@@ -32,26 +38,26 @@ const SubscriptionHistory = ({ trigger, setTrigger }) => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Dessert (100g serving)</TableCell>
-                  <TableCell align="right">Calories</TableCell>
-                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                  <TableCell >Subscription Date</TableCell>
+                  <TableCell >End Date</TableCell>
+                  <TableCell >Plan</TableCell>
+                  <TableCell >Amount</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
+                {s.map((row, index) => (
                   <TableRow
-                    key={row.name}
+                    key={row._id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
-                      {row.name}
+                    <TableCell >
+                      {row.subDate.substring(0, 10)}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell >
+                      {row.endDate.substring(0, 10)}
+                    </TableCell>
+                    <TableCell >{p[index].name}</TableCell>
+                    <TableCell >{p[index].amount}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
