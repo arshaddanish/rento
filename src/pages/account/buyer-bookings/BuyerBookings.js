@@ -43,7 +43,7 @@ const BuyerBookings = () => {
     <div className="buyer-requests2">
       <div className="registration-main5">
         <div>
-          <h2 className="reg-heading-main">Buyer Bookings</h2>
+          <h2 className="reg-heading-main">Bookings</h2>
         </div>
         <div className="reg-details">
           <div className="reg-heading">

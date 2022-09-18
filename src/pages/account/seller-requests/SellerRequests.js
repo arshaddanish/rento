@@ -35,8 +35,12 @@ const SellerRequests = () => {
   // };
   // const [viewForm, setViewForm] = useState(false);
 
-  let onAccept = async () => {
-    await apis.patch("booking", { status: "Approved" }, httpHeaders("user"));
+  let onAccept = async (id) => {
+    await apis.patch(
+      "booking",
+      { status: "Approved", id: id },
+      httpHeaders("user")
+    );
     navigate("/account/seller-bookings");
   };
 
@@ -85,8 +89,8 @@ const SellerRequests = () => {
                   onClick={() =>
                     onReject(
                       e._id,
-                      requests.item_info[i]._id,
-                      requests.buyer_info[i]._id
+                      requests.buyer_info[i]._id,
+                      requests.item_info[i]._id
                     )
                   }
                 >
