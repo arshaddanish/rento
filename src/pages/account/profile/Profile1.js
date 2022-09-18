@@ -24,7 +24,7 @@ const Profile1 = ({ userData }) => {
         </div>
         <div className="pro-details">
           <div className="pro-sub">
-            <div className="pro-bold">Name</div> <div>: {userData.name} A</div>
+            <div className="pro-bold">Name</div> <div>: {userData.name}</div>
             <div className="pro-bold">Phone No.</div>{" "}
             <div>: {userData.phone}</div>
             <div className="pro-bold">Email</div> <div>: {userData.email}</div>

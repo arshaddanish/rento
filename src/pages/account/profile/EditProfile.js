@@ -2,7 +2,7 @@ import  React from 'react'
 import './editProfile.scss'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { FormLabel } from '@mui/material';
+import { FormLabel,MenuItem,Select,InputLabel,FormControl } from '@mui/material';
 // import Checkbox from '@mui/material/Checkbox'
 import Box from '@mui/material/Box'
 
@@ -36,25 +36,29 @@ function EditProfile({trigger,setTrigger}) {
                         variant="outlined"
                     />
                     <TextField fullWidth
-                        label="House Name"
+                        label="Address"
                         type={"text"}
                         variant="outlined"
                     />
-                    <TextField fullWidth
-                        label="Locality"
-                        type={"text"}
-                        variant="outlined"
-                    />
-                    <TextField fullWidth
-                        label="City"
-                        type={"text"}
-                        variant="outlined"
-                    />
-                    <TextField fullWidth
-                        label="Pincode"
-                        type={"number"}
-                        variant="outlined"
-                    />
+                    <FormControl fullWidth>
+                        <InputLabel id="choose-gender">Gender</InputLabel>
+                        <Select
+                        MenuProps={{
+                            disableScrollLock: true,
+                        }}
+                        id="demo-simple-select"
+                        label="Gender"
+                        labelId="muil1"
+                        displayEmpty
+                        fullWidth
+                        required
+                        name="gender"
+                        style={{ textAlign: "left" }}
+                        >
+                  <MenuItem value="Male">Male</MenuItem>
+                  <MenuItem value="Female">Female</MenuItem>
+                </Select>
+              </FormControl>
                     <TextField
                         name="someDate"
                         label="Date of Birth"
