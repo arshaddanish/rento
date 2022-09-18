@@ -9,6 +9,7 @@ import { validateFileSize } from "../../../services/validateFileSize";
 import { validateMaxFiles } from "../../../services/validateMaxFiles";
 import { fileUpload } from "../../../services/fileUpload";
 import { titleCase } from "../../../services/titleCase";
+import { httpHeaders } from "../../../services/httpHeaders";
 
 const AddToStore = () => {
   let navigate = useNavigate();
@@ -37,12 +38,19 @@ const AddToStore = () => {
       typeof imgData == "string" &&
       (!extraImgsData || typeof extraImgsData[0] == "string")
     ) {
-      await apis.post("items", {
-        ...formData,
-        img: imgData,
-        ...(extraImgsData && { extraImgs: extraImgsData }),
-      });
-      navigate("/");
+      let { data } = await apis.post(
+        "items",
+        {
+          ...formData,
+          img: imgData,
+          ...(extraImgsData && { extraImgs: extraImgsData }),
+        },
+        httpHeaders("user")
+      );
+      if (typeof data === "string") {
+        alert(data);
+        navigate("/account/subscriptions");
+      } else navigate("/account/store");
     }
   };
 
