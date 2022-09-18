@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Select, FormControl, InputLabel, MenuItem } from "@mui/material";
 import "../add-to-store/addToStore.scss";
-
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import apis from "../../../apis";
 import { validateFileSize } from "../../../services/validateFileSize";
@@ -81,7 +82,13 @@ const EditItem = () => {
   return (
     <form onSubmit={onFormSubmit}>
       <div className="add-product-main">
+      <Stack alignItems="end" spacing={2} direction="column">
+        <Button variant="contained">Activate</Button>
+        <Button variant="outlined">Inactivate</Button>
+      </Stack>
         <div className="add-product-sub">
+          
+  
           <TextField
             autoComplete="off"
             required
