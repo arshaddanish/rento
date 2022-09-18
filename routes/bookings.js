@@ -6,6 +6,15 @@ const Item = require("../models/item");
 const Booking = require("../models/bookings");
 const { userAuth } = require("../middleware/userAuth");
 
+app.get("/api/booking", async (req, res) => {
+  try {
+    let bookings = await Booking.find({}).sort({ bookingDate: -1 });
+    res.send(bookings);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 app.post("/api/booking", userAuth, async (req, res) => {
   const booking = new Booking({ ...req.body, buyerId: req.user._id });
   try {
@@ -41,7 +50,7 @@ app.patch("/api/booking", userAuth, async (req, res) => {
 
     await Booking.updateOne(filter, {
       $set: {
-        verStatus: req.body.status,
+        status: req.body.status,
       },
     });
 
@@ -138,16 +147,14 @@ app.get("/api/booking/:usertype", userAuth, async (req, res) => {
 
     bookings = await Booking.find(filter).sort({ bookingDate: -1 });
     for (var i = 0; i < bookings.length; i++) {
-      temp = await User.findOne({ _id: bookings[i].sellerId });
-      info[i] = temp;
+      // temp = await User.findOne({ _id: bookings[i].sellerId });
+      // info[i] = temp;
 
       temp = await Item.findOne({ _id: bookings[i].itemId });
       itemInfo[i] = temp;
     }
 
-    res
-      .status(200)
-      .send({ bookings: bookings, seller_info: info, item_info: itemInfo });
+    res.status(200).send({ bookings: bookings, item_info: itemInfo });
   } catch (err) {
     res.status(500).send(err);
   }
