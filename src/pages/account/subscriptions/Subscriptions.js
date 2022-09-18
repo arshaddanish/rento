@@ -1,44 +1,29 @@
 import "./subscriptions.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import VerifyPopUp from "./VerifyProfile";
+import { httpHeaders } from "../../../services/httpHeaders";
+import apis from "../../../apis";
+import { useNavigate } from "react-router-dom";
 
 const Subscriptions = ({ userData, onVerifyApply }) => {
+  let navigate = useNavigate();
   let { verStatus } = userData;
-  const registrations = [
-    {
-      id: 1,
-      name: "15/09/2022",
-      dept: "Quarterly",
-      batch: "799",
-    },
-    {
-      id: 2,
-      name: "21/10/2021",
-      dept: "Yealy",
-      batch: "999",
-    },
-    {
-      id: 3,
-      name: "03/05/2022",
-      dept: "Quarterly",
-      batch: "799",
-    },
-    {
-      id: 4,
-      name: "03/05/2022",
-      dept: "Monthly",
-      batch: "499",
-    },
-    {
-      id: 5,
-      name: "03/05/2022",
-      dept: "Yearly",
-      batch: "999",
-    },
-  ];
+
+  let [subscriptions, setSubscriptions] = useState(null);
+  useEffect(() => {
+    fetchSubscriptions();
+  }, []);
+  let fetchSubscriptions = async () => {
+    let { data } = await apis.get("seller-subscriptions", httpHeaders("user"));
+    setSubscriptions(data);
+  };
 
   const [viewForm, setViewForm] = useState(false);
+
+  if (!subscriptions) {
+    return null;
+  }
 
   function NotVerified() {
     return (
@@ -57,27 +42,43 @@ const Subscriptions = ({ userData, onVerifyApply }) => {
 
   function Verified() {
     return (
-      <div className="subscription-main">
-        <div>
-          <h2 className="reg-heading-main">Subscription History</h2>
-        </div>
-        <div className="reg-details">
-          <div className="reg-heading">
-            <div>Subscription Date</div>
-            <div>End Date</div>
-            <div>Plan</div>
-            <div>Amount</div>
+      <>
+        {subscriptions.subStatus && (
+          <div className="subscribe-content">
+            Your Subscription is inactive. Subscribe to rent items.{" "}
+            <Button
+              variant="contained"
+              className="verify-btn"
+              onClick={() => navigate("/subscribe")}
+            >
+              Subscribe Now
+            </Button>
           </div>
-          {registrations.map((e) => (
-            <div key={e.id} className="reg-data">
-              <div>{e.name}</div>
-              <div>{e.name}</div>
-              <div>{e.dept}</div>
-              <div>Rs. {e.batch}/-</div>
+        )}
+        {subscriptions.subscriptions[0] && (
+          <div className="subscription-main">
+            <div>
+              <h2 className="reg-heading-main">Subscription History</h2>
             </div>
-          ))}
-        </div>
-      </div>
+            <div className="reg-details">
+              <div className="reg-heading">
+                <div>Subscription Date</div>
+                <div>End Date</div>
+                <div>Plan</div>
+                <div>Amount</div>
+              </div>
+              {subscriptions.subscriptions.map((e, index) => (
+                <div key={e.id} className="reg-data">
+                  <div>{e.subDate.substring(0, 10)}</div>
+                  <div>{e.endDate.substring(0, 10)}</div>
+                  <div>{subscriptions.plans[index].name}</div>
+                  <div>Rs. {subscriptions.plans[index].amount}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </>
     );
   }
 
