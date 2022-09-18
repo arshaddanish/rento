@@ -44,7 +44,19 @@ const SellerRequests = () => {
     navigate("/account/seller-bookings");
   };
 
-  let onReject = async () => {};
+  let onReject = async (id, buyerId, itemId) => {
+    await apis.patch(
+      "booking",
+      { status: "Rejected", id: id },
+      httpHeaders("user")
+    );
+    setRequests((pd) => ({
+      ...pd,
+      bookings: requests.bookings.filter((item) => item._id !== id),
+      buyer_info: requests.buyer_info.filter((item) => item._id !== buyerId),
+      item_info: requests.item_info.filter((item) => item._id !== itemId),
+    }));
+  };
 
   if (!requests) return null;
   return (

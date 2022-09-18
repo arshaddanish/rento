@@ -66,12 +66,14 @@ const BuyerRequests = () => {
               <div>{e.quantity}</div>
               <div>{e.status}</div>
               <div className="reg-btns">
-                <Button
-                  variant="contained"
-                  onClick={() => onDelete(e._id, requests.item_info[i]._id)}
-                >
-                  Delete
-                </Button>
+                {e.status !== "Approved" && (
+                  <Button
+                    variant="contained"
+                    onClick={() => onDelete(e._id, requests.item_info[i]._id)}
+                  >
+                    Delete
+                  </Button>
+                )}
               </div>
             </div>
           ))}
