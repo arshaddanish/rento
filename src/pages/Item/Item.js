@@ -85,6 +85,7 @@ export default function Item() {
           <p>
             Price:&nbsp; Rs. <span>{item.price}</span> / day
           </p>
+          <p>Quantity:&nbsp; {item.quantity}</p>
           <p>Manufacture Year:&nbsp; {item.manufactureYear}</p>
           <p>Type:&nbsp; {item.type}</p>
         </div>
@@ -102,7 +103,13 @@ export default function Item() {
             Book Item
           </Button>
 
-          <BookItemPopUp trigger={bookItem} setTrigger={setBookItem} />
+          <BookItemPopUp
+            trigger={bookItem}
+            setTrigger={setBookItem}
+            sellerId={seller._id}
+            itemId={item._id}
+            quantity={item.quantity}
+          />
         </div>
       </div>
 
