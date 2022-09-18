@@ -44,6 +44,8 @@ const BookingRouter = require("./routes/bookings");
 app.use(BookingRouter);
 const MessageRouter = require("./routes/messages");
 app.use(MessageRouter);
+const SearchRouter = require("./routes/search");
+app.use(SearchRouter);
 
 // Start server
 const port = 5000;
