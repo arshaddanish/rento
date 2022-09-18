@@ -1,7 +1,9 @@
 import React from "react";
 import "./footer.scss";
-import { useLocation } from "react-router-dom";
-import TextField from "@mui/material/TextField";
+import { useLocation, Link } from "react-router-dom";
+// import { useState } from "react";
+// import { useEffect } from "react";
+// import TextField from "@mui/material/TextField";
 
 export default function Footer() {
 
@@ -16,6 +18,7 @@ export default function Footer() {
     return null;
   }
 
+
   return (
     <div className="footer">
       <div className="container">
@@ -28,10 +31,10 @@ export default function Footer() {
         </div>
         <div className="quick-links">
           <h4>Quick Links</h4>
-          <p>Home</p>
-          <p>About</p>
-          <p>Contact</p>
-          <p>Account</p>
+          <Link to="/"><p>Home</p></Link>
+          <Link to="/about"><p>About</p></Link>
+          <Link to="/contact"><p>Contact</p></Link>
+          <Link to="/account"><p>Account</p></Link>
         </div>
       </div>
 
