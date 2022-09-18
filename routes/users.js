@@ -90,6 +90,21 @@ app.post("/api/users-login", async (req, res) => {
   }
 });
 
+app.patch("/api/users/user", userAuth, async (req, res) => {
+  try {
+    if (req.body.profileImg && req.body.profileImg !== "") {
+      const oldUser = await User.findById(req.user.id);
+      await deleteImg(oldUser.profileImg);
+    }
+    const user = await User.findByIdAndUpdate(req.user.id, req.body, {
+      new: true,
+    });
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 app.patch("/api/users/:id", async (req, res) => {
   try {
     if (req.body.profileImg && req.body.profileImg !== "") {
