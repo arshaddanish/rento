@@ -40,7 +40,7 @@ const SellerRequests = () => {
     <div className="seller-requests">
       <div className="registration-main2">
         <div>
-          <h2 className="reg-heading-main">Requests</h2>
+          <h2 className="reg-heading-main">Seller Requests</h2>
         </div>
         <div className="reg-details">
           <div className="reg-heading">
