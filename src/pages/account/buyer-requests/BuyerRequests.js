@@ -25,6 +25,17 @@ const BuyerRequests = () => {
     navigate("/categories/" + item.category.toLowerCase() + "/" + item._id);
   };
 
+  let onDelete = async (id, id2) => {
+    await apis.delete("booking/" + id, httpHeaders("user"));
+    setRequests((pd) => ({
+      ...pd,
+      bookings: requests.bookings.filter((item) => item._id !== id),
+      item_info: requests.item_info.filter((item) => item._id !== id2),
+    }));
+  };
+
+  useEffect(() => {}, [requests]);
+
   if (!requests) return null;
   return (
     <div className="buyer-requests">
@@ -43,7 +54,10 @@ const BuyerRequests = () => {
           </div>
           {requests.bookings.map((e, i) => (
             <div key={e._id} className="reg-data">
-              <div onClick={() => onItemClick(requests.item_info[i])} className="item-link">
+              <div
+                onClick={() => onItemClick(requests.item_info[i])}
+                className="item-link"
+              >
                 {requests.item_info[i].name}
               </div>
               <div>{e.bookingDate.substring(0, 10)}</div>
@@ -52,7 +66,12 @@ const BuyerRequests = () => {
               <div>{e.quantity}</div>
               <div>{e.status}</div>
               <div className="reg-btns">
-                <Button variant="contained">Delete</Button>
+                <Button
+                  variant="contained"
+                  onClick={() => onDelete(e._id, requests.item_info[i]._id)}
+                >
+                  Delete
+                </Button>
               </div>
             </div>
           ))}
