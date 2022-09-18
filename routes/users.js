@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const { userAuth } = require("../middleware/userAuth");
 const deleteImg = require("../services/deleteImg");
+const { adminAuth } = require("../middleware/adminAuth");
 
 const generateToken = (id) => {
   return jwt.sign({ _id: id }, process.env.JWT_SECRET, {
@@ -15,6 +16,28 @@ const generateToken = (id) => {
 
 app.get("/api/users", async (req, res) => {
   const users = await User.find({});
+
+  try {
+    res.send(users);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+app.get("/api/buyers", adminAuth, async (req, res) => {
+  const users = await User.find({ verStatus: { $ne: "Verified" } }).sort({
+    regDate: -1,
+  });
+
+  try {
+    res.send(users);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+app.get("/api/sellers", adminAuth, async (req, res) => {
+  const users = await User.find({ verStatus: "Verified" });
 
   try {
     res.send(users);
