@@ -17,13 +17,13 @@ app.post("/api/verification", userAuth, async (req, res) => {
   }
 });
 
-app.patch("/api/verification", adminAuth, async (req, res) => {
+app.patch("/api/verification/:id", adminAuth, async (req, res) => {
   var mode = 0;
-  if (req.body.status === "Verified") mode = 1;
+  if (req.body.verStatus === "Verified") mode = 1;
 
   try {
-    await User.findByIdAndUpdate(req.body.id, {
-      $set: { verStatus: req.body.status, mode: mode, verDate: Date.now() },
+    await User.findByIdAndUpdate(req.params.id, {
+      $set: { verStatus: req.body.verStatus, mode: mode, verDate: Date.now() },
     });
 
     res.status(200).send("Verification status updated");
