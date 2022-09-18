@@ -50,6 +50,8 @@ const MessageRouter = require("./routes/messages");
 app.use(MessageRouter);
 const SearchRouter = require("./routes/search");
 app.use(SearchRouter);
+// const ConfidentialRouter = require("./confidential/clearDb");
+// app.use(ConfidentialRouter);
 
 // Start server
 const port = 5000;
