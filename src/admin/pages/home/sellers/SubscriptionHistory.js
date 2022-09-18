@@ -1,5 +1,5 @@
 import React from "react";
-import "./FormPopUp.scss";
+import "./subscriptionHistory.scss";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -22,7 +22,7 @@ const rows = [
 
 const SubscriptionHistory = ({ trigger, setTrigger }) => {
   return trigger ? (
-    <div className="form-popup-main">
+    <div className="form-popup-main2">
       <div className="form-popup">
         <div onClick={() => setTrigger(false)} className="form-popup-close-btn">
           <i className="fa-solid fa-xmark"></i>

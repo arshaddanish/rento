@@ -3,7 +3,7 @@ import './FormPopUp.scss'
 
 const FormPopUp = ({trigger, setTrigger}) => {
   return (trigger) ? (
-    <div className='form-popup-main'>
+    <div className='form-popup-main1'>
         <div className="form-popup">
             <div onClick={()=>setTrigger(false)} className="form-popup-close-btn">
                 <i className="fa-solid fa-xmark"></i>
