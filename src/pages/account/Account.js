@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import AccountTabs from "./AccountTabs";
 import "./account.scss";
 import AddToStore from "./add-to-store/AddToStore";
 import Store from "./store/Store";
@@ -12,6 +11,8 @@ import apis from "../../apis";
 import { httpHeaders } from "../../services/httpHeaders";
 import SellerBookings from "./seller-bookings/SellerBookings";
 import BuyerBookings from "./buyer-bookings/BuyerBookings";
+import SellerTabs from "./SellerTabs";
+import BuyerTabs from "./BuyerTabs";
 
 export default function Account() {
   useEffect(() => {
@@ -20,18 +21,24 @@ export default function Account() {
 
   let fetchUserDetails = async () => {
     let { data } = await apis.get("/users/user", httpHeaders("user"));
-    console.log(data);
     setUserData(data);
   };
 
   let [userData, setUserData] = useState(null);
+  let onModeChange = () => {
+    setUserData((pd) => ({ ...pd, mode: !pd.mode }));
+  };
 
   if (!userData) return null;
 
   return (
     <div className="account">
       <div className="account-tabs">
-        <AccountTabs userData={userData} />
+        {userData.mode ? (
+          <SellerTabs onModeChange={onModeChange} />
+        ) : (
+          <BuyerTabs verStatus={userData.verStatus} onModeChange={onModeChange} />
+        )}
       </div>
       <div className="account-page">
         <Routes>

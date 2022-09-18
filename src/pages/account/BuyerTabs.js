@@ -5,6 +5,8 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useLocation, useNavigate } from "react-router-dom";
+import { httpHeaders } from "../../services/httpHeaders";
+import apis from "../../apis";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -39,7 +41,7 @@ function a11yProps(index) {
   };
 }
 
-export default function AccountTabs() {
+export default function BuyerTabs({ verStatus, onModeChange }) {
   let navigate = useNavigate();
   let { pathname } = useLocation();
   const [value, setValue] = React.useState(0);
@@ -52,16 +54,15 @@ export default function AccountTabs() {
 
   const tabData = {
     "/account": 0,
-    "/account/store": 1,
-    "/account/add-to-store": 2,
-    "/account/buyer-requests": 3,
-    "/account/seller-requests": 4,
-    "/account/buyer-bookings": 5,
-    "/account/seller-bookings": 6,
-    "/account/subscriptions": 7,
-    "/account/messages": 8,
-    "/account/buyer-mode": 9,
-    "/account/logout": 10,
+    "/account/buyer-requests": 1,
+    "/account/buyer-bookings": 2,
+    "/account/subscriptions": 3,
+  };
+
+  let changeMode = async () => {
+    await apis.get("users/switch-mode", httpHeaders("user"));
+    onModeChange();
+    navigate("/account");
   };
 
   return (
@@ -85,39 +86,20 @@ export default function AccountTabs() {
           {...a11yProps(0)}
           onClick={() => navigate("/account")}
         />
+
         <Tab
-          label="Store"
+          label="Requests"
           {...a11yProps(1)}
-          onClick={() => navigate("/account/store")}
-        />
-        <Tab
-          label="Add To Store"
-          {...a11yProps(2)}
-          onClick={() => navigate("/account/add-to-store")}
-        />
-        <Tab
-          label="Buyer Requests"
-          {...a11yProps(3)}
           onClick={() => navigate("/account/buyer-requests")}
         />
         <Tab
-          label="Seller Requests"
-          {...a11yProps(4)}
-          onClick={() => navigate("/account/seller-requests")}
-        />
-        <Tab
-          label="Buyer Bookings"
-          {...a11yProps(5)}
+          label="Bookings"
+          {...a11yProps(2)}
           onClick={() => navigate("/account/buyer-bookings")}
         />
         <Tab
-          label="Seller Bookings"
-          {...a11yProps(6)}
-          onClick={() => navigate("/account/seller-bookings")}
-        />
-        <Tab
           label="Subscriptions"
-          {...a11yProps(7)}
+          {...a11yProps(3)}
           onClick={() => navigate("/account/subscriptions")}
         />
         {/* <Tab
@@ -125,14 +107,12 @@ export default function AccountTabs() {
           {...a11yProps(8)}
           onClick={() => navigate("/account/messages")}
         /> */}
-        <Tab
-          label="Buyer Mode"
-          {...a11yProps(9)}
-          onClick={() => navigate("/account")}
-        />
+        {verStatus === "Verified" && (
+          <Tab label="Seller Mode" {...a11yProps(4)} onClick={changeMode} />
+        )}
         <Tab
           label="Logout"
-          {...a11yProps(10)}
+          {...a11yProps(5)}
           onClick={() => {
             localStorage.removeItem("jwt_token");
             navigate("/login");
