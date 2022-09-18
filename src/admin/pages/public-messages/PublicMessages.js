@@ -12,6 +12,10 @@ export default function PublicMessages() {
     fetchMsgs();
   }, []);
 
+  let onDeleteMsg = (id) => {
+    setMsgs(msgs.filter((item) => item._id !== id));
+  };
+
   let fetchMsgs = async () => {
     let { data } = await apis.get("message", httpHeaders("admin"));
     setMsgs(data);
@@ -22,7 +26,7 @@ export default function PublicMessages() {
       <h2>Messages</h2>
       <div className="messages-table">
         {msgs.map((item) => (
-          <IndividualMessage key={item._id} item={item} />
+          <IndividualMessage key={item._id} item={item} onDeleteMsg={onDeleteMsg} />
         ))}
         {/* <Paper elevation={1} className="paper">
           <div>
