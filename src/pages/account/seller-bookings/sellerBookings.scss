@@ -1,4 +1,10 @@
-.seller-requests1 {
+.seller-bookings1 {
+  .item-link {
+    cursor: pointer;
+    &:hover {
+      color: darkblue;
+    }
+  }
     .registration-main2 {
       // padding: 0 6rem;
       .reg-heading-main {
