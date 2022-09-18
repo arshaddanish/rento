@@ -6,8 +6,8 @@ const Item = require("../models/item");
 const Booking = require("../models/bookings");
 const { userAuth } = require("../middleware/userAuth");
 
-app.post("/api/booking", async (req, res) => {
-  const booking = new Booking(req.body);
+app.post("/api/booking", userAuth, async (req, res) => {
+  const booking = new Booking({ ...req.body, buyerId: req.user._id });
   try {
     await booking.save();
     res.status(201).send(booking);
