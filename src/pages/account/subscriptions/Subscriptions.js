@@ -89,7 +89,13 @@ const Subscriptions = ({ userData, onVerifyApply }) => {
     return (
       <div>
         Application to verify your account was rejected.
-        <Button variant="contained">Verify Again</Button>
+        <Button
+          variant="contained"
+          className="verify-btn"
+          onClick={() => setViewForm(true)}
+        >
+          Verify Again
+        </Button>
       </div>
     );
   }
@@ -102,7 +108,11 @@ const Subscriptions = ({ userData, onVerifyApply }) => {
         {verStatus === "Verified" && <Verified />}
         {verStatus === "Rejected" && <Rejected />}
       </div>
-      <VerifyPopUp trigger={viewForm} setTrigger={setViewForm} onVerifyApply={onVerifyApply} />
+      <VerifyPopUp
+        trigger={viewForm}
+        setTrigger={setViewForm}
+        onVerifyApply={onVerifyApply}
+      />
     </div>
   );
 };
