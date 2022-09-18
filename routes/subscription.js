@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const {Subscription} = require("../models/subscription");
-const axios = require("axios").create({ baseUrl: "http://localhost:5000/" });
+const {userAuth} = require("../middleware/userAuth");
+const {adminAuth} = require("../middleware/adminAuth");
 
-app.get("/api/subscriptions", async (req, res) => {
+app.get("/api/subscriptions", adminAuth ,async (req, res) => {
   const subscriptions = await Subscription.find({}).sort({ subDate: -1 });
 
   try {
@@ -23,8 +24,8 @@ app.get("/api/subscriptions/:id", async (req, res) => {
   }
 });
 
-app.get("/api/subscriptions/seller/:id", async (req, res) => {
-  const subscriptions = await Subscription.find({sellerId : req.params.id});
+app.get("/api/subscriptions/seller/", userAuth , async (req, res) => {
+  const subscriptions = await Subscription.find({sellerId : req.user._id});
 
   try {
     res.send(subscriptions);
@@ -33,7 +34,16 @@ app.get("/api/subscriptions/seller/:id", async (req, res) => {
   }
 });
 
-app.post("/api/subscriptions", async (req, res) => {
+app.post("/api/subscriptions", userAuth , async (req, res) => {
+
+  if (req.user.verStatus != "Verified") 
+    return res.status(401).send("User is not verified");
+  
+  const s = await Subscription.findOne({ sellerId: req.user._id }).sort({ endDate : -1});
+
+    if (s && s.endDate > Date.now()) 
+        return res.status(400).send("You already have a subscription");
+    
   const subscription = new Subscription(req.body);
 
   try {
