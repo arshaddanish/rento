@@ -9,7 +9,7 @@ app.post("/api/search", async (req, res) => {
     name = req.body.name;
 
     if (name && location) {
-      console.log("name and location");
+      // console.log("name and location");
       const items = await Item.find({
         category: category,
 
@@ -23,7 +23,7 @@ app.post("/api/search", async (req, res) => {
     }
     
     if (name) {
-      console.log("name");
+      // console.log("name");
       const items = await Item.find({
         category: category,
         name: { $regex: name, $options: "i" },
@@ -33,7 +33,7 @@ app.post("/api/search", async (req, res) => {
     }
 
     if (location) {
-      console.log("location");
+      // console.log("location");
       const items = await Item.find({
         category: category,
         location: { $regex: location, $options: "i" },

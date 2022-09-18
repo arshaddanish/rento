@@ -11,7 +11,7 @@ const deleteImg = require("../services/deleteImg");
 
 let validateActiveSeller = async (id) => {
   let user = await User.findOne({ _id: id, verStatus: "Verified" });
-  console.log(user);
+  // console.log(user);
   if (!user) return "Verify your account to become a seller.";
   let subscriptions = await Subscription.find({ sellerId: id }).sort({
     endDate: -1,

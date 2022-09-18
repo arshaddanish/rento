@@ -71,7 +71,7 @@ app.get("/api/image/:name", (req, res) => {
 // });
 
 app.delete("/api/upload/:name", async (req, res) => {
-  console.log(req.params.name);
+  // console.log(req.params.name);
   try {
     const doc = await gfs.files.deleteOne({
       filename: req.params.name,

@@ -4,7 +4,7 @@ const Item = require("../models/item")
 
 let validateSubscription = async () => {
   const sellers = await User.find({ subStatus : 1})
-  console.log(sellers);
+  // console.log(sellers);
 
   today = new Date()
   sellers.forEach(async seller => {

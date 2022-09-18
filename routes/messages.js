@@ -9,7 +9,7 @@ app.post("/api/message", async (req, res) => {
     await message.save();
     res.status(201).send(message);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send(err);
   }
 });
@@ -40,7 +40,7 @@ app.delete("/api/message/:id", adminAuth, async (req, res) => {
     }
     res.send(message);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send(err);
   }
 });

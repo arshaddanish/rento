@@ -27,7 +27,7 @@ app.delete("/api/booking/:id", userAuth, async (req, res) => {
     }
     res.send(booking);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send(err);
   }
 });
@@ -94,7 +94,7 @@ app.get("/api/booking/requests/:usertype", userAuth, async (req, res) => {
 
     res.status(200).send({ bookings: bookings, item_info: info });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send(err);
   }
 });

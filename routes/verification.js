@@ -10,7 +10,7 @@ app.post("/api/verification", userAuth, async (req, res) => {
       verStatus: "Pending",
       aadharImg: req.body.aadharImg,
     });
-    console.log(update);
+    // console.log(update);
     res.status(200).send("Verification request sent");
   } catch (err) {
     res.status(500).send(err);
