@@ -42,10 +42,14 @@ const SubscriptionRouter = require("./routes/subscription");
 app.use(SubscriptionRouter);
 const SubscriptionPlanRouter = require("./routes/subscriptionPlans");
 app.use(SubscriptionPlanRouter);
+const SubscriptionsRouter = require("./routes/subscription");
+app.use(SubscriptionsRouter);
 const BookingRouter = require("./routes/bookings");
 app.use(BookingRouter);
 const MessageRouter = require("./routes/messages");
 app.use(MessageRouter);
+const SearchRouter = require("./routes/search");
+app.use(SearchRouter);
 
 // Start server
 const port = 5000;

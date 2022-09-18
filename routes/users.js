@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const User = require("../models/user");
 const Item = require("../models/item");
+const { Subscription, SubscriptionPlan } = require("../models/subscription");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const { userAuth } = require("../middleware/userAuth");
@@ -37,10 +38,38 @@ app.get("/api/buyers", adminAuth, async (req, res) => {
 });
 
 app.get("/api/sellers", adminAuth, async (req, res) => {
-  const users = await User.find({ verStatus: "Verified" });
-
   try {
-    res.send(users);
+    const sellers = await User.find({ verStatus: "Verified" }).sort({
+      regDate: -1,
+    });
+    let statuses = [];
+    let status;
+
+    let allSubscriptions = [];
+    let subscriptions;
+    let allPlans = [];
+    let plans;
+    for (let i = 0; i < sellers.length; i++) {
+      subscriptions = await Subscription.find({
+        sellerId: sellers[i]._id,
+      }).sort({
+        endDate: -1,
+      });
+      allSubscriptions.push(subscriptions);
+
+      status = 0;
+      if (subscriptions[0] && subscriptions[0].endDate > Date.now()) status = 1;
+      statuses.push(status);
+
+      plans = [];
+      for (let i = 0; i < subscriptions.length; i++) {
+        let plan = await SubscriptionPlan.findById(subscriptions[i].planId);
+        plans.push(plan);
+      }
+      allPlans.push(plans);
+    }
+
+    res.send({ sellers, allSubscriptions, allPlans });
   } catch (error) {
     res.status(500).send(error);
   }

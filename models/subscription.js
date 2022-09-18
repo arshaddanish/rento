@@ -4,12 +4,11 @@ const SubscriptionSchema = new mongoose.Schema({
   sellerId: {
     type: String,
   },
-  plan: {
+  planId: {
     type: String,
   },
   subDate: {
     type: Date,
-    default: Date.now,
   },
   endDate: {
     type: Date,

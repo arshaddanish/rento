@@ -41,7 +41,7 @@ app.get("/api/verification", adminAuth, async (req, res) => {
   }
 });
 
-app.get("/api/verification/history", adminAuth, async (req, res) => {
+app.get("/api/verification-history", adminAuth, async (req, res) => {
   try {
     const users = await User.find({ verStatus: "Verified" })
       .select("-password")
