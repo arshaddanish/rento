@@ -1,7 +1,7 @@
 .public-messages {
   padding: 9rem 6rem 5rem;
   background: #e9edf2;
-  
+
   h2 {
     font-weight: 500;
     margin-bottom: 2rem;
@@ -10,18 +10,21 @@
   .paper {
     padding: 2rem;
     margin-bottom: 2rem;
-    .sender-details{
-      .message-bold{
+    cursor: default;
+    .sender-details {
+      .message-bold {
         font-weight: 500;
       }
-      .msg-subject{
-        margin:1rem 0;
+      .msg-subject {
+        margin: 1rem 0;
       }
     }
-    .read-more-btn{
+    .read-more-btn {
+      margin-left: 0.5rem;
       background-color: rgba($color: #000000, $alpha: 0);
       border: none;
-      color: #1363DF;
+      color: #1363df;
+      cursor: pointer;
     }
   }
 }

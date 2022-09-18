@@ -38,8 +38,11 @@ const Login = () => {
       <div>
         <div className="login">
           <div>
-            <img className="logo" src={logo} alt="" />
+            <Link to="/">
+              <img className="logo" src={logo} alt="" />
+            </Link>
           </div>
+
           <h1>Log In</h1>
           <p>
             or{" "}

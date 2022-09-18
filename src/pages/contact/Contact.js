@@ -66,6 +66,7 @@ const Contact = () => {
                 type="email"
                 variant="outlined"
                 email="email"
+                name="email"
                 onChange={onInputChange}
                 required
               />
