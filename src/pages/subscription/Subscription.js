@@ -21,8 +21,7 @@ const Subscription = () => {
         {plans.map((item, index) => {
           return (
             <SubscriptionCard
-              period={item.name}
-              price={item.amount}
+              item={item}
               key={index}
             />
           );
