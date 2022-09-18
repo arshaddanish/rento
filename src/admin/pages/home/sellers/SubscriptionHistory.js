@@ -26,7 +26,7 @@ const SubscriptionHistory = ({
   selectedSubscriptions: s,
   selectedPlans: p,
 }) => {
-  console.log(s, p);
+  // console.log(s, p);
   return trigger ? (
     <div className="form-popup-main2">
       <div className="form-popup">

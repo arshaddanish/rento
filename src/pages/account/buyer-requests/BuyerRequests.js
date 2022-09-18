@@ -17,7 +17,7 @@ const BuyerRequests = () => {
       "booking/requests/buyer",
       httpHeaders("user")
     );
-    console.log(data);
+    // console.log(data);
     setRequests(data);
   };
 

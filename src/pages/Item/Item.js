@@ -25,10 +25,10 @@ export default function Item() {
   let [images, setImages] = useState([]);
   let fetchItem = async () => {
     let { data } = await apis.get("items/" + id);
-    console.log(data);
+    // console.log(data);
     setItem(data);
     let images = [data.img, ...data.extraImgs];
-    console.log(images);
+    // console.log(images);
     images = images.map((item) => imageUrl(item));
     setImages(images);
   };

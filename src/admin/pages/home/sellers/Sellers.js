@@ -15,7 +15,7 @@ const Sellers = () => {
 
   let fetchSellers = async () => {
     let { data } = await apis.get("sellers", httpHeaders("admin"));
-    console.log(data);
+    // console.log(data);
     setSellers(data);
   };
 

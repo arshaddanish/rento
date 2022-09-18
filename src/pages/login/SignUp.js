@@ -32,7 +32,7 @@ const SignUp = () => {
         ...formData,
         profileImg: imgData,
       });
-      console.log(data);
+      // console.log(data);
       localStorage.setItem("jwt_token", data.token);
       navigate("/account");
     }

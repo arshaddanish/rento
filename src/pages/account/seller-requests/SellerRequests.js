@@ -17,7 +17,7 @@ const SellerRequests = () => {
       "booking/requests/seller",
       httpHeaders("user")
     );
-    console.log(data);
+    // console.log(data);
     setRequests(data);
   };
 
@@ -36,7 +36,8 @@ const SellerRequests = () => {
   // const [viewForm, setViewForm] = useState(false);
 
   let onAccept = async () => {
-
+    await apis.patch("booking", { status: "Approved" }, httpHeaders("user"));
+    navigate("/account/seller-bookings");
   };
 
   let onReject = async () => {};

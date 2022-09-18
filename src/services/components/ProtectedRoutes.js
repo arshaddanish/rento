@@ -2,7 +2,7 @@ import { Outlet, Navigate } from "react-router-dom";
 
 const ProtectedRoutes = () => {
   let auth = localStorage.getItem("jwt_token");
-  console.log(auth);
+  // console.log(auth);
   return auth ? <Outlet /> : <Navigate to="/login" />;
 };
 
