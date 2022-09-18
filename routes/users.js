@@ -31,6 +31,21 @@ app.get("/api/users/user", userAuth, async (req, res) => {
   }
 });
 
+app.get("/api/users/switch-mode", userAuth, async (req, res) => {
+  try {
+    let user = await User.findOneAndUpdate(
+      { _id: req.user.id, verStatus: "Verified" },
+      { mode: !req.user.mode },
+      {
+        new: true,
+      }
+    );
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 app.get("/api/users/:id", async (req, res) => {
   const user = await User.findById(req.params.id);
 

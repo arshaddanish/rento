@@ -19,7 +19,7 @@ app.post("/api/verification", userAuth, async (req, res) => {
 
 app.patch("/api/verification", adminAuth, async (req, res) => {
   var mode = 0;
-  if (req.body.status === "Approved") mode = 1;
+  if (req.body.status === "Verified") mode = 1;
 
   try {
     await User.findByIdAndUpdate(req.body.id, {
@@ -43,7 +43,7 @@ app.get("/api/verification", adminAuth, async (req, res) => {
 
 app.get("/api/verification/history", adminAuth, async (req, res) => {
   try {
-    const users = await User.find({ verStatus: "Approved" })
+    const users = await User.find({ verStatus: "Verified" })
       .select("-password")
       .sort({ verDate: -1 });
     res.status(200).send(users);
