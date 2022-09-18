@@ -3,6 +3,7 @@ import "./buyerBookings.scss";
 
 import React, { useState } from "react";
 import { Button } from "@mui/material";
+import PaymentHistoryBuyer from "./PaymentHistoryBuyer";
 
 const BuyerBookings = () => {
   const registrations = [
@@ -63,13 +64,14 @@ const BuyerBookings = () => {
               <div>{e.batch}</div>
               <div className="reg-btns">
                 <Button onClick={() => setViewForm(true)} variant="contained">
-                  View History
+                  Payment History
                 </Button>
               </div>
             </div>
           ))}
         </div>
       </div>
+      <PaymentHistoryBuyer trigger={viewForm} setTrigger={setViewForm} />
     </div>
   );
 };
