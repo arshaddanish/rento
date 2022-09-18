@@ -34,6 +34,10 @@ export default function Account() {
     setUserData((pd) => ({ ...pd, ...formData }));
   };
 
+  let onVerifyApply = () => {
+    setUserData((pd) => ({ ...pd, verStatus: "Pending" }));
+  };
+
   if (!userData) return null;
 
   return (
@@ -50,10 +54,18 @@ export default function Account() {
       </div>
       <div className="account-page">
         <Routes>
-          <Route path="/" element={<Profile userData={userData} onEditProfile={onEditProfile} />} />
+          <Route
+            path="/"
+            element={
+              <Profile userData={userData} onEditProfile={onEditProfile} />
+            }
+          />
           <Route path="/store" element={<Store />} />
           <Route path="/edit-item/:id" element={<EditItem />} />
-          <Route path="/subscriptions" element={<Subscriptions />} />
+          <Route
+            path="/subscriptions"
+            element={<Subscriptions userData={userData} onVerifyApply={onVerifyApply} />}
+          />
           <Route path="/add-to-store" element={<AddToStore />} />
           <Route path="/buyer-requests" element={<BuyerRequests />} />
           <Route path="/seller-requests" element={<SellerRequests />} />

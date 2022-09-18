@@ -113,7 +113,7 @@ export default function AddBlog() {
             </Select>
           </FormControl>
         </div>
-        <div className="field half">
+        <div className="">
           <p>Image</p>
           <input
             type="file"

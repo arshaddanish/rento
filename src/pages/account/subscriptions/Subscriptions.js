@@ -1,8 +1,10 @@
-import './subscriptions.scss'
-import React from "react";
-// import { Button } from "@mui/material";
+import "./subscriptions.scss";
+import React, { useState } from "react";
+import { Button } from "@mui/material";
+import VerifyPopUp from "./VerifyProfile";
 
-const Subscriptions = () => {
+const Subscriptions = ({ userData, onVerifyApply }) => {
+  let { verStatus } = userData;
   const registrations = [
     {
       id: 1,
@@ -35,9 +37,26 @@ const Subscriptions = () => {
       batch: "999",
     },
   ];
-  // const [viewForm, setViewForm] = useState(false);
-  return (
-    <div className="subscription">
+
+  const [viewForm, setViewForm] = useState(false);
+
+  function NotVerified() {
+    return (
+      <div>
+        Verify your profile to become a seller.
+        <Button
+          variant="contained"
+          className="verify-btn"
+          onClick={() => setViewForm(true)}
+        >
+          Verify Now
+        </Button>
+      </div>
+    );
+  }
+
+  function Verified() {
+    return (
       <div className="subscription-main">
         <div>
           <h2 className="reg-heading-main">Subscription History</h2>
@@ -59,6 +78,31 @@ const Subscriptions = () => {
           ))}
         </div>
       </div>
+    );
+  }
+
+  function Pending() {
+    return <div>Application to verify your account has been submitted.</div>;
+  }
+
+  function Rejected() {
+    return (
+      <div>
+        Application to verify your account was rejected.
+        <Button variant="contained">Verify Again</Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="subscription">
+      <div className="ver-status">
+        {verStatus === "Not verified" && <NotVerified />}
+        {verStatus === "Pending" && <Pending />}
+        {verStatus === "Verified" && <Verified />}
+        {verStatus === "Rejected" && <Rejected />}
+      </div>
+      <VerifyPopUp trigger={viewForm} setTrigger={setViewForm} onVerifyApply={onVerifyApply} />
     </div>
   );
 };
