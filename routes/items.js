@@ -1,8 +1,26 @@
 const express = require("express");
 const app = express();
 const Item = require("../models/item");
+const { Subscription } = require("../models/subscription");
 const titleCase = require("../services/titleCase");
 const axios = require("axios").create({ baseUrl: "http://localhost:5000/" });
+const { userAuth } = require("../middleware/userAuth");
+const User = require("../models/user");
+
+let validateActiveSeller = async (id) => {
+  let user = await User.findOne({ _id: id, verStatus: "Verified" });
+  console.log(user);
+  if (!user._id) return "Verify your account to become a seller.";
+  let subscriptions = await Subscription.find({ sellerId: id }).sort({
+    endDate: -1,
+  });
+  if (
+    !subscriptions[0] ||
+    (subscriptions[0] && subscriptions[0].endDate < Date.now())
+  )
+    return "Subscribe to rent items.";
+  return 1;
+};
 
 app.get("/api/items", async (req, res) => {
   const items = await Item.find({}).sort({ regDate: -1 });
@@ -13,6 +31,16 @@ app.get("/api/items", async (req, res) => {
     res.status(500).send(error);
   }
 });
+
+// app.get("/api/seller-items", async (req, res) => {
+//   const items = await Item.find({}).sort({ regDate: -1 });
+
+//   try {
+//     res.send(items);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
 
 app.get("/api/items/:id", async (req, res) => {
   const item = await Item.findById(req.params.id);
@@ -49,10 +77,13 @@ app.get("/api/items-filter/:category/:type", async (req, res) => {
   }
 });
 
-app.post("/api/items", async (req, res) => {
-  const item = new Item(req.body);
-
+app.post("/api/items", userAuth, async (req, res) => {
   try {
+    let valid = validateActiveSeller(req.user._id);
+    if (valid !== 1) {
+      res.send(valid);
+    }
+    const item = new Item({ ...req.body, sellerId: req.user._id });
     await item.save();
     res.send(item);
   } catch (error) {
