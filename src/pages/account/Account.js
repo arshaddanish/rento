@@ -30,6 +30,10 @@ export default function Account() {
     setUserData((pd) => ({ ...pd, mode: !pd.mode }));
   };
 
+  let onEditProfile = (formData) => {
+    setUserData((pd) => ({ ...pd, ...formData }));
+  };
+
   if (!userData) return null;
 
   return (
@@ -38,12 +42,15 @@ export default function Account() {
         {userData.mode ? (
           <SellerTabs onModeChange={onModeChange} />
         ) : (
-          <BuyerTabs verStatus={userData.verStatus} onModeChange={onModeChange} />
+          <BuyerTabs
+            verStatus={userData.verStatus}
+            onModeChange={onModeChange}
+          />
         )}
       </div>
       <div className="account-page">
         <Routes>
-          <Route path="/" element={<Profile userData={userData} />} />
+          <Route path="/" element={<Profile userData={userData} onEditProfile={onEditProfile} />} />
           <Route path="/store" element={<Store />} />
           <Route path="/edit-item/:id" element={<EditItem />} />
           <Route path="/subscriptions" element={<Subscriptions />} />

@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import EditProfile from "./EditProfile";
 import { imageUrl } from "../../../services/imageUrl";
 
-const Profile1 = ({ userData }) => {
+const Profile1 = ({ userData, onEditProfile }) => {
   const [editProfile, setEditProfile] = useState(false);
   return (
     <div className="profile1-main">
@@ -37,7 +37,12 @@ const Profile1 = ({ userData }) => {
           </div>
         </div>
       </div>
-      <EditProfile trigger={editProfile} setTrigger={setEditProfile} />
+      <EditProfile
+        trigger={editProfile}
+        setTrigger={setEditProfile}
+        userData={userData}
+        onEditProfile={onEditProfile}
+      />
     </div>
   );
 };

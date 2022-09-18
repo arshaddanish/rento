@@ -3,7 +3,7 @@ import "./profile.scss";
 // import person from '../../../assets/images/profile/person.png'
 import Profile1 from "./Profile1";
 
-const Profile = ({ userData }) => {
+const Profile = ({ userData, onEditProfile }) => {
   return (
     <div className="profile-main">
       {/* <div className="profile-sub">
@@ -16,7 +16,7 @@ const Profile = ({ userData }) => {
             <div className="profile-bold">Address</div><div className="profile-right">House Name <br />Street Name <br />City</div>
             <div className="profile-bold sub-status">Subscription Status</div><div className="profile-right sub-status">Active</div>
         </div> */}
-      <Profile1 userData={userData} />
+      <Profile1 userData={userData} onEditProfile={onEditProfile} />
     </div>
   );
 };
