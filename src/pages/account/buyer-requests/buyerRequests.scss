@@ -1,4 +1,10 @@
 .buyer-requests {
+  .item-link {
+    cursor: pointer;
+    &:hover {
+      color: darkblue;
+    }
+  }
   .registration-main2 {
     // padding: 0 6rem;
     .reg-heading-main {
