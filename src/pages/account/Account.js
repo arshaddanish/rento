@@ -10,6 +10,8 @@ import SellerRequests from "./seller-requests/SellerRequests";
 import Profile from "./profile/Profile";
 import apis from "../../apis";
 import { httpHeaders } from "../../services/httpHeaders";
+import SellerBookings from "./seller-bookings/SellerBookings";
+import BuyerBookings from "./buyer-bookings/BuyerBookings";
 
 export default function Account() {
   useEffect(() => {
@@ -39,6 +41,8 @@ export default function Account() {
           <Route path="/add-to-store" element={<AddToStore />} />
           <Route path="/buyer-requests" element={<BuyerRequests />} />
           <Route path="/seller-requests" element={<SellerRequests />} />
+          <Route path="/buyer-bookings" element={<BuyerBookings />} />
+          <Route path="/seller-bookings" element={<SellerBookings />} />
         </Routes>
       </div>
     </div>
