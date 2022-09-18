@@ -15,15 +15,15 @@ app.get("/api/subscriptions", adminAuth, async (req, res) => {
 });
 
 app.post("/api/subscriptions", userAuth, async (req, res) => {
-  if (req.user.verStatus != "Verified")
-    return res.status(401).send("Verify your account to subscribe.");
+  if (req.user.verStatus !== "Verified")
+    return res.send("Verify your account to subscribe.");
 
   const s = await Subscription.find({ sellerId: req.user._id }).sort({
     endDate: -1,
   });
 
   if (s[0] && s[0].endDate > Date.now())
-    return res.status(400).send("You already have a subscription.");
+    return res.send("You already have a subscription.");
 
   const subscription = new Subscription({
     ...req.body,
