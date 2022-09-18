@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import './homeAdmin.scss'
 import { useLocation, useNavigate } from "react-router-dom";
 
 function TabPanel(props) {
@@ -65,6 +66,7 @@ export default function HomeTabs() {
     <Box
       sx={{
         flexGrow: 1,
+        minHeight:"50vh",
         bgcolor: "background.paper",
         display: "flex",
         background: "#fff",
