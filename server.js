@@ -40,6 +40,8 @@ const UserRouter = require("./routes/users");
 app.use(UserRouter);
 const SubscriptionPlanRouter = require("./routes/subscriptionPlans");
 app.use(SubscriptionPlanRouter);
+const SubscriptionsRouter = require("./routes/subscription");
+app.use(SubscriptionsRouter);
 const BookingRouter = require("./routes/bookings");
 app.use(BookingRouter);
 const MessageRouter = require("./routes/messages");
