@@ -77,7 +77,7 @@ export default function Item() {
         </div>
         <div className="desc">
           <h4>Description</h4>
-          <p>{item.description}</p>
+          <p style={{whiteSpace: "pre-wrap"}}>{item.description}</p>
         </div>
         <div className="book-btn">
           <Button onClick={()=>setBookItem(true)} variant="contained" fullWidth style={{ height: "50px" }}>

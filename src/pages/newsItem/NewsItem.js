@@ -29,8 +29,8 @@ export default function NewsItem(props) {
         <h2>{blog.title}</h2>
         <p className="date">{newsDate(blog.date)}</p>
         <img src={imageUrl(blog.img)} alt="" />
-        {/* <p>{blog.content}</p> */}
-        <p className="content">
+        <p className="content">{blog.content}</p>
+        {/* <p className="content">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores vel
           tempora non beatae error nesciunt praesentium fugiat temporibus saepe
           quidem, amet sit sapiente soluta nisi earum commodi delectus quisquam
@@ -42,7 +42,7 @@ export default function NewsItem(props) {
           accusamus delectus eos fugit vel molestiae doloribus quidem ea! Quis,
           fuga veniam quisquam ullam velit voluptas quos inventore. Tenetur
           officia reprehenderit molestiae dolorem qui? Dolorum, dignissimos?
-        </p>
+        </p> */}
         <Link to="/blogs"><button className="btn-cmn">Back To All Blogs</button></Link>
       </div>
     </div>

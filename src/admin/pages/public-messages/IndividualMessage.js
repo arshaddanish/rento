@@ -29,8 +29,8 @@ const IndividualMessage = ({ item }) => {
               <h3 className="msg-subject">{item.subject}</h3>
             </div>
           </div>
-          <p>
-            {readMore ? item.message : item.message.substring(0, 300) + "..."}
+          <p style={{ whiteSpace: "pre-wrap" }}>
+            {readMore ? item.message : item.message.substring(0, 100) + "..."}
             <button className="read-more-btn" onClick={toggleBtn}>
               {readMore ? "Read Less" : "Read More"}
             </button>
