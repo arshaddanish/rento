@@ -1,2 +1,19 @@
 .dashboard {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 2rem;
+    row-gap: 2rem;
+    .admin-dash-tile{
+        padding: 2rem;
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(2,1fr);
+        .admin-dash-tile-left{
+            font-size: 2rem;
+        }
+        .admin-dash-tile-right{
+            font-size: 4rem;
+            font-weight: 500;
+        }
+    }
 }
