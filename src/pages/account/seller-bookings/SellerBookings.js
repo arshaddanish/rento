@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import apis from "../../../apis";
 import { httpHeaders } from "../../../services/httpHeaders";
 import PaymentHistory from "./PaymentHistory";
+import FormPopUp from "../seller-requests/FormPopUp";
 
 const SellerBookings = () => {
   let navigate = useNavigate();
@@ -23,7 +24,15 @@ const SellerBookings = () => {
     navigate("/categories/" + item.category.toLowerCase() + "/" + item._id);
   };
 
+  let [customerInfo, setCustomerInfo] = useState(false);
+
+  let onCustomerView = async (item) => {
+    setViewCustomer(true);
+    setCustomerInfo(item);
+  };
+
   const [viewForm, setViewForm] = useState(false);
+  const [viewCustomer, setViewCustomer] = useState(false);
 
   if (!bookings) return null;
   return (
@@ -49,7 +58,12 @@ const SellerBookings = () => {
               >
                 {bookings.item_info[i].name}
               </div>
-              <div className="item-link">{bookings.buyer_info[i].name}</div>
+              <div
+                className="item-link"
+                onClick={() => onCustomerView(bookings.buyer_info[i])}
+              >
+                {bookings.buyer_info[i].name}
+              </div>
               <div>{e.bookingDate.substring(0, 10)}</div>
               <div>{e.pickupDate.substring(0, 10)}</div>
               <div>{e.dropoffDate.substring(0, 10)}</div>
@@ -69,6 +83,11 @@ const SellerBookings = () => {
         </div>
       </div>
       <PaymentHistory trigger={viewForm} setTrigger={setViewForm} />
+      <FormPopUp
+        trigger={viewCustomer}
+        setTrigger={setViewCustomer}
+        customerInfo={customerInfo}
+      />
     </div>
   );
 };
