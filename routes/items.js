@@ -8,6 +8,7 @@ const axios = require("axios").create({ baseUrl: "http://localhost:5000/" });
 const { userAuth } = require("../middleware/userAuth");
 const User = require("../models/user");
 const deleteImg = require("../services/deleteImg");
+const validateSubscription = require("../services/validateSubscription");
 
 let validateActiveSeller = async (id) => {
   let user = await User.findOne({ _id: id, verStatus: "Verified" });
@@ -25,6 +26,7 @@ let validateActiveSeller = async (id) => {
 };
 
 app.get("/api/items", async (req, res) => {
+  validateSubscription();
   const items = await Item.find({}).sort({ regDate: -1 });
 
   try {

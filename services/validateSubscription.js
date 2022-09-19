@@ -1,4 +1,4 @@
-const Subscription = require("../models/subscription");
+const {Subscription} = require("../models/subscription");
 const User = require("../models/user")
 const Item = require("../models/item")
 
