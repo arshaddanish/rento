@@ -1,41 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./sellerRequests.scss";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import apis from "../../../apis";
+import { httpHeaders } from "../../../services/httpHeaders";
 
 const SellerRequests = () => {
-  const registrations = [
-    {
-      id: 1,
-      name: "Albin Vargees",
-      dept: "Computer Science Engineering",
-      batch: "2011",
-    },
-    {
-      id: 2,
-      name: "Sidharth A",
-      dept: "Electronics & Communication Engineering",
-      batch: "2001",
-    },
-    {
-      id: 3,
-      name: "Arshad Danish",
-      dept: "Mechanical Engineering",
-      batch: "2003",
-    },
-    {
-      id: 4,
-      name: "Jyothiradithyan K",
-      dept: "Civil Engineering",
-      batch: "2007",
-    },
-    {
-      id: 5,
-      name: "Rishan KP",
-      dept: "Computer Science Engineering",
-      batch: "2010",
-    },
-  ];
+  let navigate = useNavigate();
+
+  let [requests, setRequests] = useState();
+  useEffect(() => {
+    fetchRequests();
+  }, []);
+  let fetchRequests = async () => {
+    let { data } = await apis.get(
+      "booking/requests/seller",
+      httpHeaders("user")
+    );
+    // console.log(data);
+    setRequests(data);
+  };
+
+  let onItemClick = (item) => {
+    navigate("/categories/" + item.category.toLowerCase() + "/" + item._id);
+  };
+
+  // let onDelete = async (id, id2) => {
+  //   await apis.delete("booking/" + id, httpHeaders("user"));
+  //   setRequests((pd) => ({
+  //     ...pd,
+  //     bookings: requests.bookings.filter((item) => item._id !== id),
+  //     item_info: requests.item_info.filter((item) => item._id !== id2),
+  //   }));
+  // };
   // const [viewForm, setViewForm] = useState(false);
+
+  let onAccept = async (id) => {
+    await apis.patch(
+      "booking",
+      { status: "Approved", id: id },
+      httpHeaders("user")
+    );
+    navigate("/account/seller-bookings");
+  };
+
+  let onReject = async (id, buyerId, itemId) => {
+    await apis.patch(
+      "booking",
+      { status: "Rejected", id: id },
+      httpHeaders("user")
+    );
+    setRequests((pd) => ({
+      ...pd,
+      bookings: requests.bookings.filter((item) => item._id !== id),
+      buyer_info: requests.buyer_info.filter((item) => item._id !== buyerId),
+      item_info: requests.item_info.filter((item) => item._id !== itemId),
+    }));
+  };
+
+  if (!requests) return null;
   return (
     <div className="seller-requests">
       <div className="registration-main2">
@@ -51,19 +74,38 @@ const SellerRequests = () => {
             <div>Drop-off Date</div>
             <div>Quantity</div>
           </div>
-          {registrations.map((e) => (
-            <div key={e.id} className="reg-data">
-              <div>{e.name}</div>
-              <div>{e.dept}</div>
-              <div>{e.batch}</div>
-              <div>{e.name}</div>
-              <div>{e.dept}</div>
-              <div>{e.dept}</div>
+          {requests.bookings.map((e, i) => (
+            <div key={e._id} className="reg-data">
+              <div
+                onClick={() => onItemClick(requests.item_info[i])}
+                className="item-link"
+              >
+                {requests.item_info[i].name}
+              </div>
+              <div className="item-link">{requests.buyer_info[i].name}</div>
+              <div>{e.bookingDate.substring(0, 10)}</div>
+              <div>{e.pickupDate.substring(0, 10)}</div>
+              <div>{e.dropoffDate.substring(0, 10)}</div>
+              <div>{e.quantity}</div>
               <div className="reg-btns">
-                <Button size="small" variant="contained">
+                <Button
+                  size="small"
+                  variant="contained"
+                  onClick={() => onAccept(e._id)}
+                >
                   Accept
                 </Button>
-                <Button size="small" variant="contained">
+                <Button
+                  size="small"
+                  variant="contained"
+                  onClick={() =>
+                    onReject(
+                      e._id,
+                      requests.buyer_info[i]._id,
+                      requests.item_info[i]._id
+                    )
+                  }
+                >
                   Reject
                 </Button>
               </div>

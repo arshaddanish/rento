@@ -1,49 +1,35 @@
-
 import "./buyerBookings.scss";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import PaymentHistoryBuyer from "./PaymentHistoryBuyer";
+import { useNavigate } from "react-router-dom";
+import apis from "../../../apis";
+import { httpHeaders } from "../../../services/httpHeaders";
 
 const BuyerBookings = () => {
-  const registrations = [
-    {
-      id: 1,
-      name: "Albin Vargees",
-      dept: "Computer Science Engineering",
-      batch: "2011",
-    },
-    {
-      id: 2,
-      name: "Sidharth A",
-      dept: "Electronics & Communication Engineering",
-      batch: "2001",
-    },
-    {
-      id: 3,
-      name: "Arshad Danish",
-      dept: "Mechanical Engineering",
-      batch: "2003",
-    },
-    {
-      id: 4,
-      name: "Jyothiradithyan K",
-      dept: "Civil Engineering",
-      batch: "2007",
-    },
-    {
-      id: 5,
-      name: "Rishan KP",
-      dept: "Computer Science Engineering",
-      batch: "2010",
-    },
-  ];
+  let navigate = useNavigate();
+
+  let [bookings, setBookings] = useState();
+  useEffect(() => {
+    fetchBookings();
+  }, []);
+  let fetchBookings = async () => {
+    let { data } = await apis.get("booking/buyer", httpHeaders("user"));
+    // console.log(data);
+    setBookings(data);
+  };
+
+  let onItemClick = (item) => {
+    navigate("/categories/" + item.category.toLowerCase() + "/" + item._id);
+  };
   const [viewForm, setViewForm] = useState(false);
+  if (!bookings) return null;
   return (
     <div className="buyer-requests2">
       <div className="registration-main5">
         <div>
-          <h2 className="reg-heading-main">Buyer Bookings</h2>
+          <h2 className="reg-heading-main">Bookings</h2>
         </div>
         <div className="reg-details">
           <div className="reg-heading">
@@ -52,18 +38,21 @@ const BuyerBookings = () => {
             <div>Pick-up Date</div>
             <div>Drop-off Date</div>
             <div>Quantity</div>
-            <div>Status</div>
           </div>
-          {registrations.map((e) => (
-            <div key={e.id} className="reg-data">
-              <div>{e.name}</div>
-              <div>{e.dept}</div>
-              <div>{e.batch}</div>
-              <div>{e.name}</div>
-              <div>{e.dept}</div>
-              <div>{e.batch}</div>
+          {bookings.bookings.map((e, i) => (
+            <div key={e._id} className="reg-data">
+              <div
+                onClick={() => onItemClick(bookings.item_info[i])}
+                className="item-link"
+              >
+                {bookings.item_info[i].name}
+              </div>
+              <div>{e.bookingDate.substring(0, 10)}</div>
+              <div>{e.pickupDate.substring(0, 10)}</div>
+              <div>{e.dropoffDate.substring(0, 10)}</div>
+              <div>{e.quantity}</div>
               <div className="reg-btns">
-                <Button onClick={() => setViewForm(true)} variant="contained">
+                <Button onClick={() => setViewForm(true)} variant="contained" color="success">
                   Payment History
                 </Button>
               </div>

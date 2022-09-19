@@ -6,7 +6,7 @@ import "./category.scss";
 export default function Category() {
   return (
     <>
-      <Landing />
+      {/* <Landing /> */}
       <Items />
     </>
   );

@@ -25,10 +25,10 @@ export default function Item() {
   let [images, setImages] = useState([]);
   let fetchItem = async () => {
     let { data } = await apis.get("items/" + id);
-    console.log(data);
+    // console.log(data);
     setItem(data);
     let images = [data.img, ...data.extraImgs];
-    console.log(images);
+    // console.log(images);
     images = images.map((item) => imageUrl(item));
     setImages(images);
   };
@@ -85,6 +85,7 @@ export default function Item() {
           <p>
             Price:&nbsp; Rs. <span>{item.price}</span> / day
           </p>
+          <p>Quantity:&nbsp; {item.quantity}</p>
           <p>Manufacture Year:&nbsp; {item.manufactureYear}</p>
           <p>Type:&nbsp; {item.type}</p>
         </div>
@@ -102,7 +103,13 @@ export default function Item() {
             Book Item
           </Button>
 
-          <BookItemPopUp trigger={bookItem} setTrigger={setBookItem} />
+          <BookItemPopUp
+            trigger={bookItem}
+            setTrigger={setBookItem}
+            sellerId={seller._id}
+            itemId={item._id}
+            quantity={item.quantity}
+          />
         </div>
       </div>
 

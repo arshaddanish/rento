@@ -1,41 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./buyerRequests.scss";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import apis from "../../../apis";
+import { httpHeaders } from "../../../services/httpHeaders";
 
 const BuyerRequests = () => {
-  const registrations = [
-    {
-      id: 1,
-      name: "Albin Vargees",
-      dept: "Computer Science Engineering",
-      batch: "2011",
-    },
-    {
-      id: 2,
-      name: "Sidharth A",
-      dept: "Electronics & Communication Engineering",
-      batch: "2001",
-    },
-    {
-      id: 3,
-      name: "Arshad Danish",
-      dept: "Mechanical Engineering",
-      batch: "2003",
-    },
-    {
-      id: 4,
-      name: "Jyothiradithyan K",
-      dept: "Civil Engineering",
-      batch: "2007",
-    },
-    {
-      id: 5,
-      name: "Rishan KP",
-      dept: "Computer Science Engineering",
-      batch: "2010",
-    },
-  ];
-  // const [viewForm, setViewForm] = useState(false);
+  let navigate = useNavigate();
+
+  let [requests, setRequests] = useState();
+  useEffect(() => {
+    fetchRequests();
+  }, []);
+  let fetchRequests = async () => {
+    let { data } = await apis.get(
+      "booking/requests/buyer",
+      httpHeaders("user")
+    );
+    // console.log(data);
+    setRequests(data);
+  };
+
+  let onItemClick = (item) => {
+    navigate("/categories/" + item.category.toLowerCase() + "/" + item._id);
+  };
+
+  let onDelete = async (id, id2) => {
+    await apis.delete("booking/" + id, httpHeaders("user"));
+    setRequests((pd) => ({
+      ...pd,
+      bookings: requests.bookings.filter((item) => item._id !== id),
+      item_info: requests.item_info.filter((item) => item._id !== id2),
+    }));
+  };
+
+  useEffect(() => {}, [requests]);
+
+  if (!requests) return null;
   return (
     <div className="buyer-requests">
       <div className="registration-main2">
@@ -51,18 +52,28 @@ const BuyerRequests = () => {
             <div>Quantity</div>
             <div>Status</div>
           </div>
-          {registrations.map((e) => (
-            <div key={e.id} className="reg-data">
-              <div>{e.name}</div>
-              <div>{e.dept}</div>
-              <div>{e.batch}</div>
-              <div>{e.name}</div>
-              <div>{e.dept}</div>
-              <div>{e.batch}</div>
+          {requests.bookings.map((e, i) => (
+            <div key={e._id} className="reg-data">
+              <div
+                onClick={() => onItemClick(requests.item_info[i])}
+                className="item-link"
+              >
+                {requests.item_info[i].name}
+              </div>
+              <div>{e.bookingDate.substring(0, 10)}</div>
+              <div>{e.pickupDate.substring(0, 10)}</div>
+              <div>{e.dropoffDate.substring(0, 10)}</div>
+              <div>{e.quantity}</div>
+              <div>{e.status}</div>
               <div className="reg-btns">
-                <Button variant="contained">
-                  Delete
-                </Button>
+                {e.status !== "Approved" && (
+                  <Button
+                    variant="contained"
+                    onClick={() => onDelete(e._id, requests.item_info[i]._id)}
+                  >
+                    Delete
+                  </Button>
+                )}
               </div>
             </div>
           ))}
