@@ -34,7 +34,7 @@ const SellerRequests = () => {
   //     item_info: requests.item_info.filter((item) => item._id !== id2),
   //   }));
   // };
-  // const [viewForm, setViewForm] = useState(false);
+  const [viewForm, setViewForm] = useState(false);
 
   let onAccept = async (id) => {
     await apis.patch(
@@ -57,6 +57,11 @@ const SellerRequests = () => {
       buyer_info: requests.buyer_info.filter((item) => item._id !== buyerId),
       item_info: requests.item_info.filter((item) => item._id !== itemId),
     }));
+  };
+
+  let onCustomerView = async (item) => {
+    setViewForm(true);
+    setCustomerInfo(item);
   };
 
   if (!requests) return null;
@@ -83,7 +88,12 @@ const SellerRequests = () => {
               >
                 {requests.item_info[i].name}
               </div>
-              <div className="item-link" onClick={()=>setCustomerInfo(true)}>{requests.buyer_info[i].name}</div>
+              <div
+                className="item-link"
+                onClick={() => onCustomerView(requests.buyer_info[i])}
+              >
+                {requests.buyer_info[i].name}
+              </div>
               <div>{e.bookingDate.substring(0, 10)}</div>
               <div>{e.pickupDate.substring(0, 10)}</div>
               <div>{e.dropoffDate.substring(0, 10)}</div>
@@ -114,7 +124,11 @@ const SellerRequests = () => {
           ))}
         </div>
       </div>
-      <FormPopUp trigger={customerInfo} setTrigger={setCustomerInfo} />
+      <FormPopUp
+        trigger={viewForm}
+        setTrigger={setViewForm}
+        customerInfo={customerInfo}
+      />
     </div>
   );
 };

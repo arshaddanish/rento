@@ -1,8 +1,8 @@
 import React from "react";
-import { imageUrl } from "../../../../services/imageUrl";
+import { imageUrl } from "../../../services/imageUrl";
 import "./FormPopUp.scss";
 
-const FormPopUp = ({ trigger, setTrigger, selectedSeller: e }) => {
+const FormPopUp = ({ trigger, setTrigger, customerInfo: e }) => {
   return trigger ? (
     <div className="form-popup-main10">
       <div className="form-popup">
@@ -27,8 +27,6 @@ const FormPopUp = ({ trigger, setTrigger, selectedSeller: e }) => {
           <div>: {e.address}</div>
           <div className="form-popup-bold">Registration Date</div>
           <div>: {e.regDate.substring(0, 10)}</div>
-          <div className="form-popup-bold">Verification Date</div>
-          <div>: {e.verDate.substring(0, 10)}</div>
         </div>
       </div>
     </div>
