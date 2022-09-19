@@ -52,6 +52,8 @@ const SearchRouter = require("./routes/search");
 app.use(SearchRouter);
 // const ConfidentialRouter = require("./confidential/clearDb");
 // app.use(ConfidentialRouter);
+const DashboardRouter = require("./routes/dashboard");
+app.use(DashboardRouter);
 
 // Start server
 const port = 5000;

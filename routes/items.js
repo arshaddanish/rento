@@ -26,7 +26,6 @@ let validateActiveSeller = async (id) => {
 };
 
 app.get("/api/items", async (req, res) => {
-  validateSubscription();
   const items = await Item.find({}).sort({ regDate: -1 });
 
   try {
@@ -59,8 +58,10 @@ app.get("/api/items/:id", async (req, res) => {
 });
 
 app.get("/api/items-filter/:category", async (req, res) => {
+  validateSubscription();
   const items = await Item.find({
     category: titleCase(req.params.category),
+    status : 1
   }).sort({ regDate: -1 });
 
   try {
