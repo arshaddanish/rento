@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import apis from "../../../apis";
 import { httpHeaders } from "../../../services/httpHeaders";
+import PaymentHistory from "./PaymentHistory";
 
 const SellerBookings = () => {
   let navigate = useNavigate();
@@ -67,6 +68,7 @@ const SellerBookings = () => {
           ))}
         </div>
       </div>
+      <PaymentHistory trigger={viewForm} setTrigger={setViewForm} />
     </div>
   );
 };

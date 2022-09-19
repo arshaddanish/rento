@@ -1,0 +1,29 @@
+.payment-hostory-main{
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    min-width: 100%;
+    z-index: 11;
+    position: fixed;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .payment-hostory-sub{
+        background-color: white;
+        min-height: 20vh;
+        min-width: 20%;
+        position: relative;
+        padding: 2rem;
+        
+        box-shadow: 0px 2px 15px rgba($color: #3a3a3a, $alpha: 1.0);
+        border-radius: 10px 10px 10px 10px;
+        .edit-profile-popup-close-btn{
+            font-size: 2rem;
+            position: absolute;
+            top: 2%;
+            right: 2%;
+            cursor: pointer;
+        }
+    }
+}
