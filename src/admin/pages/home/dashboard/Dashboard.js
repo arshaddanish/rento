@@ -19,5 +19,13 @@ export default function Dashboard() {
       
     <div className="admin-dash-tile-left">Active Buyers:</div><div className="admin-dash-tile-right">20</div>
     </Paper>
+    <Paper className="admin-dash-tile" elevation={3}>
+      
+    <div className="admin-dash-tile-left">Active Buyers:</div><div className="admin-dash-tile-right">20</div>
+    </Paper>
+    <Paper className="admin-dash-tile" elevation={3}>
+      
+    <div className="admin-dash-tile-left">Active Buyers:</div><div className="admin-dash-tile-right">20</div>
+    </Paper>
   </div>;
 }

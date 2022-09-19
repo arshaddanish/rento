@@ -1,4 +1,4 @@
-.payment-hostory-main{
+.customer-info-main{
     top: 0;
     left: 0;
     min-height: 100vh;
@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .payment-hostory-sub{
+    .customer-info-sub{
         background-color: white;
         min-height: 20vh;
         min-width: 20%;
@@ -17,12 +17,12 @@
         padding: 2rem;
         box-shadow: 0px 2px 15px rgba($color: #3a3a3a, $alpha: 1.0);
         border-radius: 10px 10px 10px 10px;
-        .edit-profile-popup-close-btn{
-            font-size: 2rem;
-            position: absolute;
-            top: 2%;
-            right: 2%;
-            cursor: pointer;
-        }
+    }
+    .edit-profile-popup-close-btn{
+        font-size: 2rem;
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        cursor: pointer;
     }
 }

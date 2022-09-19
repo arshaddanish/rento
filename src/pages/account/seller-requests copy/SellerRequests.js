@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import apis from "../../../apis";
 import { httpHeaders } from "../../../services/httpHeaders";
-import FormPopUp from "./FormPopUp";
+import CustomerInfo from "./CustomerInfo";
 
 const SellerRequests = () => {
   let navigate = useNavigate();
@@ -114,7 +114,7 @@ const SellerRequests = () => {
           ))}
         </div>
       </div>
-      <FormPopUp trigger={customerInfo} setTrigger={setCustomerInfo} />
+      <CustomerInfo trigger={customerInfo} setTrigger={setCustomerInfo} />
     </div>
   );
 };
