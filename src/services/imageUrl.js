@@ -1,3 +1,3 @@
 export let imageUrl = (img) => {
-  return "http://localhost:5000/api/image/" + img;
+  return "https://rento19.herokuapp.com/api/image/" + img;
 };
