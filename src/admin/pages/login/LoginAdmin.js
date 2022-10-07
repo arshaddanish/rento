@@ -38,7 +38,7 @@ export default function LoginAdmin() {
         <label htmlFor="username">Username</label>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Username: rento"
           name="username"
           id="username"
           required
@@ -48,7 +48,7 @@ export default function LoginAdmin() {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Password: rento"
           name="password"
           id="password"
           required
