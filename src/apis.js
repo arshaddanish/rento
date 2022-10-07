@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:5000/api/",
+  baseURL: "https://rento19.herokuapp.com/api/",
 });
